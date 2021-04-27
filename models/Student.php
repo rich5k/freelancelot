@@ -69,16 +69,16 @@
             
         }
 
-        //adds products to cart
-        public function addProductsStudent($data){
+        //adds student bio
+        public function addStudentBio($data){
             //Prepare Query
-            $this->db->query('insert into products_Student(productID, StudentID, quantity) values(:prodID, :custID, :quantity)');
+            $this->db->query('insert into student_bios(studentID, bio, major, university) values(:studentID, :bio, :major, :university)');
 
             // Bind Values
-            $this->db->bind(':prodID', $data['prodID']);
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':quantity', $data['quantity']);
-            
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':bio', $data['bio']);
+            $this->db->bind(':major', $data['major']);
+            $this->db->bind(':university', $data['university']);
 
             //Execute
             if($this->db->execute()){
@@ -88,13 +88,13 @@
             }
         }
 
-        //gets products in cart
-        public function getProductsStudent($data){
+        //gets student bio
+        public function getStudentBio($data){
             //Prepare Query
-            $this->db->query('select * from products_Student where StudentID= :custID');
+            $this->db->query('select * from student_bios where studentID= :studentID');
 
             // Bind Values
-            $this->db->bind(':custID', $data['custID']);
+            $this->db->bind(':studentID', $data['studentID']);
 
             //Fetch All records
             $results=$this->db->resultset();
@@ -102,15 +102,69 @@
             
         }
 
-        //updates the quantity of products in cart
-        public function updateQuantity($data){
+        //adds project proposals
+        public function addProjProp($data){
             //Prepare Query
-            $this->db->query('update products_Student set quantity = :quantity where productID= :prodID and StudentID= :custID');
+            $this->db->query('insert into proj_proposals(studentID, projectID, proposal, prop_status) values(:studentID, :projectID, :proposal, :prop_status)');
 
             // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':prodID', $data['prodID']);
-            $this->db->bind(':quantity', $data['quantity']);
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':proposal', $data['proposal']);
+            $this->db->bind(':prop_status', $data['prop_status']);
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //gets project proposals
+        public function getProjProp($data){
+            //Prepare Query
+            $this->db->query('select * from proj_proposals where studentID= :studentID and projectID = :projectID');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':projectID', $data['projectID']);
+
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
+        //gets all project proposals
+        public function getAllProp($data){
+            //Prepare Query
+            $this->db->query('select * from proj_proposals where projectID = :projectID');
+
+            // Bind Values
+            $this->db->bind(':projectID', $data['projectID']);
+           
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
+
+        //updates project proposal status
+        public function updateProjProp($data){
+            //Prepare Query
+            $this->db->query('update proj_proposals set prop_status = :prop_status where projectID= :projectID and studentID= :studentID');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':prop_status', $data['prop_status']);
 
             //Execute
             if($this->db->execute()){
@@ -121,16 +175,17 @@
             
         }
 
-        //removes single product from cart
-        public function deleteProductsStudent($data){
+
+        //adds student projects
+        public function addStudProj($data){
             //Prepare Query
-            $this->db->query('delete from  products_Student where productID=:prodID and StudentID =:custID');
+            $this->db->query('insert into stud_projects(studentID, projectID, reviews, ratings) values(:studentID, :projectID, :reviews, :ratings)');
 
             // Bind Values
-            $this->db->bind(':prodID', $data['prodID']);
-            $this->db->bind(':custID', $data['custID']);
-            
-            
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':reviews', $data['reviews']);
+            $this->db->bind(':ratings', $data['ratings']);
 
             //Execute
             if($this->db->execute()){
@@ -140,134 +195,21 @@
             }
         }
 
-        //adds orders
-        public function addOrder($data){
+        //gets student projects
+        public function getStudProj($data){
             //Prepare Query
-            $this->db->query('insert into orders(orderTime, StudentID) values(:orderTime, :custID)');
+            $this->db->query('select * from stud_projects where studentID= :studentID and projectID = :projectID');
 
             // Bind Values
-            $this->db->bind(':orderTime', $data['orderTime']);
-            $this->db->bind(':custID', $data['custID']);
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':projectID', $data['projectID']);
+
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         
-            
-
-            //Execute
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        //gets orders
-        public function getOrders($data){
-            //Prepare Query
-            $this->db->query('select * from orders where orderTime= :orderTime and StudentID= :custID');
-
-            // Bind Values
-            $this->db->bind(':orderTime', $data['orderTime']);
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->resultset();
-            return $results;
-            
-        }
-
-        //adds payment
-        public function addPayment($data){
-            //Prepare Query
-            $this->db->query('insert into payments(accountDetails, StudentID, orderID) values(:accountDetails, :custID, :orderID)');
-
-            // Bind Values
-            $this->db->bind(':accountDetails', $data['accountDetails']);
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':orderID', $data['orderID']);
-            
-
-            //Execute
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        //gets payments
-        public function getPayments($data){
-            //Prepare Query
-            $this->db->query('select * from payments where accountDetails=:accountDetails and StudentID= :custID');
-
-            // Bind Values
-            $this->db->bind(':accountDetails', $data['accountDetails']);
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->single();
-            return $results;
-            
-        }
-
-        //removes all products from cart
-        public function clearProductsStudent($data){
-            //Prepare Query
-            $this->db->query('delete from products_Student where StudentID =:custID');
-
-            // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-            
-            
-
-            //Execute
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        //displays orders
-        public function displayOrders($data){
-            //Prepare Query
-            $this->db->query('select * from orders where StudentID= :custID order by orderID desc');
-
-            // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->resultset();
-            return $results;
-            
-        }
-
-        //displays payments
-        public function displayPayments($data){
-            //Prepare Query
-            $this->db->query('select * from payments where orderID=:orderID and StudentID= :custID');
-
-            // Bind Values
-            $this->db->bind(':orderID', $data['orderID']);
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->single();
-            return $results;
-            
-        }
-
-        //filters orders
-        public function filterOrders($data){
-            //Prepare Query
-            $this->db->query('select * from orders where StudentID= :custID and orderTime between :fDate and :tDate order by orderID desc');
-
-            // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':fDate', $data['fDate']);
-            $this->db->bind(':tDate', $data['tDate'].' 23:59:59.999');
-            //Fetch All records
-            $results=$this->db->resultset();
-            return $results;
-            
-        }
     }
 ?>
