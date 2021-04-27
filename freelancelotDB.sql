@@ -39,6 +39,7 @@ create table projects(
 projectID int not null primary key auto_increment,
 ptitle varchar(255) not null, 
 pdescription text(65535) not null,
+createTime datetime not null,
 payStatus varchar(255) not null,
 amount float(5,2) not null
 ); 

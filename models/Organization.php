@@ -10,11 +10,10 @@
         //adds Organization
         public function addOrganization($data){
             //Prepare Query
-            $this->db->query('insert into Organizations(fname, lname, email, password) values(:fname, :lname, :email, :password)');
+            $this->db->query('insert into organizations(cname, email, password) values(:cname, :email, :password)');
 
             // Bind Values
-            $this->db->bind(':fname', $data['fname']);
-            $this->db->bind(':lname', $data['lname']);
+            $this->db->bind(':cname', $data['cname']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':password', $data['password']);
 
@@ -29,7 +28,7 @@
         //gets the Organization email
         public function getOrganizationEmail($data){
             //Prepare Query
-            $this->db->query('select email from Organizations where email = :email');
+            $this->db->query('select email from organizations where email = :email');
 
             // Bind Values
             $this->db->bind(':email', $data['email']);
@@ -53,7 +52,7 @@
         //gets the Organization details
         public function getOrganizationDetails($data){
             //Prepare Query
-            $this->db->query('select * from Organizations where email = :email');
+            $this->db->query('select * from organizations where email = :email');
 
             // Bind Values
             $this->db->bind(':email', $data['email']);
@@ -69,15 +68,16 @@
             
         }
 
-        //adds products to cart
-        public function addProductsOrganization($data){
+        //adds organization info
+        public function addOrgInfo($data){
             //Prepare Query
-            $this->db->query('insert into products_Organization(productID, OrganizationID, quantity) values(:prodID, :custID, :quantity)');
+            $this->db->query('insert into organ_infos(organID, companyInfo, clocation, cwebsite) values(:organID, :companyInfo, :clocation, :cwebsite)');
 
             // Bind Values
-            $this->db->bind(':prodID', $data['prodID']);
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':quantity', $data['quantity']);
+            $this->db->bind(':organID', $data['organID']);
+            $this->db->bind(':companyInfo', $data['companyInfo']);
+            $this->db->bind(':clocation', $data['clocation']);
+            $this->db->bind(':cwebsite', $data['cwebsite']);
             
 
             //Execute
@@ -88,13 +88,13 @@
             }
         }
 
-        //gets products in cart
-        public function getProductsOrganization($data){
+        //gets organization info
+        public function getOrgInfo($data){
             //Prepare Query
-            $this->db->query('select * from products_Organization where OrganizationID= :custID');
+            $this->db->query('select * from organ_infos where organID= :organID');
 
             // Bind Values
-            $this->db->bind(':custID', $data['custID']);
+            $this->db->bind(':organID', $data['organID']);
 
             //Fetch All records
             $results=$this->db->resultset();
@@ -102,34 +102,17 @@
             
         }
 
-        //updates the quantity of products in cart
-        public function updateQuantity($data){
+        //adds projects
+        public function addProjects($data){
             //Prepare Query
-            $this->db->query('update products_Organization set quantity = :quantity where productID= :prodID and OrganizationID= :custID');
+            $this->db->query('insert into projects(ptitle, pdescription, createTime, payStatus, amount) values(:ptitle, :pdescription, :createTime, :payStatus, :amount)');
 
             // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':prodID', $data['prodID']);
-            $this->db->bind(':quantity', $data['quantity']);
-
-            //Execute
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-            
-        }
-
-        //removes single product from cart
-        public function deleteProductsOrganization($data){
-            //Prepare Query
-            $this->db->query('delete from  products_Organization where productID=:prodID and OrganizationID =:custID');
-
-            // Bind Values
-            $this->db->bind(':prodID', $data['prodID']);
-            $this->db->bind(':custID', $data['custID']);
-            
+            $this->db->bind(':ptitle', $data['ptitle']);
+            $this->db->bind(':pdescription', $data['pdescription']);
+            $this->db->bind(':createTime', $data['createTime']);
+            $this->db->bind(':payStatus', $data['payStatus']);
+            $this->db->bind(':amount', $data['amount']);
             
 
             //Execute
@@ -140,134 +123,72 @@
             }
         }
 
-        //adds orders
-        public function addOrder($data){
+        //gets projects
+        public function getProjects($data){
             //Prepare Query
-            $this->db->query('insert into orders(orderTime, OrganizationID) values(:orderTime, :custID)');
+            $this->db->query('select * from projects where projectID= :projectID');
 
             // Bind Values
-            $this->db->bind(':orderTime', $data['orderTime']);
-            $this->db->bind(':custID', $data['custID']);
+            $this->db->bind(':projectID', $data['projectID']);
+
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
+        //gets all projects
+        public function getAllProjects(){
+            //Prepare Query
+            $this->db->query('select * from projects ');
+
+            
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
+
+       //adds organization projects
+       public function addOrgProj($data){
+        //Prepare Query
+        $this->db->query('insert into organ_projects(organID, projectID, reviews, ratings) values(:organID, :projectID, :reviews, :ratings)');
+
+        // Bind Values
+        $this->db->bind(':organID', $data['organID']);
+        $this->db->bind(':projectID', $data['projectID']);
+        $this->db->bind(':reviews', $data['reviews']);
+        $this->db->bind(':ratings', $data['ratings']);
+
+        //Execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //gets organization projects
+    public function getOrgProj($data){
+        //Prepare Query
+        $this->db->query('select * from organ_projects where organID= :organID and projectID = :projectID');
+
+        // Bind Values
+        $this->db->bind(':organID', $data['organID']);
+        $this->db->bind(':projectID', $data['projectID']);
+
+        //Fetch All records
+        $results=$this->db->resultset();
+        return $results;
         
-            
+    }
 
-            //Execute
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        //gets orders
-        public function getOrders($data){
-            //Prepare Query
-            $this->db->query('select * from orders where orderTime= :orderTime and OrganizationID= :custID');
-
-            // Bind Values
-            $this->db->bind(':orderTime', $data['orderTime']);
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->resultset();
-            return $results;
-            
-        }
-
-        //adds payment
-        public function addPayment($data){
-            //Prepare Query
-            $this->db->query('insert into payments(accountDetails, OrganizationID, orderID) values(:accountDetails, :custID, :orderID)');
-
-            // Bind Values
-            $this->db->bind(':accountDetails', $data['accountDetails']);
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':orderID', $data['orderID']);
-            
-
-            //Execute
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        //gets payments
-        public function getPayments($data){
-            //Prepare Query
-            $this->db->query('select * from payments where accountDetails=:accountDetails and OrganizationID= :custID');
-
-            // Bind Values
-            $this->db->bind(':accountDetails', $data['accountDetails']);
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->single();
-            return $results;
-            
-        }
-
-        //removes all products from cart
-        public function clearProductsOrganization($data){
-            //Prepare Query
-            $this->db->query('delete from products_Organization where OrganizationID =:custID');
-
-            // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-            
-            
-
-            //Execute
-            if($this->db->execute()){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        //displays orders
-        public function displayOrders($data){
-            //Prepare Query
-            $this->db->query('select * from orders where OrganizationID= :custID order by orderID desc');
-
-            // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->resultset();
-            return $results;
-            
-        }
-
-        //displays payments
-        public function displayPayments($data){
-            //Prepare Query
-            $this->db->query('select * from payments where orderID=:orderID and OrganizationID= :custID');
-
-            // Bind Values
-            $this->db->bind(':orderID', $data['orderID']);
-            $this->db->bind(':custID', $data['custID']);
-
-            //Fetch All records
-            $results=$this->db->single();
-            return $results;
-            
-        }
-
-        //filters orders
-        public function filterOrders($data){
-            //Prepare Query
-            $this->db->query('select * from orders where OrganizationID= :custID and orderTime between :fDate and :tDate order by orderID desc');
-
-            // Bind Values
-            $this->db->bind(':custID', $data['custID']);
-            $this->db->bind(':fDate', $data['fDate']);
-            $this->db->bind(':tDate', $data['tDate'].' 23:59:59.999');
-            //Fetch All records
-            $results=$this->db->resultset();
-            return $results;
-            
-        }
+       
     }
 ?>
