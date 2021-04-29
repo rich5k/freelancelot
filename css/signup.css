@@ -1,0 +1,88 @@
+body{
+    margin: 0;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url("bck-image1.jpg");
+}
+a{ 
+    text-decoration: none;
+}
+.form-contents{
+    background-color: white;
+    margin: 7% auto;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+}
+.form-container{
+    display: flex;
+    margin: 7% 50%;
+    padding-right: 30%;
+}
+.form-image img{
+    width: 700px;
+    height: 700px;
+    margin: 20%;
+}
+.submit{
+    display: flex;
+    align-self: flex-end;
+}
+.btn{
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+    padding: 0px;
+  
+    color: #fbfafa;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 50px;
+  
+    border: 2px solid #171717;
+    background: black;
+}  
+.btn:hover{
+    color: #f3f3f3;
+    background-position: 0% 50%;
+    border-width: 10px;
+    box-shadow: 3px 3px 6px 6px rgba(0, 0, 0, 0.5);
+  }
+
+footer{
+    color: white;
+    background: #000;
+    width: 1350px;
+    text-align: center;
+    animation:  color-change 10s ease-in-out infinite;
+}
+
+@keyframes color-change{
+    0%{
+        background: #000;
+        color: white;
+    }
+    16%{
+        background:#0079C4;
+    }
+    32%{
+        background:#FAAC86;
+    }
+    48%{
+        background:#E61F34;
+    }
+    64%{
+        background:#C71A2E;
+    }
+    80%{
+        background: #FFD63E;
+        color: black;
+    }
+    100%{
+        background: #FFD53B;
+        color: black;
+    }
+}
