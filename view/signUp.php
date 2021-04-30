@@ -9,13 +9,13 @@
 <body>
     <div class="form-container">
         <div class="form-image">
-            <img src="../assets/signpic1.jpg" alt="">
+            <img src="../assets/signpic2.jpg" alt="">
         </div>
         <div class="form-contents">
             <img src="#" alt="">
-            <h1>Fill in details for your CV</h1>
+            <h1>Sign Up To Join The Amazing Community!!!</h1>
             <!-- form for logining in -->
-            <form action="../controller/login.php" method="post">
+            <form action="../controller/register.php" method="post">
             <div class="form-group">
                     <label for="fname">First Name</label>
                     <input type="text" class="form-control" id="fname" name="fname" required>
@@ -48,17 +48,12 @@
                 </label>
                 </div>
                 <div class="form-check">
-                <input class="lecturer-check" type="radio" name="category" id="lecturer-check" value="lecturer">
-                <label class="lecturer-check" for="lecturer-check">
+                <input class="org-check" type="radio" name="category" id="org-check" value="org">
+                <label class="org-check" for="org-check">
                     Lecturer
                 </label>
                 </div>
-                <div class="form-check">
-                <input class="registry-check" type="radio" name="category" id="registry-check" value="registry">
-                <label class="registry-check" for="registry-check">
-                    Registry
-                </label>
-                </div>
+                
                 <span id="saving"></span>
                 <button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
                 </form>
