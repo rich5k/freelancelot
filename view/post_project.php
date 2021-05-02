@@ -66,15 +66,30 @@ _SIGNINITEM;
     width: 100%;">
     <div class="container">
         <div class="jumbotron">
-            <h3>Send Your Proposal</h3>
+            <h3>Post A Project</h3>
             <br>
             <br>
-            <h5>Be compelling in your proposal to get picked for the project</h5>
-            <form action="../controller/addProposal.php" method="post">
+            <h5>Be explicit and detailed in the description</h5>
+            <form action="../controller/addProject.php" method="post">
                 <div class="form-group">
-                    <label for="proposal">Proposal:</label>
-                    <textarea class="form-control" id="proposal" name="proposal" cols="30" rows="10"></textarea>
-                    
+                    <label for="ptitle">Title</label>
+                    <input type="text" class="form-control" id="ptitle" name="ptitle" required>
+                    <br>
+                    <br>
+                    <label for="pdescription">Description:</label>
+                    <textarea class="form-control" id="pdescription" name="pdescription" cols="30" rows="10"></textarea>
+                    <br>
+                    <br>
+                    <label for="payStatus">Type of Project:</label>
+                    <select class="form-control" id="payStatus" name="payStatus">
+                        <option>Paid</option>
+                        <option>Voluntary</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="amount">Price</label>
+                    <input type="text" class="form-control" id="amount" name="amount" required>
+                    <small id="sTimeHelp" class="form-text text-muted">Put 0 if voluntary</small>
                 </div>
                 
 
