@@ -48,7 +48,7 @@ _SIGNOUTITEM;
                                 Sign In 
                             <i class="fa fa-user" aria-hidden="true"></i></a></button>
                             
-                            _SIGNINITEM;
+_SIGNINITEM;
 
                             
                         }
@@ -86,6 +86,10 @@ _SIGNOUTITEM;
                         accusantium facere cupiditate ipsa 
                         quo qui earum tempora, ratione modi 
                         nesciunt ut!</p>
+                        <br>
+                        <br>
+                        <button type="button" onclick="window.location.href='proposal.php';" class="btn btn-success btn-sm">Send Proposal</button>
+
                     </div>
             </div>
             

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Bio</title>
+    <title>Your Company Info</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/project.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,7 +48,7 @@ _SIGNOUTITEM;
                                 Sign In 
                             <i class="fa fa-user" aria-hidden="true"></i></a></button>
                             
- _SIGNINITEM;
+_SIGNINITEM;
 
                             
                         }
@@ -66,26 +66,30 @@ _SIGNOUTITEM;
     width: 100%;">
     <div class="container">
         <div class="jumbotron">
-            <h3>Create a Bio</h3>
+            <h3>My Profile</h3>
             <br>
             <br>
-            <h5>Tell Us About Yourself(achievements, skills, etc.)</h5>
-            <form action="../controller/addBio.php" method="post">
-                <div class="form-group">
-                    <label for="Bio">Bio:</label>
-                    <textarea type="text" class="form-control" id="Bio" name="Bio" cols="30" rows="10"></textarea>
-                    <br>
-                    <label for="major">Major</label>
-                    <input type="text" class="form-control" id="major" name="major" required>
-                    <br>
-                    <label for="university">University</label>
-                    <input type="text" class="form-control" id="university" name="university" required>
-                </div>
-                
-
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                
-            </form>
+            <div class="row">
+                    <div class="col-lg-6">
+                    <img src="../assets/workpic1.jpg" class="img-fluid profile-img" alt="Responsive image" style="
+                    height: 350px;
+                    width: 100%;">
+                    </div>
+                    <div class="col-lg-6">
+                        <h5>Company Info</h5>
+                        <br>
+                        <p>Lorem ipsum dolor sit 
+                        amet consectetur, adipisicing 
+                        elit. Distinctio perferendis, 
+                        enim consequatur nam quibusdam 
+                        dolore nulla architecto ducimus 
+                        accusantium facere cupiditate ipsa 
+                        quo qui earum tempora, ratione modi 
+                        nesciunt ut!</p>
+                        <button type="button" onclick="window.location.href='post_project.php';" class="btn btn-success btn-sm">Post Project</button>
+                    </div>
+            </div>
+            
         </div>
         
     </div>

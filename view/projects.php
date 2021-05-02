@@ -48,7 +48,7 @@ _SIGNOUTITEM;
                                 Sign In 
                             <i class="fa fa-user" aria-hidden="true"></i></a></button>
                             
-                            _SIGNINITEM;
+_SIGNINITEM;
 
                             
                         }
