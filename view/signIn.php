@@ -44,7 +44,7 @@
                 <button type="submit" class="btn btn-primary" name="submit">Sign In</button>
                 </form>
                     <!-- redirect customer to sign up page -->
-                <h5><em>New User?</em> <button type="submit" class="btn btn-secondary" onclick="window.location.href='signUp.php';">Sign Up Here</button></h5>
+                <h5><em>New User?</em> <button type="submit" class="btn btn-secondary" onclick="window.location.href='./signUp.php';">Sign Up Here</button></h5>
             </form>
     
         </div>
