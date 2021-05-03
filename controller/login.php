@@ -4,7 +4,7 @@ if(isset($_POST['submit'])){
     require '../controller/database.php';
     require_once '../models/Student.php';
     require_once '../models/Organization.php';
-    require_once '../models/Registry.php';
+   
     require_once '../models/Database.php';
 
     $email= $_POST['email'];
@@ -77,7 +77,7 @@ if(isset($_POST['submit'])){
             $OrganizationEmail=[
                 'email'=> $email
             ];
-            if(!($Organization->getOrganizationEmail($OrganizationEmail))){
+            if(!($organization->getOrganizationEmail($OrganizationEmail))){
                 echo '<script>alert("No user")</script>';
                 echo '<script>window.location.href = "../view/signUp.php";</script>';
                 exit();
@@ -86,7 +86,7 @@ if(isset($_POST['submit'])){
             else{
             
                 //getting Organization details
-                $org= $Organization->getOrganizationDetails($OrganizationEmail);
+                $org= $organization->getOrganizationDetails($OrganizationEmail);
                 
                 //verfiying password
                 $passCheck=password_verify($password, $org->password);

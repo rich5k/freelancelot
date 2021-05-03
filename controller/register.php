@@ -3,18 +3,16 @@ if(isset($_POST['submit'])){
     //Add Database connection
     require_once '../controller/database.php';
     require_once '../models/Student.php';
-    require_once '../models/Lecturer.php';
-    require_once '../models/Registry.php';
+    require_once '../models/Organization.php';
     require_once '../models/Database.php';
 
     //Instantiate Student
     $student= new Student();
 
-    //Instantiate Lecturer
-    $lecturer= new Lecturer();
+    //Instantiate Organization
+    $organization= new Organization();
 
-    //Instantiate Registry
-    $registry= new Registry();
+    
 
     $fname= $_POST['fname'];
     $lname= $_POST['lname'];
@@ -29,15 +27,15 @@ if(isset($_POST['submit'])){
     //if fields are empty
     if (empty($fname) ||empty($lname) || empty($email) || empty($password) || empty($confirmPass)){
         echo '<script>alert("Some fields are empty)</script>';
-        echo '<script>window.location.href = "../view/sign_up.php";</script>';
+        echo '<script>window.location.href = "../view/signUp.php";</script>';
         exit();
     }elseif(!preg_match("/^[A-Za-z_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z]{2,6}$/",$email) && !preg_match("/^[A-Za-z_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z]{2,6}[.]{1}[A-Za-z]{2,6}$/",$email)){
         echo '<script>alert("Invalid email")</script>';
-        echo '<script>window.location.href = "../view/sign_up.php";</script>';
+        echo '<script>window.location.href = "../view/signUp.php";</script>';
         exit();
     }elseif($password !== $confirmPass){
         echo '<script>alert("Passwords do not match")</script>';
-        echo '<script>window.location.href = "../view/sign_up.php";</script>';
+        echo '<script>window.location.href = "../view/signUp.php";</script>';
         exit();
     }else{
         
@@ -49,7 +47,7 @@ if(isset($_POST['submit'])){
             ];
             if($student->getStudentEmail($studentEmail)){
                 echo '<script>alert("Username Taken")</script>';
-                echo '<script>window.location.href = "../view/sign_up.php";</script>';
+                echo '<script>window.location.href = "../view/signUp.php";</script>';
                 exit();
             }
 
@@ -68,27 +66,27 @@ if(isset($_POST['submit'])){
                 //Add Student To Do
                 if($student->addStudent($StudentData)){
                     echo '<script>alert("Well Done. You have been registered successfully")</script>';
-                    echo '<script>window.location.href = "../view/sign_in.php";</script>';
+                    echo '<script>window.location.href = "../view/signIn.php";</script>';
                     exit();
     
                 }
                 else{
-                    header("Location: ../view/sign_up.php?error=sqlerror1");
+                    header("Location: ../view/signUp.php?error=sqlerror1");
                     exit();
                 }
             }
 
         }
 
-        elseif($selected_category=="lecturer"){
+        elseif($selected_category=="Organization"){
 
-            //lecturer Email
-            $lecturerEmail=[
+            //Organization Email
+            $OrganizationEmail=[
                 'email'=> $email
             ];
-            if($lecturer->getLecturerEmail($lecturerEmail)){
+            if($organization->getOrganizationEmail($OrganizationEmail)){
                 echo '<script>alert("Username Taken")</script>';
-                echo '<script>window.location.href = "../view/sign_up.php";</script>';
+                echo '<script>window.location.href = "../view/signUp.php";</script>';
                 exit();
             }
 
@@ -96,23 +94,22 @@ if(isset($_POST['submit'])){
             
                 $hashedPass= password_hash($password, PASSWORD_DEFAULT);
     
-                //lecturer Data
-                $lecturerData =[
-                    'fname'=> $fname,
-                    'lname'=> $lname,
+                //Organization Data
+                $OrganizationData =[
+                    'cname'=> $cname,
                     'email'=> $email,
                     'password'=> $hashedPass
                 ];
                 
-                //Add lecturer To Do
-                if($lecturer->addLecturer($lecturerData)){
+                //Add Organization To Do
+                if($organization->addOrganization($OrganizationData)){
                     echo '<script>alert("Well Done. You have been registered successfully")</script>';
-                    echo '<script>window.location.href = "../view/sign_in.php";</script>';
+                    echo '<script>window.location.href = "../view/signIn.php";</script>';
                     exit();
     
                 }
                 else{
-                    header("Location: ../view/sign_up.php?error=sqlerror1");
+                    header("Location: ../view/signUp.php?error=sqlerror1");
                     exit();
                 }
             }
@@ -127,7 +124,7 @@ if(isset($_POST['submit'])){
             ];
             if($registry->getRegistryEmail($registryEmail)){
                 echo '<script>alert("Username Taken")</script>';
-                echo '<script>window.location.href = "../view/sign_up.php";</script>';
+                echo '<script>window.location.href = "../view/signUp.php";</script>';
                 exit();
             }
 
@@ -146,12 +143,12 @@ if(isset($_POST['submit'])){
                 //Add registry To Do
                 if($registry->addRegistry($registryData)){
                     echo '<script>alert("Well Done. You have been registered successfully")</script>';
-                    echo '<script>window.location.href = "../view/sign_in.php";</script>';
+                    echo '<script>window.location.href = "../view/signIn.php";</script>';
                     exit();
     
                 }
                 else{
-                    header("Location: ../view/sign_up.php?error=sqlerror1");
+                    header("Location: ../view/signUp.php?error=sqlerror1");
                     exit();
                 }
             }
