@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name</title>
+    <title>Find Student Talent</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/project.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -61,63 +61,81 @@ _SIGNINITEM;
     </div>
     </nav>
         
-    <img src="../assets/workpic5.jpg" class="img-fluid" alt="Responsive image" style="
-    height: 350px;
-    width: 100%;">
+    
     <div class="container">
-        <h3>Job Details</h3>
-        <div class="jumbotron">
-        <h5>YouTube Channel Growth</h5>
-        </div>
-        <div class="jumbotron">
-            <small>Posted 40 minutes ago</small>
-            <br>
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            Only students in Ghanaian colleges may apply.
-            
-            <br>
+        <h1>Top Student Talent</h1>
+        <div class="row">
+            <div class="col-lg-3">
+                <h5>Categories/Majors</h5>
+                Business Administration
+                <br>
+                Managament Information Systems
+                <br>
+            </div>
+            <div class="col-lg-9">
+                <div class="jumbotron">
+                    <form action="../controller/search_student.php" method="post">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <small>Search student talent by major</small>
+                            
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <img src="../assets/person1.jpg" class="img-fluid profile-img" alt="Responsive image" style="
+                            height: 60px;
+                            width: 100%;">
+                        </div>
+                        <div class="col-lg-11">
+                            <a href="./student_view.php">Kwami Eugene</a>
+                            <br>
+                            <strong>Computer Science</strong>
+                            <br>
+                            <small>Ashesi Universiy</small>
+                        </div>
+                    
+                    </div>
+                    100% Project Success
+                    <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Rem illum et, officia voluptate enim exercitationem dicta! 
+                    </p>
+                </div>
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <img src="../assets/person2.jpg" class="img-fluid profile-img" alt="Responsive image" style="
+                            height: 60px;
+                            width: 100%;">
+                        </div>
+                        <div class="col-lg-11">
+                            <a href="./student_view.php">Ebony GH</a>
+                            <br>
+                            <strong>Business Administration</strong>
+                            <br>
+                            <small>Ashesi Universiy</small>
+                        </div>
+                    
+                    </div>
+                    100% Project Success
+                    <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Rem illum et, officia voluptate enim exercitationem dicta! 
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <div class="jumbotron">
-            <p>Sales can be made by phone or by emailing. You speak and write well
-             in English and have a background in sales and preferably in travel, 
-             leisure and lifestyle sales including health products and fashion. 
-             We are not sure what to expect as far a renumeration and are open 
-             to discussion, please give us an idea of this with a proposal.</p>
-            
-            
-        </div>
-
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-lg-4">
-                    <strong><i class="fa fa-tag" aria-hidden="true"></i> $1,000</strong>
-                    <br>
-                    <small>Fixed Price</small>
-                </div> 
-                <div class="col-lg-4">
-                    <strong><i class="fa fa-briefcase" aria-hidden="true"></i>  Intermediate</strong> 
-                    <br>
-                    <small>I am willing to pay for a student who has experience
-                    and can produce value</small>
-                </div>
-                <div class="col-lg-4">
-                    <strong><i class="fa fa-map-marker" aria-hidden="true"></i> Remote Job</strong>
-                </div>
-            
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-lg-4">
-                </div>
-                <div class="col-lg-4">
-                    <button type="button" onclick="window.location.href='proposal.php';" class="btn btn-success btn-sm">Send Proposal</button>
-                </div>
-                <div class="col-lg-4">
-                </div>
-            </div>
-        </div>
+       
 
         
         
