@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Find Talent <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="./view/stud_display.php">Find Talent <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./view/projects.php">Find Work </a>
@@ -69,7 +69,7 @@ _SIGNOUTITEM;
                     full potential of your business</h5>
                     <div class="row">
                         <div class="col-lg-6">
-                            <button type="button" onclick="window.location.href='#';" class="btn btn-success btn-sm">Find Talent</button>
+                            <button type="button" onclick="window.location.href='./view/stud_display.php';" class="btn btn-success btn-sm">Find Talent</button>
                         </div>
                         <div class="col-lg-6">
                             <button type="button" onclick="window.location.href='./view/projects.php';" class="btn btn-outline-success btn-sm">Find Work</button>
