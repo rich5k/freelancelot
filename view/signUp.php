@@ -60,6 +60,29 @@
     
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            
+            $('#org-check').click(function(){
+                //gets value from form and passes it to database through ajax
+                var category=$("#org-check").val();
+                if(category !='' ){
+                    $.ajax({
+                        url:'../controller/alterRegister.php',
+                        method: 'POST',
+                        data: {category: category},
+                        success:function(data){
+                            $('.form-contents').html(data) ;
+                        }
+                    });
+                }
+                else{
+                    //if no user role is picked, show alert
+                    alert('Pls select user role');
+                }
+            });
+        });
+    </script>
     <footer>
         <p>Made by KAQA &copy; 2021. All rights reserved.</p>         
     </footer>
