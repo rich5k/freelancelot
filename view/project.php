@@ -1,3 +1,10 @@
+<?php
+require_once '../controller/database.php';
+require_once '../models/Organization.php';
+require_once '../models/Student.php';
+require_once '../models/Database.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
