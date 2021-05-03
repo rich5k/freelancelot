@@ -42,7 +42,7 @@ session_start();
                         if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
                             printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
                             echo <<<_SIGNOUTITEM
-                            <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href=".,/controller/logout.php">
+                            <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="../controller/logout.php">
                                     Sign Out 
                                 <i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
                             
