@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="../css/signup.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="form-container">
@@ -50,7 +51,7 @@
                 <div class="form-check">
                 <input class="org-check" type="radio" name="category" id="org-check" value="org">
                 <label class="org-check" for="org-check">
-                    Lecturer
+                    Organization
                 </label>
                 </div>
                 
@@ -81,11 +82,32 @@
                     alert('Pls select user role');
                 }
             });
+
+            $('#student-check').click(function(){
+                //gets value from form and passes it to database through ajax
+                console.log("worked");
+                var category=$("#student-check").val();
+                if(category !='' ){
+                    $.ajax({
+                        url:'../controller/alterRegister.php',
+                        method: 'POST',
+                        data: {category: category},
+                        success:function(data){
+                            $('.form-contents').html(data) ;
+                        }
+                    });
+                }
+                else{
+                    //if no user role is picked, show alert
+                    alert('Pls select user role');
+                }
+            });
         });
     </script>
     <footer>
         <p>Made by KAQA &copy; 2021. All rights reserved.</p>         
     </footer>
     <!-- <script src="../js/signIn.js"></script> -->
+    
 </body>
 </html>
