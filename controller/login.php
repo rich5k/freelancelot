@@ -101,7 +101,7 @@ if(isset($_POST['submit'])){
                     //creating session variables
                     $_SESSION['sessionId']=$org->organID;
                     $_SESSION['sessionEmail']=$org->email;
-                    $_SESSION['sessionFname']=$org->cname;
+                    $_SESSION['sessionCname']=$org->cname;
                     
                     echo '<script>alert("Well Done. Logged in successfully")</script>';
                     echo '<script>window.location.href = "../view/org_dashboard.php";</script>';
