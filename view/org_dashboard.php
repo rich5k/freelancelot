@@ -48,6 +48,16 @@ session_start();
                             
 _SIGNOUTITEM;
 
+                        }
+                        else if(isset($_SESSION['sessionCname'])){
+                            printf('Akwaaba, %s ', $_SESSION['sessionCname']);
+                            echo <<<_SIGNOUTITEM
+                            <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="../controller/logout.php">
+                                    Sign Out 
+                                <i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
+                            
+_SIGNOUTITEM;
+
                         }else{
                             //if not, put the default navitem
                             echo <<<_SIGNINITEM
