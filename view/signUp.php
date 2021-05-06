@@ -64,7 +64,7 @@
     <script>
         $(document).ready(function(){
             
-            $('#org-check').click(function(){
+            $('document').on('click','#org-check', function(){
                 //gets value from form and passes it to database through ajax
                 var category=$("#org-check").val();
                 if(category !='' ){
