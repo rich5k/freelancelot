@@ -105,7 +105,7 @@
         //adds projects
         public function addProjects($data){
             //Prepare Query
-            $this->db->query('insert into projects(ptitle, pdescription, createTime, payStatus, amount) values(:ptitle, :pdescription, :createTime, :payStatus, :amount)');
+            $this->db->query('insert into projects(ptitle, pdescription, createTime, payStatus, amount, pdifficulty) values(:ptitle, :pdescription, :createTime, :payStatus, :amount, :pdifficulty)');
 
             // Bind Values
             $this->db->bind(':ptitle', $data['ptitle']);
@@ -113,7 +113,7 @@
             $this->db->bind(':createTime', $data['createTime']);
             $this->db->bind(':payStatus', $data['payStatus']);
             $this->db->bind(':amount', $data['amount']);
-            
+            $this->db->bind(':pdifficulty', $data['pdifficulty']);
 
             //Execute
             if($this->db->execute()){

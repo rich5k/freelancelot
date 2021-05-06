@@ -43,7 +43,8 @@ ptitle varchar(255) not null,
 pdescription text(65535) not null,
 createTime datetime not null,
 payStatus varchar(255) not null,
-amount float(5,2) not null
+amount float(5,2) not null,
+pdifficulty varchar(255) not null,
 ); 
 
 create table organ_projects(
