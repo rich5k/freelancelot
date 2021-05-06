@@ -72,13 +72,14 @@
         //adds student bio
         public function addStudentBio($data){
             //Prepare Query
-            $this->db->query('insert into student_bios(studentID, bio, major, university) values(:studentID, :bio, :major, :university)');
+            $this->db->query('insert into student_bios(studentID, bio, major, university, picture) values(:studentID, :bio, :major, :university, :picture)');
 
             // Bind Values
             $this->db->bind(':studentID', $data['studentID']);
             $this->db->bind(':bio', $data['bio']);
             $this->db->bind(':major', $data['major']);
             $this->db->bind(':university', $data['university']);
+            $this->db->bind(':picture', $data['picture']);
 
             //Execute
             if($this->db->execute()){

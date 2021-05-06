@@ -71,14 +71,14 @@
         //adds organization info
         public function addOrgInfo($data){
             //Prepare Query
-            $this->db->query('insert into organ_infos(organID, companyInfo, clocation, cwebsite) values(:organID, :companyInfo, :clocation, :cwebsite)');
+            $this->db->query('insert into organ_infos(organID, companyInfo, clocation, cwebsite, picture) values(:organID, :companyInfo, :clocation, :cwebsite, :picture)');
 
             // Bind Values
             $this->db->bind(':organID', $data['organID']);
             $this->db->bind(':companyInfo', $data['companyInfo']);
             $this->db->bind(':clocation', $data['clocation']);
             $this->db->bind(':cwebsite', $data['cwebsite']);
-            
+            $this->db->bind(':picture', $data['picture']);
 
             //Execute
             if($this->db->execute()){
