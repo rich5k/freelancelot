@@ -89,14 +89,18 @@ _SIGNOUTITEM;
             <h5>Tell Us About Yourself(achievements, skills, etc.)</h5>
             <form action="../controller/addBio.php" method="post">
                 <div class="form-group">
-                    <label for="Bio">Bio:</label>
+                    <label for="Bio"><b>Bio:</b></label>
                     <textarea type="text" class="form-control" id="Bio" name="Bio" cols="30" rows="10"></textarea>
                     <br>
-                    <label for="major">Major</label>
+                    <label for="major"><b>Major</b></label>
                     <input type="text" class="form-control" id="major" name="major" required>
                     <br>
-                    <label for="university">University</label>
+                    <label for="university"><b>University</b></label>
                     <input type="text" class="form-control" id="university" name="university" required>
+                    <br>
+                    <label for="Image"><b>Image</b></label>
+			        <input type="file" placeholder="Upload an Image" name="image" id="image" required>
+			        <br>
                 </div>
                 
 

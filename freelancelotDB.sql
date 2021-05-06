@@ -16,6 +16,7 @@ studentID int not null,
 bio text(65535) not null, 
 major varchar(255) not null,
 university varchar(255) not null,
+picture varchar(255) not null,
 foreign key (studentID) references students(studentID)
 );
 
@@ -32,6 +33,7 @@ organID int not null,
 companyInfo text(65535) not null, 
 clocation varchar(255) not null,
 cwebsite varchar(255) not null,
+picture varchar(255) not null,
 foreign key (organID) references organizations(organID)
 );
 
