@@ -86,27 +86,49 @@ _SIGNINITEM;
             <br>
             <br>
             <div class="row">
-                    <div class="col-lg-6">
-                    <img src="../assets/person1.jpg" class="img-fluid profile-img" alt="Responsive image" style="
-                    height: 350px;
-                    width: 100%;">
-                    </div>
-                    <div class="col-lg-6">
-                        <h5>Bio</h5>
-                        <br>
-                        <p>Lorem ipsum dolor sit 
-                        amet consectetur, adipisicing 
-                        elit. Distinctio perferendis, 
-                        enim consequatur nam quibusdam 
-                        dolore nulla architecto ducimus 
-                        accusantium facere cupiditate ipsa 
-                        quo qui earum tempora, ratione modi 
-                        nesciunt ut!</p>
-                        <br>
-                        <br>
-                        <button type="button" onclick="window.location.href='proposal.php';" class="btn btn-success btn-sm">Send Proposal</button>
+                <?php
+                    //Instantiate Student
+                    $student= new Student();
+                    //student Data
+                    $studentData =[
+                        'studentID'=> $_SESSION['sessionId']
+                    ];
+                    $studBio= $student->getStudentBio($studentData);
+                    if($studBio!= null){
+                        echo '<div class="col-lg-6">';
+                        echo '<img src="../assets/person1.jpg" class="img-fluid profile-img" alt="Responsive image" style="
+                        height: 350px;
+                        width: 100%;">';
+                        echo '</div>';
+                        echo '<div class="col-lg-6">';
+                        echo '<h5>Bio</h5>';
+                        echo '<br>';
+                        echo '<p>';
+                        echo $studBio->bio;
+                        echo '</p>';
+                        echo '<br>';
+                        echo '<h5>Major</h5>';
+                        echo '<br>';
+                        echo $studBio->major;
+                        echo '<br>';
+                        echo '<h5>University</h5>';
+                        echo '<br>';
+                        echo $studBio->university;
+                        echo '<br>';
+                        echo '<button type="button" onclick="window.location.href=\'proposal.php\';" class="btn btn-success btn-sm">Send Proposal</button>';
 
-                    </div>
+                    }
+                    else{
+                        echo '<div class="col-lg-12">';
+                        echo '<h5>Sorry you don\'t have a bio. Please create one</h5>';
+                        echo '<br>';
+                        echo '<button type="button" onclick="window.location.href=\'stud_bio.php\';" class="btn btn-success btn-sm">Create Bio</button>';
+                    }
+                    echo '</div>';
+                ?>
+                    
+                    
+                    
             </div>
             
         </div>
