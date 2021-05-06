@@ -96,6 +96,10 @@ _SIGNINITEM;
                     <br>
                     <label for="cwebsite">Website</label>
                     <input type="text" class="form-control" id="cwebsite" name="cwebsite" required>
+                    <br>
+                    <label for="Image"><b>Image</b></label>
+			        <input type="file" placeholder="Upload an Image" name="image" id="image" required>
+			        <br>
                 </div>
                 
 
