@@ -88,13 +88,13 @@ _SIGNINITEM;
             <h5>Tell Us About Your Organization</h5>
             <form action="../controller/addCinfo.php" method="post">
                 <div class="form-group">
-                    <label for="companyInfo">Company Info:</label>
+                    <label for="companyInfo"><b>Company Info:</b></label>
                     <textarea type="text" class="form-control" id="companyInfo" name="companyInfo" cols="30" rows="10"></textarea>
                     <br>
-                    <label for="clocation">Location</label>
+                    <label for="clocation"><b>Location</b></label>
                     <input type="text" class="form-control" id="clocation" name="clocation" required>
                     <br>
-                    <label for="cwebsite">Website</label>
+                    <label for="cwebsite"><b>Website</b></label>
                     <input type="text" class="form-control" id="cwebsite" name="cwebsite" required>
                     <br>
                     <label for="Image"><b>Image</b></label>

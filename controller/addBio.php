@@ -5,10 +5,11 @@ if(isset($_POST['submit'])){
     require_once '../controller/database.php';
     require_once '../models/Student.php';
     require_once '../models/Database.php';
-
+    session_start();
     //Instantiate Student
     $student= new Student();
 
+    $studentID=$_SESSION['sessionId'];
     $bio=$_POST['Bio'];
     $major=$_POST['major'];
     $university=$_POST['university'];
@@ -26,6 +27,7 @@ if(isset($_POST['submit'])){
     }else{
         //Bio Data
         $BioData =[
+            'studentID'=> $studentID,
             'bio'=> $bio,
             'major'=> $major,
             'university'=> $university,

@@ -1,5 +1,6 @@
 <?php
 require_once '../controller/database.php';
+require_once '../models/Organization.php';
 require_once '../models/Student.php';
 require_once '../models/Database.php';
 session_start();
@@ -96,7 +97,7 @@ _SIGNINITEM;
                     $studBio= $student->getStudentBio($studentData);
                     if($studBio!= null){
                         echo '<div class="col-lg-6">';
-                        echo '<img src="../assets/person1.jpg" class="img-fluid profile-img" alt="Responsive image" style="
+                        echo '<img src="'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
                         height: 350px;
                         width: 100%;">';
                         echo '</div>';

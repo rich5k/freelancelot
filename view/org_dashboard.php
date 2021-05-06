@@ -87,24 +87,48 @@ _SIGNINITEM;
             <br>
             <br>
             <div class="row">
-                    <div class="col-lg-6">
-                    <img src="../assets/workpic1.jpg" class="img-fluid profile-img" alt="Responsive image" style="
-                    height: 350px;
-                    width: 100%;">
-                    </div>
-                    <div class="col-lg-6">
-                        <h5>Company Info</h5>
-                        <br>
-                        <p>Lorem ipsum dolor sit 
-                        amet consectetur, adipisicing 
-                        elit. Distinctio perferendis, 
-                        enim consequatur nam quibusdam 
-                        dolore nulla architecto ducimus 
-                        accusantium facere cupiditate ipsa 
-                        quo qui earum tempora, ratione modi 
-                        nesciunt ut!</p>
-                        <button type="button" onclick="window.location.href='post_project.php';" class="btn btn-success btn-sm">Post Project</button>
-                    </div>
+                <?php
+                    //Instantiate Organization
+                    $organization= new Organization();
+                    //student Data
+                    $orgInfoData =[
+                        'organID'=> $_SESSION['sessionId']
+                    ];
+                    $orgInfo= $organization->getOrgInfo($orgInfoData);
+                    if($orgInfo!= null){
+                        echo '<div class="col-lg-6">';
+                        echo '<img src="'.$orgInfo->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
+                        height: 350px;
+                        width: 100%;">';
+                        echo '</div>';
+                        echo '<div class="col-lg-6">';
+                        echo '<h5>Company Info</h5>';
+                        echo '<br>';
+                        echo '<p>';
+                        echo $orgInfo->companyInfo;
+                        echo '</p>';
+                        echo '<br>';
+                        echo '<h5>Location</h5>';
+                        echo '<br>';
+                        echo $orgInfo->clocation;
+                        echo '<br>';
+                        echo '<h5>Website</h5>';
+                        echo '<br>';
+                        echo $orgInfo->cwebsite;
+                        echo '<br>';
+                        echo '<button type="button" onclick="window.location.href=\'post_project.php\';" class="btn btn-success btn-sm">Post Project</button>';
+                    }
+                    else{
+                        echo '<div class="col-lg-12">';
+                        echo '<h5>Sorry you don\'t have a profile for your company. Please create one</h5>';
+                        echo '<br>';
+                        echo '<button type="button" onclick="window.location.href=\'org_info.php\';" class="btn btn-success btn-sm">Create Profile</button>';
+                    }
+                    echo '</div>';
+                ?>
+                    
+                    
+                    
             </div>
             
         </div>
