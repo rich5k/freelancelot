@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     $cwebsite=$_POST['cwebsite'];
 
     //creating file path
-    $path= "../studImages/".basename($_FILES['image']['name']);
+    $path= "../orgImages/".basename($_FILES['image']['name']);
 
     $picture=$_FILES['image']['name'];
     
