@@ -39,12 +39,14 @@ foreign key (organID) references organizations(organID)
 
 create table projects(
 projectID int not null primary key auto_increment,
+organID int not null,
 ptitle varchar(255) not null, 
 pdescription text(65535) not null,
 createTime datetime not null,
 payStatus varchar(255) not null,
 amount float(5,2) not null,
 pdifficulty varchar(255) not null,
+foreign key (organID) references organizations(organID)
 ); 
 
 create table organ_projects(
