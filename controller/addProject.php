@@ -3,53 +3,45 @@ if(isset($_POST['submit'])){
 
     //Add Database connection
     require_once '../controller/database.php';
-    require_once '../models/Student.php';
+    require_once '../models/Organization.php';
     require_once '../models/Database.php';
     session_start();
-    //Instantiate Student
-    $student= new Student();
+    //Instantiate Organization
+    $organization= new Organization();
 
-    $studentID=$_SESSION['sessionId'];
-    $bio=$_POST['Bio'];
-    $major=$_POST['major'];
-    $university=$_POST['university'];
-
-    //creating file path
-    $path= "../studImages/".basename($_FILES['image']['name']);
-
-    $picture=$_FILES['image']['name'];
+    $organID=$_SESSION['sessionId'];
+    $ptitle=$_POST['ptitle'];
+    $pdescription=$_POST['pdescription'];
+    $payStatus=$_POST['payStatus'];
+    $amount=$_POST['amount'];
+    $pdifficulty=$_POST['pdifficulty'];
+    
     
     //if fields are empty
-    if (empty($bio) ||empty($major) || empty($university) || empty($image)){
+    if (empty($ptitle) ||empty($pdescription) || empty($payStatus) || empty($amount) || empty($pdifficulty)){
         echo '<script>alert("Some fields are empty)</script>';
-        echo '<script>window.location.href = "../view/stud_bio.php";</script>';
+        echo '<script>window.location.href = "../view/post_project.php";</script>';
         exit();
     }else{
-        //Bio Data
-        $BioData =[
-            'studentID'=> $studentID,
-            'bio'=> $bio,
-            'major'=> $major,
-            'university'=> $university,
-            'picture'=> $picture
+        //Project Data
+        $projectData =[
+            'organID'=> $organID,
+            'ptitile'=> $ptitile,
+            'pdescription'=> $pdescription,
+            'amount'=> $amount,
+            'pdifficulty'=> $pdifficulty
         ];
 
-        //Add Student Bio
-        if($student->addStudentBio($BioData)){
-            if(move_uploaded_file($_FILES['image']['tmp_name'],$path)){
-                echo '<script>alert("Well Done. You created a bio successfully")</script>';
-                echo '<script>window.location.href = "../view/stud_dashboard.php";</script>';
-                exit();
-            }
-            else{
-                echo '<script>alert("There is a problem with uploading image")</script>';
-                echo '<script>window.location.href = "../view/stud_bio.php";</script>';
-                exit();
-            }
+        //Add Organization Project
+        if($organization->addProjects($projectData)){
+            echo '<script>alert("Well Done. You created a project successfully")</script>';
+            echo '<script>window.location.href = "../view/projects.php";</script>';
+            exit();
+            
 
         }
         else{
-            header("Location: ../view/stud_bio.php?error=sqlerror1");
+            header("Location: ../view/post_project.php?error=sqlerror1");
             exit();
         }
     }
