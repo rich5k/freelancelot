@@ -92,6 +92,7 @@ _SIGNINITEM;
                    if(isset($_POST['submit'])){
                        echo '<h5>Be compelling in your proposal to get picked for the project</h5>';
                         echo '<form action="../controller/addProposal.php" method="post">';
+                            echo '<input type="hidden" name="projID" value="'.$_POST['projID'].'"></input>';
                             echo '<div class="form-group">';
                                 echo '<label for="proposal">Proposal:</label>';
                                 echo '<textarea class="form-control" id="proposal" name="proposal" cols="30" rows="10"></textarea>';
