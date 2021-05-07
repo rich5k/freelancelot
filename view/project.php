@@ -83,58 +83,126 @@ _SIGNINITEM;
     width: 100%;">
     <div class="container">
         <h3>Job Details</h3>
-        <div class="jumbotron">
-        <h5>YouTube Channel Growth</h5>
-        </div>
-        <div class="jumbotron">
-            <small>Posted 40 minutes ago</small>
-            <br>
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            Only students in Ghanaian colleges may apply.
-            
-            <br>
-        </div>
+        <?php
+            if(isset($_POST['submit'])){
+                //Instantiate Organization
+                $organization= new Organization();
 
-        <div class="jumbotron">
-            <p>Sales can be made by phone or by emailing. You speak and write well
-             in English and have a background in sales and preferably in travel, 
-             leisure and lifestyle sales including health products and fashion. 
-             We are not sure what to expect as far a renumeration and are open 
-             to discussion, please give us an idea of this with a proposal.</p>
-            
-            
-        </div>
+                $projID=$_POST['projID'];
 
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-lg-4">
-                    <strong><i class="fa fa-tag" aria-hidden="true"></i> $1,000</strong>
-                    <br>
-                    <small>Fixed Price</small>
-                </div> 
-                <div class="col-lg-4">
-                    <strong><i class="fa fa-briefcase" aria-hidden="true"></i>  Intermediate</strong> 
-                    <br>
-                    <small>I am willing to pay for a student who has experience
-                    and can produce value</small>
-                </div>
-                <div class="col-lg-4">
-                    <strong><i class="fa fa-map-marker" aria-hidden="true"></i> Remote Job</strong>
-                </div>
-            
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-lg-4">
-                </div>
-                <div class="col-lg-4">
-                    <button type="button" onclick="window.location.href='proposal.php';" class="btn btn-success btn-sm">Send Proposal</button>
-                </div>
-                <div class="col-lg-4">
-                </div>
-            </div>
-        </div>
+                //project Data
+                $projectData =[
+                    'projectID'=> $projID
+                    
+                ];
+
+                $proj= $organization->getProjects($projectData);
+                
+                echo '<div class="jumbotron">';
+                    echo '<h5>'.$proj->ptitle.'</h5>';
+                echo '</div>';
+                echo '<div class="jumbotron">';
+                    echo '<small>';
+                        $dtNow = new DateTime(date("m/d/Y h:i:s ", time()));
+                        $dtToCompare = new DateTime($proj->createTime);
+    
+                        $diff = $dtNow->diff($dtToCompare);
+                        $mins= ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i;
+                        $hours= $diff->h + ($diff->days * 24);
+                        $days = $diff->days;
+                        $months = 12 * $diff->y + $diff->m;
+                        $years = $diff->y;
+                        if(($mins)<60){
+                            echo 'Posted '.$mins.' minutes ago';
+                        }
+                        else{
+                            if($hours<24){
+                                echo 'Posted '.$hours.' hours ago';
+                            }
+                            else{
+                                if($days<30){
+                                    echo 'Posted '.$days.' days ago';
+                                }
+                                else{
+                                    if($months<12){
+                                        echo 'Posted '.$months.' months ago';
+                                    }
+                                    else{
+                                        echo 'Posted '.$years.' years ago';
+                                    }
+                                }
+                            }
+                        }
+                    echo '</small>';
+                    echo '<br>';
+                    echo '<i class="fa fa-map-marker" aria-hidden="true"></i>';
+                    echo 'Only students in Ghanaian colleges may apply.';
+                    echo '<br>';
+                echo '</div>';
+                echo '<div class="jumbotron">';
+                    echo '<p>';
+                        echo $proj->pdescription;
+                    echo '</p>';
+                echo '</div>';
+                echo '<div class="jumbotron">';
+                    echo '<div class="row">';
+                        echo '<div class="col-lg-4">';
+                        if($proj->payStatus=="Paid"){
+                            echo '<strong><i class="fa fa-tag" aria-hidden="true"></i> $'.$proj->amount.'</strong>';
+                            echo '<br>';
+                            echo '<small>Fixed Price</small>';
+
+                        }else{
+                            echo '<strong><i class="fa fa-tag" aria-hidden="true"></i> '.$proj->payStatus.'</strong>';
+                        }
+                        echo '</div> ';
+                        echo '<div class="col-lg-4">';
+                        if($proj->pdifficulty=="Entry Level"){
+                            echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
+                            echo '<br>';
+                            echo '<small>I am willing to pay for a student who does not have experience
+                            but can produce value</small>';
+                        }
+                        else if($proj->pdifficulty=="Intermediate"){
+                            echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
+                            echo '<br>';
+                            echo '<small>I am willing to pay for a student who has experience
+                            and can produce value</small>';
+
+                        }
+                        else{
+                            echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
+                            echo '<br>';
+                            echo '<small>I am willing to pay for a student who has a ton of experience
+                            and can produce great value</small>';
+                        }
+                        echo '</div>';
+                        echo '<div class="col-lg-4">';
+                            echo '<strong><i class="fa fa-map-marker" aria-hidden="true"></i> Remote Job</strong>';
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<br>';
+                    echo '<br>';
+                    echo '<div class="row">';
+                        echo '<div class="col-lg-4">';
+                        echo '</div>';
+                        echo '<div class="col-lg-4">';
+                                echo '<form action="./proposal.php" method="POST">';
+                                echo '<input type="hidden" name="projID" value="'.$proj->projectID.'"></input>';
+                                echo '<button class="btn btn-success btn-sm" name= "submit">Send Proposal</button>';
+                                echo '</form>';
+                        
+                        echo '</div>';
+                        echo '<div class="col-lg-4">';
+                        echo '</div>';
+                    echo '</div>';
+                echo '</div>';
+            }else{
+                echo '<h5>No project to view. Pls click on the Find Work button and select a project you are interested in.</h5>';
+            }
+        ?>
+
+        
 
         
         

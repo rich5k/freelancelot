@@ -96,7 +96,7 @@ _SIGNINITEM;
                 foreach($projects as $proj){
                     echo '<div class="jumbotron">';
                     
-                    echo '<a href="#" onclick ="getID(this)"><h5>'.$proj->ptitle.'</h5></a>';
+                    echo '<a href="#" ><h5>'.$proj->ptitle.'</h5></a>';
                     
                     if($proj->payStatus=="Paid"){
                         echo '<small> Fixed price-';
