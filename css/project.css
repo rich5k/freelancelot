@@ -6,3 +6,9 @@
 .profile-img{
     border-radius: 50%;
 }
+.descr{
+    width: 250px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}

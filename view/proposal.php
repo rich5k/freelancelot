@@ -89,6 +89,9 @@ _SIGNINITEM;
             <h5>Be compelling in your proposal to get picked for the project</h5>
             <form action="../controller/addProposal.php" method="post">
                 <div class="form-group">
+                <?php
+                    
+                ?>
                     <label for="proposal">Proposal:</label>
                     <textarea class="form-control" id="proposal" name="proposal" cols="30" rows="10"></textarea>
                     

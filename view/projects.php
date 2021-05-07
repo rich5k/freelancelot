@@ -87,6 +87,69 @@ _SIGNINITEM;
         
         </div>
         <div class="jumbotron">
+        <?php
+            //Instantiate Organization
+            $organization= new Organization();
+
+            $projects= $organization->getAllProjects();
+
+            foreach($projects as $proj){
+                echo '<a href="project.php"><h5>'.$proj->ptitle.'</h5></a>';
+                if($proj->payStatus=="Paid"){
+                    echo '<small> Fixed price-';
+                    $dtNow = new DateTime(date("m/d/Y h:i:s ", time()));
+                    $dtToCompare = new DateTime($proj->createTime);
+
+                    $diff = $dtNow->diff($dtToCompare);
+                    $mins= ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i;
+                    $hours= $diff->h + ($diff->days * 24);
+                    $days = $diff->days;
+                    $months = 12 * $diff->y + $diff->m;
+                    $years = $diff->y;
+                    if(($mins)<60){
+                        echo 'Posted '.$mins.' minutes ago';
+                    }
+                    else{
+                        if($hours<24){
+                            echo 'Posted '.$hours.' hours ago';
+                        }
+                        else{
+                            if($days<30){
+                                echo 'Posted '.$days.' days ago';
+                            }
+                            else{
+                                if($months<12){
+                                    echo 'Posted '.$months.' months ago';
+                                }
+                                else{
+                                    echo 'Posted '.$years.' years ago';
+                                }
+                            }
+                        }
+                    }
+                    echo '</small>';
+                    echo '<div class="row">';
+                        echo '<div class="col-lg-3">';
+                            echo '$'.$proj->amount;
+                            echo '<br>';
+                            echo 'Fixed Price';
+                        echo '</div>';
+                        echo '<div class="col-lg-9">';
+                            echo '$$';
+                            echo '<br>';
+                            echo $proj->pdifficulty;
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<br>';
+                    echo '<p class="descr">';
+                    echo $proj->pdescription;
+                    echo '</p>';
+                }else{
+
+                }
+                echo '';
+            }
+        ?>
             <a href="project.php"><h5>YouTube Channel Growth</h5></a>
             <small>Fixed price- Posted 40 minutes ago</small>
             <div class="row">
