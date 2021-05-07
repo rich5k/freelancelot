@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
     $payStatus=$_POST['payStatus'];
     $amount=$_POST['amount'];
     $pdifficulty=$_POST['pdifficulty'];
-    
+    $createTime = date("m/d/Y h:i:s ", time());
     
     //if fields are empty
     if (empty($ptitle) ||empty($pdescription) || empty($payStatus) || empty($amount) || empty($pdifficulty)){
@@ -28,6 +28,8 @@ if(isset($_POST['submit'])){
             'organID'=> $organID,
             'ptitile'=> $ptitile,
             'pdescription'=> $pdescription,
+            'createTime'=> $createTime,
+            'payStatus'=> $payStatus,
             'amount'=> $amount,
             'pdifficulty'=> $pdifficulty
         ];
