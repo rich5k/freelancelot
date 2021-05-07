@@ -86,21 +86,23 @@ _SIGNINITEM;
             <h3>Send Your Proposal</h3>
             <br>
             <br>
-            <h5>Be compelling in your proposal to get picked for the project</h5>
-            <form action="../controller/addProposal.php" method="post">
-                <div class="form-group">
+            
+            
                 <?php
-                    
+                   if(isset($_POST['submit'])){
+                       echo '<h5>Be compelling in your proposal to get picked for the project</h5>';
+                        echo '<form action="../controller/addProposal.php" method="post">';
+                            echo '<div class="form-group">';
+                                echo '<label for="proposal">Proposal:</label>';
+                                echo '<textarea class="form-control" id="proposal" name="proposal" cols="30" rows="10"></textarea>';
+                            echo '</div>';
+                            echo '<button type="submit" class="btn btn-primary" name="submit">Submit</button>';
+                        echo '</form>';
+                   }else{
+                    echo '<h5>Which project are you sending a proposal to? <br> Pls click on the Find Work button and select a project you are interested in.</h5>';
+                   }
                 ?>
-                    <label for="proposal">Proposal:</label>
-                    <textarea class="form-control" id="proposal" name="proposal" cols="30" rows="10"></textarea>
                     
-                </div>
-                
-
-                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                
-            </form>
         </div>
         
     </div>
