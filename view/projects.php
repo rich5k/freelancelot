@@ -86,119 +86,123 @@ _SIGNINITEM;
             <h3>Browse Current Available Projects</h3>
         
         </div>
-        <div class="jumbotron">
+        
         <?php
             //Instantiate Organization
             $organization= new Organization();
 
             $projects= $organization->getAllProjects();
-
-            foreach($projects as $proj){
-                echo '<a href="project.php"><h5>'.$proj->ptitle.'</h5></a>';
-                if($proj->payStatus=="Paid"){
-                    echo '<small> Fixed price-';
-                    $dtNow = new DateTime(date("m/d/Y h:i:s ", time()));
-                    $dtToCompare = new DateTime($proj->createTime);
-
-                    $diff = $dtNow->diff($dtToCompare);
-                    $mins= ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i;
-                    $hours= $diff->h + ($diff->days * 24);
-                    $days = $diff->days;
-                    $months = 12 * $diff->y + $diff->m;
-                    $years = $diff->y;
-                    if(($mins)<60){
-                        echo 'Posted '.$mins.' minutes ago';
-                    }
-                    else{
-                        if($hours<24){
-                            echo 'Posted '.$hours.' hours ago';
+            if($projects!= null){
+                foreach($projects as $proj){
+                    echo '<div class="jumbotron">';
+                    echo '<a href="project.php"><h5>'.$proj->ptitle.'</h5></a>';
+                    if($proj->payStatus=="Paid"){
+                        echo '<small> Fixed price-';
+                        $dtNow = new DateTime(date("m/d/Y h:i:s ", time()));
+                        $dtToCompare = new DateTime($proj->createTime);
+    
+                        $diff = $dtNow->diff($dtToCompare);
+                        $mins= ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i;
+                        $hours= $diff->h + ($diff->days * 24);
+                        $days = $diff->days;
+                        $months = 12 * $diff->y + $diff->m;
+                        $years = $diff->y;
+                        if(($mins)<60){
+                            echo 'Posted '.$mins.' minutes ago';
                         }
                         else{
-                            if($days<30){
-                                echo 'Posted '.$days.' days ago';
+                            if($hours<24){
+                                echo 'Posted '.$hours.' hours ago';
                             }
                             else{
-                                if($months<12){
-                                    echo 'Posted '.$months.' months ago';
+                                if($days<30){
+                                    echo 'Posted '.$days.' days ago';
                                 }
                                 else{
-                                    echo 'Posted '.$years.' years ago';
+                                    if($months<12){
+                                        echo 'Posted '.$months.' months ago';
+                                    }
+                                    else{
+                                        echo 'Posted '.$years.' years ago';
+                                    }
                                 }
                             }
                         }
-                    }
-                    echo '</small>';
-                    echo '<div class="row">';
-                        echo '<div class="col-lg-3">';
-                            echo '$'.$proj->amount;
-                            echo '<br>';
-                            echo 'Fixed Price';
+                        echo '</small>';
+                        echo '<div class="row">';
+                            echo '<div class="col-lg-3">';
+                                echo '$'.$proj->amount;
+                                echo '<br>';
+                                echo 'Fixed Price';
+                            echo '</div>';
+                            echo '<div class="col-lg-9">';
+                                echo '$$';
+                                echo '<br>';
+                                echo $proj->pdifficulty;
+                            echo '</div>';
                         echo '</div>';
-                        echo '<div class="col-lg-9">';
-                            echo '$$';
-                            echo '<br>';
-                            echo $proj->pdifficulty;
-                        echo '</div>';
+                        echo '<br>';
+                        echo '<p class="descr">';
+                        echo $proj->pdescription;
+                        echo '</p>';
                     echo '</div>';
-                    echo '<br>';
-                    echo '<p class="descr">';
-                    echo $proj->pdescription;
-                    echo '</p>';
-                }else{
-
+                    }else{
+                        echo '<small> '.$proj->payStatus.'-';
+                        $dtNow = new DateTime(date("m/d/Y h:i:s ", time()));
+                        $dtToCompare = new DateTime($proj->createTime);
+    
+                        $diff = $dtNow->diff($dtToCompare);
+                        $mins= ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i;
+                        $hours= $diff->h + ($diff->days * 24);
+                        $days = $diff->days;
+                        $months = 12 * $diff->y + $diff->m;
+                        $years = $diff->y;
+                        if(($mins)<60){
+                            echo 'Posted '.$mins.' minutes ago';
+                        }
+                        else{
+                            if($hours<24){
+                                echo 'Posted '.$hours.' hours ago';
+                            }
+                            else{
+                                if($days<30){
+                                    echo 'Posted '.$days.' days ago';
+                                }
+                                else{
+                                    if($months<12){
+                                        echo 'Posted '.$months.' months ago';
+                                    }
+                                    else{
+                                        echo 'Posted '.$years.' years ago';
+                                    }
+                                }
+                            }
+                        }
+                        echo '</small>';
+                        echo '<div class="row">';
+                            echo '<div class="col-lg-3">';
+                                echo $proj->payStatus;
+                                
+                            echo '</div>';
+                            echo '<div class="col-lg-9">';
+                                echo '$$';
+                                echo '<br>';
+                                echo $proj->pdifficulty;
+                            echo '</div>';
+                        echo '</div>';
+                        echo '<br>';
+                        echo '<p class="descr">';
+                        echo $proj->pdescription;
+                        echo '</p>';
+                    echo '</div>';
+                    }
                 }
-                echo '';
+
+            }else{
+                echo '<h5>Sorry there are no available projects at the moment</h5>';
             }
         ?>
-            <a href="project.php"><h5>YouTube Channel Growth</h5></a>
-            <small>Fixed price- Posted 40 minutes ago</small>
-            <div class="row">
-                <div class="col-lg-3">
-                    $1,000
-                    <br>
-                    Fixed Price
-                </div>
-
-                <div class="col-lg-9">
-                    $$
-                    <br>
-                    Intermediate
-                </div>
             
-            </div>
-            <br>
-            <p>Sales can be made by phone or by emailing. You speak and write well
-             in English and have a background in sales and preferably in travel, 
-             leisure and lifestyle sales including health products and fashion. 
-             We are not sure what to expect as far a renumeration and are open 
-             to discussion, please give us an idea of this with a proposal.</p>
-        </div>
-
-        <div class="jumbotron">
-            <a href="project.php"><h5>Social Media Marketing</h5></a>
-            
-            <small>Fixed price- Posted 50 minutes ago</small>
-            <div class="row">
-                <div class="col-lg-3">
-                    $500
-                    <br>
-                    Fixed Price
-                </div>
-
-                <div class="col-lg-9">
-                    $$
-                    <br>
-                    Intermediate
-                </div>
-            
-            </div>
-            <br>
-            <p>Sales can be made by phone or by emailing. You speak and write well
-             in English and have a background in sales and preferably in travel, 
-             leisure and lifestyle sales including health products and fashion. 
-             We are not sure what to expect as far a renumeration and are open 
-             to discussion, please give us an idea of this with a proposal.</p>
-        </div>
         
     </div>
 
