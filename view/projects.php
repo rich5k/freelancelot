@@ -95,7 +95,9 @@ _SIGNINITEM;
             if($projects!= null){
                 foreach($projects as $proj){
                     echo '<div class="jumbotron">';
-                    echo '<a href="project.php"><h5>'.$proj->ptitle.'</h5></a>';
+                    
+                    echo '<a href="#" onclick ="getID(this)"><h5>'.$proj->ptitle.'</h5></a>';
+                    
                     if($proj->payStatus=="Paid"){
                         echo '<small> Fixed price-';
                         $dtNow = new DateTime(date("m/d/Y h:i:s ", time()));
@@ -194,6 +196,10 @@ _SIGNINITEM;
                         echo '<p class="descr">';
                         echo $proj->pdescription;
                         echo '</p>';
+                        echo '<form action="./project.php" method="POST">';
+                        echo '<input type="hidden" name="projID" value="'.$proj->projectID.'"></input>';
+                        echo '<button class="btn btn-success btn-sm" name= "submit">Check it out</button>';
+                        echo '</form>';
                     echo '</div>';
                     }
                 }
@@ -206,7 +212,7 @@ _SIGNINITEM;
         
     </div>
 
-
+    
     <!-- footer -->
     <footer class="pt-5 pb-3 ">
            <div class="credits text-center mt-2">
@@ -214,7 +220,8 @@ _SIGNINITEM;
             </div>
         </div>
     </footer>
-                        
+
+    
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
