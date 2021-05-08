@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
         //Project Data
         $projectData =[
             'organID'=> $organID,
-            'ptitile'=> $ptitile,
+            'ptitle'=> $ptitle,
             'pdescription'=> $pdescription,
             'createTime'=> $createTime,
             'payStatus'=> $payStatus,

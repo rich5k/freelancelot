@@ -96,7 +96,7 @@ _SIGNINITEM;
                 foreach($projects as $proj){
                     echo '<div class="jumbotron">';
                     
-                    echo '<a href="#" ><h5>'.$proj->ptitle.'</h5></a>';
+                    echo '<h5 style= " color: #56C8F0;">'.$proj->ptitle.'</h5>';
                     
                     if($proj->payStatus=="Paid"){
                         echo '<small> Fixed price-';
@@ -109,6 +109,7 @@ _SIGNINITEM;
                         $days = $diff->days;
                         $months = 12 * $diff->y + $diff->m;
                         $years = $diff->y;
+                        // echo $months;
                         if(($mins)<60){
                             echo 'Posted '.$mins.' minutes ago';
                         }

@@ -149,9 +149,9 @@
             $this->db->execute();
             
 
-            //Fetch One record
-            $results=$this->db->single();
-            return $results;
+           //Fetch All records
+           $results=$this->db->resultset();
+           return $results;
             
         }
 
