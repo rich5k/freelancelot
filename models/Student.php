@@ -103,6 +103,18 @@
             
         }
 
+        //gets majors
+        public function getMajors(){
+            //Prepare Query
+            $this->db->query('select DISTINCT major from student_bios');
+
+            
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         //adds project proposals
         public function addProjProp($data){
             //Prepare Query
