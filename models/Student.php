@@ -70,7 +70,7 @@
         }
 
         //gets all Students
-        public function getAllStudents($data){
+        public function getAllStudents(){
             //Prepare Query
             $this->db->query('select * from students ');
 
@@ -113,8 +113,8 @@
             // Bind Values
             $this->db->bind(':studentID', $data['studentID']);
 
-            //Fetch All records
-            $results=$this->db->resultset();
+            //Fetch One record
+            $results=$this->db->single();
             return $results;
             
         }
@@ -159,8 +159,8 @@
             $this->db->bind(':studentID', $data['studentID']);
             $this->db->bind(':projectID', $data['projectID']);
 
-            //Fetch All records
-            $results=$this->db->resultset();
+            //Fetch One record
+            $results=$this->db->single();
             return $results;
             
         }
@@ -178,8 +178,8 @@
             $this->db->execute();
             
 
-            //Fetch One record
-            $results=$this->db->single();
+            //Fetch All records
+            $results=$this->db->resultset();
             return $results;
             
         }

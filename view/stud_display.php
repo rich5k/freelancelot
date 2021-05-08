@@ -81,76 +81,74 @@ _SIGNINITEM;
     
     <div class="container">
         <h1>Top Student Talent</h1>
-        <div class="row">
-            <div class="col-lg-3">
-                <h5>Categories/Majors</h5>
-                Business Administration
-                <br>
-                Managament Information Systems
-                <br>
-            </div>
-            <div class="col-lg-9">
-                <div class="jumbotron">
-                    <form action="../controller/search_student.php" method="post">
-                        <div class="row">
-                            <div class="col-lg-10">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                <small>Search student talent by major</small>
-                            
-                            </div>
-                            <div class="col-lg-2">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <?php
+            //Instantiate Student
+            $student= new Student();
 
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-lg-1">
-                            <img src="../assets/person1.jpg" class="img-fluid profile-img" alt="Responsive image" style="
-                            height: 60px;
-                            width: 100%;">
-                        </div>
-                        <div class="col-lg-11">
-                            <a href="./student_view.php">Kwami Eugene</a>
-                            <br>
-                            <strong>Computer Science</strong>
-                            <br>
-                            <small>Ashesi Universiy</small>
-                        </div>
-                    
-                    </div>
-                    100% Project Success
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Rem illum et, officia voluptate enim exercitationem dicta! 
-                    </p>
-                </div>
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-lg-1">
-                            <img src="../assets/person2.jpg" class="img-fluid profile-img" alt="Responsive image" style="
-                            height: 60px;
-                            width: 100%;">
-                        </div>
-                        <div class="col-lg-11">
-                            <a href="./student_view.php">Ebony GH</a>
-                            <br>
-                            <strong>Business Administration</strong>
-                            <br>
-                            <small>Ashesi Universiy</small>
-                        </div>
-                    
-                    </div>
-                    100% Project Success
-                    <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Rem illum et, officia voluptate enim exercitationem dicta! 
-                    </p>
-                </div>
-            </div>
-        </div>
+            $students=$student->getAllStudents();
+            $majors = $student->getMajors();
+
+            if($students!=null){
+                if($majors!=null){
+                    echo '<div class="row">';
+                        echo '<div class="col-lg-3">';
+                            echo '<h5>Categories/Majors</h5>';
+                            foreach($majors as $m){
+                                echo $m->major;
+                                echo '<br>';
+                            }
+                        echo '</div>';
+                        echo '<div class="col-lg-9">';
+                            echo '<div class="jumbotron">';
+                                echo '<form action="../controller/search_student.php" method="post">';
+                                    echo '<div class="row">';
+                                        echo '<div class="col-lg-10">';
+                                            echo '<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">';
+                                            echo '<small>Search student talent by major</small>';
+                                        echo '</div>';
+                                        echo '<div class="col-lg-2">';
+                                            echo '<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>';
+                                        echo '</div>';
+                                    echo '</div>';
+                                echo '</form>';
+                            echo '</div>';
+                            foreach($students as $stud){
+                                $BioData=[
+                                    'studentID'=>$stud->studentID
+                                ];
+                                $studBio=$student->getStudentBio($BioData);
+                                echo '<div class="jumbotron">';
+                                    echo '<div class="row">';
+                                        echo '<div class="col-lg-1">';
+                                            echo '<img src="../assets/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
+                                            height: 60px;
+                                            width: 100%;">';
+                                        echo '</div>';
+                                        echo '<div class="col-lg-11">';
+                                            echo '<a href="./student_view.php">'.$stud->fname.' '.$stud->lname.'</a>';
+                                            echo '<br>';
+                                            echo '<strong>'.$studBio->major.'</strong>';
+                                            echo '<br>';
+                                            echo '<small>'.$studBio->university.'</small>';
+                                        echo '</div>';
+                                    echo '</div>';
+                                    echo '100% Project Success';
+                                    echo '<p>';
+                                    echo $studBio->bio;
+                                    echo '</p>';
+                                echo '</div>';
+
+                            }
+                        echo '</div>';
+                    echo '</div>';
+                }else{
+                    echo '<h5>Sorry our students have not or are not done filling their bios. Pls come back another time.</h5>';
+                }
+            }else{
+                echo '<h5>Sorry we don\'t have any students at the moment. Pls come back another time.</h5>';
+            }
+        ?>
+        
 
        
 
