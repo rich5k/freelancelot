@@ -86,7 +86,7 @@ _SIGNINITEM;
             <br>
             <br>
             <h5>Tell Us About Your Organization</h5>
-            <form action="../controller/addCinfo.php" method="post">
+            <form action="../controller/addCinfo.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="companyInfo"><b>Company Info:</b></label>
                     <textarea type="text" class="form-control" id="companyInfo" name="companyInfo" cols="30" rows="10"></textarea>

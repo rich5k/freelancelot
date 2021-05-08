@@ -97,7 +97,7 @@ _SIGNINITEM;
                     $orgInfo= $organization->getOrgInfo($orgInfoData);
                     if($orgInfo!= null){
                         echo '<div class="col-lg-6">';
-                        echo '<img src="'.$orgInfo->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
+                        echo '<img src="../orgImages/'.$orgInfo->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
                         height: 350px;
                         width: 100%;">';
                         echo '</div>';
@@ -109,12 +109,14 @@ _SIGNINITEM;
                         echo '</p>';
                         echo '<br>';
                         echo '<h5>Location</h5>';
-                        echo '<br>';
+                        
                         echo $orgInfo->clocation;
                         echo '<br>';
-                        echo '<h5>Website</h5>';
                         echo '<br>';
+                        echo '<h5>Website</h5>';
+                        
                         echo $orgInfo->cwebsite;
+                        echo '<br>';
                         echo '<br>';
                         echo '<button type="button" onclick="window.location.href=\'post_project.php\';" class="btn btn-success btn-sm">Post Project</button>';
                     }

@@ -64,8 +64,9 @@
     <script>
         $(document).ready(function(){
             
-            $('document').on('click','#org-check', function(){
+            $(document).on('click','#org-check', function(){
                 //gets value from form and passes it to database through ajax
+                console.log("org worked");
                 var category=$("#org-check").val();
                 if(category !='' ){
                     $.ajax({
@@ -83,9 +84,9 @@
                 }
             });
 
-            $('#student-check').click(function(){
+            $(document).on('click', '#student-check',function(){
                 //gets value from form and passes it to database through ajax
-                console.log("worked");
+                console.log("stud worked");
                 var category=$("#student-check").val();
                 if(category !='' ){
                     $.ajax({

@@ -96,8 +96,8 @@
             // Bind Values
             $this->db->bind(':organID', $data['organID']);
 
-            //Fetch All records
-            $results=$this->db->resultset();
+            //Fetch One record
+            $results=$this->db->single();
             return $results;
             
         }
