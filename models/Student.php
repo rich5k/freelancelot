@@ -69,6 +69,25 @@
             
         }
 
+        //gets the Student details
+        public function getStudentName($data){
+            //Prepare Query
+            $this->db->query('select fname, lname from students where studentID = :studentID');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+           
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
         //gets all Students
         public function getAllStudents(){
             //Prepare Query
