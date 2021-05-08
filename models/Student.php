@@ -10,7 +10,7 @@
         //adds Student
         public function addStudent($data){
             //Prepare Query
-            $this->db->query('insert into Students(fname, lname, email, password) values(:fname, :lname, :email, :password)');
+            $this->db->query('insert into students(fname, lname, email, password) values(:fname, :lname, :email, :password)');
 
             // Bind Values
             $this->db->bind(':fname', $data['fname']);
@@ -29,7 +29,7 @@
         //gets the Student email
         public function getStudentEmail($data){
             //Prepare Query
-            $this->db->query('select email from Students where email = :email');
+            $this->db->query('select email from students where email = :email');
 
             // Bind Values
             $this->db->bind(':email', $data['email']);
@@ -53,12 +53,28 @@
         //gets the Student details
         public function getStudentDetails($data){
             //Prepare Query
-            $this->db->query('select * from Students where email = :email');
+            $this->db->query('select * from students where email = :email');
 
             // Bind Values
             $this->db->bind(':email', $data['email']);
            
 
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
+        //gets all Students
+        public function getAllStudents($data){
+            //Prepare Query
+            $this->db->query('select * from students ');
+
+            
             //Execute
             $this->db->execute();
             
