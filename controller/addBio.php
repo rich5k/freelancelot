@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
     $picture=$_FILES['image']['name'];
     
     //if fields are empty
-    if (empty($bio) ||empty($major) || empty($university) || empty($image)){
+    if (empty($bio) ||empty($major) || empty($university) || empty($picture)){
         echo '<script>alert("Some fields are empty)</script>';
         echo '<script>window.location.href = "../view/stud_bio.php";</script>';
         exit();

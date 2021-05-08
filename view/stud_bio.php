@@ -87,7 +87,7 @@ _SIGNOUTITEM;
             <br>
             <br>
             <h5>Tell Us About Yourself(achievements, skills, etc.)</h5>
-            <form action="../controller/addBio.php" method="post">
+            <form action="../controller/addBio.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="Bio"><b>Bio:</b></label>
                     <textarea type="text" class="form-control" id="Bio" name="Bio" cols="30" rows="10"></textarea>

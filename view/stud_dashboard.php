@@ -97,7 +97,7 @@ _SIGNINITEM;
                     $studBio= $student->getStudentBio($studentData);
                     if($studBio!= null){
                         echo '<div class="col-lg-6">';
-                        echo '<img src="'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
+                        echo '<img src="../studImages/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
                         height: 350px;
                         width: 100%;">';
                         echo '</div>';
@@ -109,12 +109,14 @@ _SIGNINITEM;
                         echo '</p>';
                         echo '<br>';
                         echo '<h5>Major</h5>';
-                        echo '<br>';
+                        
                         echo $studBio->major;
                         echo '<br>';
-                        echo '<h5>University</h5>';
                         echo '<br>';
+                        echo '<h5>University</h5>';
+                        
                         echo $studBio->university;
+                        echo '<br>';
                         echo '<br>';
                         echo '<button type="button" onclick="window.location.href=\'proposal.php\';" class="btn btn-success btn-sm">Send Proposal</button>';
 
