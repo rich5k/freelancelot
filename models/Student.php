@@ -79,8 +79,8 @@
             $this->db->execute();
             
 
-            //Fetch One record
-            $results=$this->db->single();
+            //Fetch All records
+            $results=$this->db->resultset();
             return $results;
             
         }
@@ -122,7 +122,7 @@
         //gets majors
         public function getMajors(){
             //Prepare Query
-            $this->db->query('select DISTINCT major from student_bios');
+            $this->db->query('select DISTINCT major from student_bios ORDER BY major ASC');
 
             
             //Fetch All records

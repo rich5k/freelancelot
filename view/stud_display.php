@@ -119,13 +119,13 @@ _SIGNINITEM;
                                 $studBio=$student->getStudentBio($BioData);
                                 echo '<div class="jumbotron">';
                                     echo '<div class="row">';
-                                        echo '<div class="col-lg-1">';
-                                            echo '<img src="../assets/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
-                                            height: 60px;
+                                        echo '<div class="col-lg-2">';
+                                            echo '<img src="../studImages/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
+                                            height: 100%;
                                             width: 100%;">';
                                         echo '</div>';
-                                        echo '<div class="col-lg-11">';
-                                            echo '<a href="./student_view.php">'.$stud->fname.' '.$stud->lname.'</a>';
+                                        echo '<div class="col-lg-10">';
+                                            echo '<span style= " color: #56C8F0;" >'.$stud->fname.' '.$stud->lname.'</span>';
                                             echo '<br>';
                                             echo '<strong>'.$studBio->major.'</strong>';
                                             echo '<br>';
@@ -133,9 +133,13 @@ _SIGNINITEM;
                                         echo '</div>';
                                     echo '</div>';
                                     echo '100% Project Success';
-                                    echo '<p>';
+                                    echo '<p class="descr">';
                                     echo $studBio->bio;
                                     echo '</p>';
+                                    echo '<form action="./student_view.php" method="POST">';
+                                    echo '<input type="hidden" name="studentID" value="'.$stud->studentID.'"></input>';
+                                    echo '<button class="btn btn-success btn-sm" name= "submit">Check Student Out</button>';
+                                    echo '</form>';
                                 echo '</div>';
 
                             }
