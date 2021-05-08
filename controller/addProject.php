@@ -15,7 +15,12 @@ if(isset($_POST['submit'])){
     $payStatus=$_POST['payStatus'];
     $amount=$_POST['amount'];
     $pdifficulty=$_POST['pdifficulty'];
-    $createTime = date("m/d/Y h:i:s ", time());
+    $currentDate = date("Y-m-d");
+    $currentTime = date("H:i:s");
+
+    $createTime =  date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+
+    
     
     //if fields are empty
     if (empty($ptitle) ||empty($pdescription) || empty($payStatus) || empty($amount) || empty($pdifficulty)){
