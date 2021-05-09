@@ -105,7 +105,7 @@
         //adds projects
         public function addProjects($data){
             //Prepare Query
-            $this->db->query('insert into projects(organID, ptitle, pdescription, createTime, payStatus, amount, pdifficulty) values(:organID, :ptitle, :pdescription, :createTime, :payStatus, :amount, :pdifficulty)');
+            $this->db->query('insert into projects(organID, ptitle, pdescription, createTime, payStatus, amount, pdifficulty, workStatus) values(:organID, :ptitle, :pdescription, :createTime, :payStatus, :amount, :pdifficulty, :workStatus)');
 
             // Bind Values
             $this->db->bind(':organID', $data['organID']);
@@ -115,7 +115,7 @@
             $this->db->bind(':payStatus', $data['payStatus']);
             $this->db->bind(':amount', $data['amount']);
             $this->db->bind(':pdifficulty', $data['pdifficulty']);
-
+            $this->db->bind(':workStatus', $data['workStatus']);
             //Execute
             if($this->db->execute()){
                 return true;
@@ -141,7 +141,7 @@
         //gets all projects
         public function getAllProjects(){
             //Prepare Query
-            $this->db->query('select * from projects ORDER BY createTime ASC');
+            $this->db->query('select * from projects where workStatus="pending" ORDER BY createTime ASC');
 
             
 

@@ -36,7 +36,8 @@ if(isset($_POST['submit'])){
             'createTime'=> $createTime,
             'payStatus'=> $payStatus,
             'amount'=> $amount,
-            'pdifficulty'=> $pdifficulty
+            'pdifficulty'=> $pdifficulty,
+            'workStatus'=> 'pending'
         ];
 
         //Add Organization Project

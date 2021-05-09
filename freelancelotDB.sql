@@ -46,6 +46,7 @@ createTime datetime not null,
 payStatus varchar(255) not null,
 amount float(9,2) not null,
 pdifficulty varchar(255) not null,
+workStatus varchar(255) not null,
 foreign key (organID) references organizations(organID)
 ); 
 

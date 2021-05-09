@@ -156,7 +156,7 @@ _SIGNINITEM;
             <br>
             <br>
 
-            <button type="button" onclick="window.location.href='stud_portfolio.php';" class="btn btn-success btn-sm">Check Portfolio</button>
+            <button type="button" onclick="window.location.href='org_projects.php';" class="btn btn-success btn-sm">Completed Projects</button>
 
         </div>
         
