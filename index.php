@@ -32,16 +32,30 @@
                 <li class="nav-item signIn">
                 <?php
                 //if session variable has been created, put first name and last name in navbar
-                        if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
-                            printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
-                            echo <<<_SIGNOUTITEM
-                            <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="./controller/logout.php">
-                                    Sign Out 
-                                <i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
-                            
+                if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
+                    echo '<a href="stud_dashboard.php">';
+                    printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
+                    echo '</a>';
+                    echo <<<_SIGNOUTITEM
+                    <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="../controller/logout.php">
+                            Sign Out 
+                        <i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
+                    
 _SIGNOUTITEM;
 
-                        }else{
+                }
+                else if(isset($_SESSION['sessionCname'])){
+                    echo '<a href="org_dashboard.php">';
+                    printf('Akwaaba, %s', $_SESSION['sessionCname']);
+                    echo '</a>';
+                    echo <<<_SIGNOUTITEM
+                    <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="../controller/logout.php">
+                            Sign Out 
+                        <i class="fa fa-sign-out" aria-hidden="true"></i></a></button>
+                    
+_SIGNOUTITEM;
+
+                }else{
                             //if not, put the default navitem
                             echo <<<_SIGNINITEM
                             <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="./view/signIn.php">
