@@ -1,3 +1,10 @@
+<?php
+require_once './controller/database.php';
+require_once './models/Student.php';
+require_once './models/Organization.php';
+require_once './models/Database.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +40,7 @@
                 <?php
                 //if session variable has been created, put first name and last name in navbar
                 if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
-                    echo '<a href="stud_dashboard.php">';
+                    echo '<a href="./view/stud_dashboard.php">';
                     printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
                     echo '</a>';
                     echo <<<_SIGNOUTITEM
@@ -45,7 +52,7 @@ _SIGNOUTITEM;
 
                 }
                 else if(isset($_SESSION['sessionCname'])){
-                    echo '<a href="org_dashboard.php">';
+                    echo '<a href="./view/org_dashboard.php">';
                     printf('Akwaaba, %s', $_SESSION['sessionCname']);
                     echo '</a>';
                     echo <<<_SIGNOUTITEM
