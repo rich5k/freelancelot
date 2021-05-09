@@ -40,7 +40,9 @@ session_start();
                 <?php
                 //if session variable has been created, put first name and last name in navbar
                         if(isset($_SESSION['sessionFname'])&&isset($_SESSION['sessionLname'])){
+                            echo '<a href="stud_dashboard.php">';
                             printf('Akwaaba, %s %s', $_SESSION['sessionFname'], $_SESSION['sessionLname']);
+                            echo '</a>';
                             echo <<<_SIGNOUTITEM
                             <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="../controller/logout.php">
                                     Sign Out 
@@ -50,7 +52,9 @@ _SIGNOUTITEM;
 
                         }
                         else if(isset($_SESSION['sessionCname'])){
+                            echo '<a href="org_dashboard.php">';
                             printf('Akwaaba, %s', $_SESSION['sessionCname']);
+                            echo '</a>';
                             echo <<<_SIGNOUTITEM
                             <button type="button" class="btn btn-success"><a id="sign-in" class="nav-link" href="../controller/logout.php">
                                     Sign Out 
