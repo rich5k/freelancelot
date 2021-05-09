@@ -88,26 +88,50 @@ _SIGNINITEM;
         <?php
             //Instantiate Student
             $student= new Student();
-
-            $students=$student->getAllStudents();
+            $students=null;
+            $search="";
+            $maj ="";
+            $sch ="";
+            if (isset($_POST["search"]) && $_POST["search"]!=""){
+                $sch =$_POST["search"];
+            }
+            if(isset($_POST["major"]) && $_POST["major"]!='All'){
+                $maj =$_POST["major"];
+            }
+            $search =[
+                'major'=>$maj,
+                'search'=>$sch
+            ];
+            $students=$student->getStudentsSearch($search);
             $majors = $student->getMajors();
 
             if($students!=null){
                 if($majors!=null){
                     echo '<div class="row">';
                         echo '<div class="col-lg-3">';
+                        echo '<form method="post">';
                             echo '<h5>Categories/Majors</h5>';
-                            foreach($majors as $m){
-                                echo $m->major;
-                                echo '<br>';
+                            if($search["major"]==""){
+                                echo '<input type="radio" id = "All" checked ="checked" name="major" value="All">';
+                            }else{
+                                echo '<input type="radio" id = "All" name="major" value="All">';
                             }
+                            echo '<label for="All">All</label><br>';
+                                foreach($majors as $m){
+                                    if($search['major']==$m->major){
+                                        echo '<input type="radio" id ="'.$m->major.'" name="major" checked ="checked" value="'.$m->major.'">';
+                                    }else{
+                                        echo '<input type="radio" id ="'.$m->major.'" name="major" value="'.$m->major.'">';
+                                    }
+                                    echo '<label for="'.$m->major.'">'.$m->major.'</label><br>';   
+                                }
                         echo '</div>';
                         echo '<div class="col-lg-9">';
                             echo '<div class="jumbotron">';
-                                echo '<form action="../controller/search_student.php" method="post">';
+                                
                                     echo '<div class="row">';
                                         echo '<div class="col-lg-10">';
-                                            echo '<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">';
+                                            echo '<input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">';
                                             echo '<small>Search student talent by major</small>';
                                         echo '</div>';
                                         echo '<div class="col-lg-2">';

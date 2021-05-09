@@ -1,17 +1,3 @@
-.jumbotron{
-    padding: 2rem 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.profile-img{
-    border-radius: 50%;
-}
-.descr{
-    width: 250px;
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
-}
 footer{
     color: white;
     background: #000;
