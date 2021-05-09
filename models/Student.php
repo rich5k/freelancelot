@@ -150,6 +150,60 @@
             
         }
 
+        //get student by major and id
+        public function getAllStudentsMajor($data){
+            //Prepare Query
+            $this->db->query('SELECT `students`.* FROM `students`,`student_bios` WHERE student_bios.major = :major and students.studentID = student_bios.studentID');
+
+            // Bind Values
+            $this->db->bind(':major', $data['major']);
+
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
+        //gets students by names and major
+        public function getStudentsSearch($data){
+            //Prepare Query
+            $sql="";
+            if ($data['major']==""){
+                if($data['search'] == ""){
+                    $sql = 'select * from students';
+                    $this->db->query($sql);
+
+                }else{
+                    $sql = 'select * from students where (`fname` LIKE :search or `lname` LIKE :search)';
+                    
+                    $this->db->query($sql);
+                    $this->db->bind(':search', $data['search']);
+                    
+                }
+                
+            }else{
+                if($data['search'] == ""){
+                    $sql = 'SELECT `students`.* FROM `students`,`student_bios` WHERE student_bios.major = :major and students.studentID = student_bios.studentID';
+                    $this->db->query($sql);
+                    $this->db->bind(':major', $data['major']);
+                }else{
+                    $sql ='SELECT `students`.* FROM `students`,`student_bios` WHERE student_bios.major = :major and students.studentID = student_bios.studentID and (`fname` LIKE :search or `lname` LIKE :search)';
+                    $this->db->query($sql);
+                    $this->db->bind(':major', $data['major']);
+                    $this->db->bind(':search', $data['search']);
+                }
+               
+            }
+            // Bind Values
+            
+            
+            
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         //adds project proposals
         public function addProjProp($data){
             //Prepare Query
