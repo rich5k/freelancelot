@@ -132,8 +132,8 @@
             // Bind Values
             $this->db->bind(':projectID', $data['projectID']);
 
-            //Fetch All records
-            $results=$this->db->resultset();
+            //Fetch One record
+            $results=$this->db->single();
             return $results;
             
         }
@@ -141,7 +141,7 @@
         //gets all projects
         public function getAllProjects(){
             //Prepare Query
-            $this->db->query('select * from projects ');
+            $this->db->query('select * from projects ORDER BY createTime ASC');
 
             
 

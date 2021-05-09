@@ -133,6 +133,31 @@ _SIGNINITEM;
                     
             </div>
             
+            <h5>Ongoing Projects</h5>
+
+            <div class="row">
+                <div style="background-color: #FDD100" class="col-lg-2">
+                    
+                </div>
+                <div class="col-lg-10">
+                    <strong>The Title</strong>
+                    <br>
+                    Student Name
+                    <br>
+                    <em>Pay Status</em>
+                    <br>
+                    Expert
+                    <br>
+                    Major
+                    <br>
+                    College
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <button type="button" onclick="window.location.href='stud_portfolio.php';" class="btn btn-success btn-sm">Check Portfolio</button>
+
         </div>
         
     </div>

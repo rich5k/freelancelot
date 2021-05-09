@@ -103,39 +103,74 @@ _SIGNINITEM;
                 echo '</div>';
                 echo '<div class="jumbotron">';
                     echo '<small>';
-                        $dtNow = new DateTime(date("m/d/Y h:i:s ", time()));
-                        $dtToCompare = new DateTime($proj->createTime);
-    
-                        $diff = $dtNow->diff($dtToCompare);
-                        $mins= ($diff->days * 24 * 60) + ($diff->h * 60) + $diff->i;
-                        $hours= $diff->h + ($diff->days * 24);
-                        $days = $diff->days;
-                        $months = 12 * $diff->y + $diff->m;
-                        $years = $diff->y;
-                        if(($mins)<60){
-                            echo 'Posted '.$mins.' minutes ago';
+                    $currentDate = date("Y-m-d");
+                    $currentTime = date("H:i:s");
+
+                    $currentDate =  strtotime($currentDate . $currentTime);
+
+                    $dtToCompare = strtotime($proj->createTime);
+                    
+                    
+                    $diff = abs($currentDate- $dtToCompare);
+
+                    // To get the year divide the resultant date into
+                    // total seconds in a year (365*60*60*24)
+                    $years = floor($diff / (365*60*60*24));
+
+                    // To get the month, subtract it with years and
+                    // divide the resultant date into
+                    // total seconds in a month (30*60*60*24)
+                    $months = floor(($diff - $years * 365*60*60*24)
+                    / (30*60*60*24)); 
+
+
+                    // To get the day, subtract it with years and 
+                    // months and divide the resultant date into
+                    // total seconds in a days (60*60*24)
+                    $days = floor(($diff - $years * 365*60*60*24 - 
+                    $months*30*60*60*24)/ (60*60*24));
+
+
+                    // To get the hour, subtract it with years, 
+                    // months & seconds and divide the resultant
+                    // date into total seconds in a hours (60*60)
+                    $hours = floor(($diff - $years * 365*60*60*24 
+                    - $months*30*60*60*24 - $days*60*60*24)
+                        / (60*60)); 
+
+
+                    // To get the minutes, subtract it with years,
+                    // months, seconds and hours and divide the 
+                    // resultant date into total seconds i.e. 60
+                    $mins = floor(($diff - $years * 365*60*60*24 
+                    - $months*30*60*60*24 - $days*60*60*24 
+                    - $hours*60*60)/ 60); 
+
+                    
+                    if(($mins)<60 && $hours==0 && $days==0 && $months==0 && $years==0){
+                        echo 'Posted '.$mins.' minute(s) ago';
+                    }
+                    else{
+                        if($hours<24 && $days==0 && $months==0 && $years==0){
+                            echo 'Posted '.$hours.' hour(s) ago';
                         }
                         else{
-                            if($hours<24){
-                                echo 'Posted '.$hours.' hours ago';
+                            if($days<30 && $months==0 && $years==0){
+                                echo 'Posted '.$days.' day(s) ago';
                             }
                             else{
-                                if($days<30){
-                                    echo 'Posted '.$days.' days ago';
+                                if($months<12 && $years==0){
+                                    echo 'Posted '.$months.' month(s) ago';
                                 }
                                 else{
-                                    if($months<12){
-                                        echo 'Posted '.$months.' months ago';
-                                    }
-                                    else{
-                                        echo 'Posted '.$years.' years ago';
-                                    }
+                                    echo 'Posted '.$years.' year(s) ago';
                                 }
                             }
                         }
+                    }
                     echo '</small>';
                     echo '<br>';
-                    echo '<i class="fa fa-map-marker" aria-hidden="true"></i>';
+                    echo '<i class="fa fa-map-marker" aria-hidden="true"></i> ';
                     echo 'Only students in Ghanaian colleges may apply.';
                     echo '<br>';
                 echo '</div>';
