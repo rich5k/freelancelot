@@ -310,6 +310,25 @@
             
         }
 
+        //delete project proposal
+        public function deleteProjProp($data){
+            //Prepare Query
+            $this->db->query('delete from  proj_proposals where projectID=:projectID and studentID = :studentID');
+
+            // Bind Values
+            
+            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':projectID', $data['projectID']);
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+
 
         //adds student projects
         public function addStudProj($data){
