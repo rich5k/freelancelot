@@ -95,7 +95,7 @@ _SIGNINITEM;
                 //Instantiate Student
                 $student= new Student();
 
-                $projID=$_POST['projID'];
+                $projID=$_POST['projectID'];
 
                 //project Data
                 $projectData =[
@@ -125,15 +125,15 @@ _SIGNINITEM;
                                             width: 100%;">';
                                 echo '</div>';
                                 echo '<div class="col-lg-10">';
-                                    echo '<span style= " color: #56C8F0;" >'.$stud->fname.' '.$stud->lname.'</span>';
+                                    echo '<span style= " color: #56C8F0;" >'.$studName->fname.' '.$studName->lname.'</span>';
                                     echo '<br>';
                                     echo '<p class="descr">';
-                                    echo $studBio->bio;
+                                    echo $p->proposal;
                                     echo '</p>';
                                     echo '<div class="row">';
                                         echo '<div class="col-lg-4">';
                                         echo '<form action="./student_proposal.php" method="POST">';
-                                        echo '<input type="hidden" name="studentID" value="'.$stud->studentID.'"></input>';
+                                        echo '<input type="hidden" name="studentID" value="'.$studBio->studentID.'"></input>';
                                         echo '<button class="btn btn-success btn-sm" name= "submit">Check Student Out</button>';
                                         echo '</form>';
                                         echo '</div>';
@@ -151,7 +151,7 @@ _SIGNINITEM;
                     }else{
                         echo '<h5>Sorry, there are no proposal at the moment.</h5>';
                     }
-                    
+                    echo '</div>';
                     
             }else{
                 echo '<h5>No project to view. Pls click on the Find Work button and select a project you are interested in.</h5>';

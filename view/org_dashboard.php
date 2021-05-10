@@ -138,7 +138,33 @@ _SIGNINITEM;
             </div>
             
             <h5>Pending Projects</h5>
-
+            
+            <?php
+                $pendProjs= $organization->getPendingProjects($orgInfoData);
+                if($pendProjs!= null){
+                    foreach($pendProjs as $pendP){
+                        echo '<div class="row">';
+                        echo '<div style="background-color: red;" class="col-lg-2">';
+                        echo '</div>';
+                        echo '<div class="col-lg-10">';
+                        echo '<strong>'.$pendP->ptitle.'</strong>';
+                        echo '<br>';
+                        echo '<em>'.$pendP->payStatus.'</em>';
+                        echo '<br>';
+                        echo $pendP->pdifficulty;
+                        echo '<br>';
+                        echo '<form action="./project_proposals.php" method="POST">';
+                            echo '<input type="hidden" name="projectID" value="'.$pendP->projectID.'"></input>';
+                            echo '<button class="btn btn-success btn-sm" name= "submit">Check Proposals</button>';
+                        echo '</form>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '<br>';
+                    }
+                }else{
+                    echo '<h5>No Pending Projects</h5>';
+                }
+            ?>
             <div class="row">
                 <div style="background-color: red;" class="col-lg-2">
                     

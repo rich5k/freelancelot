@@ -191,6 +191,24 @@
             
         }
 
+        //gets Pending projects
+        public function getPendingProjects($data){
+            //Prepare Query
+            $this->db->query('select * from projects where organID= :organID and workStatus="pending" ORDER BY createTime ASC');
+
+            // Bind Values
+            $this->db->bind(':organID', $data['organID']);
+
+            //Execute
+            $this->db->execute();
+            
+
+           //Fetch All records
+           $results=$this->db->resultset();
+           return $results;
+            
+        }
+
 
        //adds organization projects
        public function addOrgProj($data){
