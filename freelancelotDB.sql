@@ -83,4 +83,14 @@ foreign key (projectID) references projects(projectID)
 );
 
 
-
+create table payments(
+paymentID int not null primary key auto_increment,
+studentID int not null,
+projectID int not null,
+organID int not null,
+acctDetails varchar(255) not null,
+amount float(9,2) not null,
+foreign key (studentID) references students(studentID),
+foreign key (projectID) references projects(projectID),
+foreign key (organID) references organizations(organID)
+);

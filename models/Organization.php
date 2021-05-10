@@ -102,6 +102,42 @@
             
         }
 
+        //adds payments
+        public function addPayments($data){
+            //Prepare Query
+            $this->db->query('insert into payments(organID, companyInfo, clocation, cwebsite, picture) values(:organID, :companyInfo, :clocation, :cwebsite, :picture)');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':organID', $data['organID']);
+            $this->db->bind(':cwebsite', $data['cwebsite']);
+            $this->db->bind(':picture', $data['picture']);
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        //gets payments
+        public function getPayments($data){
+            //Prepare Query
+            $this->db->query('select * from payments where studentID= :studentID and projectID= :projectID and organID= :organID');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':organID', $data['organID']);
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
         //adds projects
         public function addProjects($data){
             //Prepare Query
