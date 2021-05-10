@@ -209,6 +209,25 @@
             
         }
 
+        //updates project proposal status
+        public function updateProjStatus($data){
+            //Prepare Query
+            $this->db->query('update projects set workStatus = :workStatus where projectID= :projectID ');
+
+            // Bind Values
+            
+            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':workStatus', $data['workStatus']);
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+
 
        //adds organization projects
        public function addOrgProj($data){

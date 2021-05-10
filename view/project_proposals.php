@@ -108,16 +108,16 @@ _SIGNINITEM;
                 echo '<div class="jumbotron">';
                     echo '<h5>'.$proj->ptitle.'</h5>';
                 echo '</div>';
-                echo '<div class="jumbotron">';
-                    if($proj_props!=null){
-                        foreach($proj_props as $p){
-                            $studentData=[
-                                'studentID'=> $p->studentID
-                            ];
-
-                            $studName = $student->getStudentName($studentData);
-                            $studBio = $student->getStudentBio($studentData);
-                            
+                if($proj_props!=null){
+                    foreach($proj_props as $p){
+                        $studentData=[
+                            'studentID'=> $p->studentID
+                        ];
+                        
+                        $studName = $student->getStudentName($studentData);
+                        $studBio = $student->getStudentBio($studentData);
+                        
+                        echo '<div class="jumbotron">';
                             echo '<div class="row">';
                                 echo '<div class="col-lg-2">';
                                     echo '<img src="../studImages/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
@@ -140,30 +140,30 @@ _SIGNINITEM;
                                         echo '</div>';
                                         echo '<div class="col-lg-4">';
                                             echo '<form action="../controller/acceptProposal.php" method="POST">';
-                                            echo '<button type="button" class="btn btn-link" name="submit"><i class="fa fa-check-circle" aria-hidden="true" style= "color: green;"></i> Accept </button>';
                                             echo '<input type="hidden" name="studentID" value="'.$studBio->studentID.'"></input>';
                                             echo '<input type="hidden" name="projectID" value="'.$projID.'"></input>';
                                             echo '<input type="hidden" name="propDecision" value="accept"></input>';
+                                            echo '<button class="btn btn-link" name="submit"><i class="fa fa-check-circle" aria-hidden="true" style= "color: green;"></i> Accept </button>';
                                         
                                             echo '</form>';
                                         echo '</div>';
                                         echo '<div class="col-lg-4">';
                                             echo '<form action="../controller/declineProposal.php" method="POST">';
-                                            echo '<button type="button" class="btn btn-link" name="submit"><i class="fa fa-ban" aria-hidden="true" style = "color: red;"></i> Decline </button>';
                                             echo '<input type="hidden" name="studentID" value="'.$studBio->studentID.'"></input>';
                                             echo '<input type="hidden" name="projectID" value="'.$projID.'"></input>';
                                             echo '<input type="hidden" name="propDecision" value="decline"></input>';
+                                            echo '<button class="btn btn-link" name="submit"><i class="fa fa-ban" aria-hidden="true" style = "color: red;"></i> Decline </button>';
                                             echo '</form>';
                                         echo '</div>';
                                     echo '</div>';
                                 echo '</div>';
                             echo '</div>';
+                        echo '</div>';
 
                         }
                     }else{
                         echo '<h5>Sorry, there are no proposal at the moment.</h5>';
                     }
-                    echo '</div>';
                     
             }else{
                 echo '<h5>No project to view. Pls click on the Find Work button and select a project you are interested in.</h5>';
