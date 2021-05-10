@@ -138,6 +138,20 @@
             
         }
 
+        //gets student picture
+        public function getStudentPicture($data){
+            //Prepare Query
+            $this->db->query('select picture from student_bios where studentID= :studentID');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
         //gets majors
         public function getMajors(){
             //Prepare Query

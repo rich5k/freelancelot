@@ -11,7 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Company Info</title>
+    <title>Project Name</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/project.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,105 +82,85 @@ _SIGNINITEM;
     </div>
     </nav>
         
-    <img src="../assets/workpic6.jpg" class="img-fluid" alt="Responsive image" style="
+    <img src="../assets/workpic5.jpg" class="img-fluid" alt="Responsive image" style="
     height: 350px;
     width: 100%;">
     <div class="container">
-        <div class="jumbotron">
-            <h3>My Profile</h3>
-            <br>
-            <br>
-            <div class="row">
-                <?php
-                    //Instantiate Organization
-                    $organization= new Organization();
-                    //student Data
-                    $orgInfoData =[
-                        'organID'=> $_SESSION['sessionId']
-                    ];
-                    $orgInfo= $organization->getOrgInfo($orgInfoData);
-                    if($orgInfo!= null){
-                        echo '<div class="col-lg-6">';
-                        echo '<img src="../orgImages/'.$orgInfo->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
-                        height: 350px;
-                        width: 100%;">';
-                        echo '</div>';
-                        echo '<div class="col-lg-6">';
-                        echo '<h5>Company Info</h5>';
-                        echo '<br>';
-                        echo '<p>';
-                        echo $orgInfo->companyInfo;
-                        echo '</p>';
-                        echo '<br>';
-                        echo '<h5>Location</h5>';
-                        
-                        echo $orgInfo->clocation;
-                        echo '<br>';
-                        echo '<br>';
-                        echo '<h5>Website</h5>';
-                        
-                        echo $orgInfo->cwebsite;
-                        echo '<br>';
-                        echo '<br>';
-                        echo '<button type="button" onclick="window.location.href=\'post_project.php\';" class="btn btn-success btn-sm">Post Project</button>';
+        <h3>Proposals</h3>
+        <?php
+            if(isset($_POST['submit'])){
+                //Instantiate Organization
+                $organization= new Organization();
+
+                //Instantiate Student
+                $student= new Student();
+
+                $projID=$_POST['projID'];
+
+                //project Data
+                $projectData =[
+                    'projectID'=> $projID
+                    
+                ];
+                $proj_props= $student->getAllProp($projectData);
+                $proj= $organization->getProjects($projectData);
+                
+                echo '<div class="jumbotron">';
+                    echo '<h5>'.$proj->ptitle.'</h5>';
+                echo '</div>';
+                echo '<div class="jumbotron">';
+                    if($proj_props!=null){
+                        foreach($proj_props as $p){
+                            $studentData=[
+                                'studentID'=> $p->studentID
+                            ];
+
+                            $studName = $student->getStudentName($studentData);
+                            $studBio = $student->getStudentBio($studentData);
+                            
+                            echo '<div class="row">';
+                                echo '<div class="col-lg-2">';
+                                    echo '<img src="../studImages/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
+                                            height: 100%;
+                                            width: 100%;">';
+                                echo '</div>';
+                                echo '<div class="col-lg-10">';
+                                    echo '<span style= " color: #56C8F0;" >'.$stud->fname.' '.$stud->lname.'</span>';
+                                    echo '<br>';
+                                    echo '<p class="descr">';
+                                    echo $studBio->bio;
+                                    echo '</p>';
+                                    echo '<div class="row">';
+                                        echo '<div class="col-lg-4">';
+                                        echo '<form action="./student_proposal.php" method="POST">';
+                                        echo '<input type="hidden" name="studentID" value="'.$stud->studentID.'"></input>';
+                                        echo '<button class="btn btn-success btn-sm" name= "submit">Check Student Out</button>';
+                                        echo '</form>';
+                                        echo '</div>';
+                                        echo '<div class="col-lg-4">';
+                                            echo '<i class="fa fa-check-circle" aria-hidden="true" style= "color: green;"></i> Accept';
+                                        echo '</div>';
+                                        echo '<div class="col-lg-4">';
+                                            echo '<i class="fa fa-ban" aria-hidden="true" style = "color: red;"></i> Decline';
+                                        echo '</div>';
+                                    echo '</div>';
+                                echo '</div>';
+                            echo '</div>';
+
+                        }
+                    }else{
+                        echo '<h5>Sorry, there are no proposal at the moment.</h5>';
                     }
-                    else{
-                        echo '<div class="col-lg-12">';
-                        echo '<h5>Sorry you don\'t have a profile for your company. Please create one</h5>';
-                        echo '<br>';
-                        echo '<button type="button" onclick="window.location.href=\'org_info.php\';" class="btn btn-success btn-sm">Create Profile</button>';
-                    }
-                    echo '</div>';
-                ?>
                     
                     
-                    
-            </div>
-            
-            <h5>Pending Projects</h5>
+            }else{
+                echo '<h5>No project to view. Pls click on the Find Work button and select a project you are interested in.</h5>';
+            }
+        ?>
 
-            <div class="row">
-                <div style="background-color: red;" class="col-lg-2">
-                    
-                </div>
-                <div class="col-lg-10">
-                    <strong>The Title</strong>
-                    <br>
-                    <em>Pay Status</em>
-                    <br>
-                    Expert
-                    <br>
-                    <button type="button" onclick="window.location.href='project_proposals.php';" class="btn btn-success btn-sm">Check Proposals</button>
-                </div>
-            </div>
-            <br>
-            <br>
-            <h5>Ongoing Projects</h5>
+        
 
-            <div class="row">
-                <div style="background-color: #FDD100" class="col-lg-2">
-                    
-                </div>
-                <div class="col-lg-10">
-                    <strong>The Title</strong>
-                    <br>
-                    Student Name
-                    <br>
-                    <em>Pay Status</em>
-                    <br>
-                    Expert
-                    <br>
-                    Major
-                    <br>
-                    College
-                </div>
-            </div>
-            <br>
-            <br>
-
-            <button type="button" onclick="window.location.href='org_projects.php';" class="btn btn-success btn-sm">Completed Projects</button>
-
-        </div>
+        
         
     </div>
 

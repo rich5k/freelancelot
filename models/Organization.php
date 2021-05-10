@@ -105,14 +105,14 @@
         //adds payments
         public function addPayments($data){
             //Prepare Query
-            $this->db->query('insert into payments(organID, companyInfo, clocation, cwebsite, picture) values(:organID, :companyInfo, :clocation, :cwebsite, :picture)');
+            $this->db->query('insert into payments(studentID, projectID, organID, acctDetails, amount) values(:studentID, :projectID, :organID, :acctDetails, :amount)');
 
             // Bind Values
             $this->db->bind(':studentID', $data['studentID']);
             $this->db->bind(':projectID', $data['projectID']);
             $this->db->bind(':organID', $data['organID']);
-            $this->db->bind(':cwebsite', $data['cwebsite']);
-            $this->db->bind(':picture', $data['picture']);
+            $this->db->bind(':acctDetails', $data['acctDetails']);
+            $this->db->bind(':amount', $data['amount']);
 
             //Execute
             if($this->db->execute()){
