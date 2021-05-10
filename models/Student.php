@@ -318,7 +318,7 @@
             // Bind Values
             
             $this->db->bind(':projectID', $data['projectID']);
-            $this->db->bind(':projectID', $data['projectID']);
+            $this->db->bind(':studentID', $data['studentID']);
 
             //Execute
             if($this->db->execute()){
