@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
     
     //if fields are empty
     if (empty($bio) ||empty($major) || empty($university) || empty($picture)){
-        echo '<script>alert("Some fields are empty)</script>';
+        echo '<script>alert("Some fields are empty")</script>';
         echo '<script>window.location.href = "../view/stud_bio.php";</script>';
         exit();
     }else{

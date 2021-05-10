@@ -291,6 +291,25 @@
             
         }
 
+        //clears project proposals
+        public function clearProjProp($data){
+            //Prepare Query
+            $this->db->query('delete from  proj_proposals where projectID=:projectID and prop_status = "pending"');
+
+            // Bind Values
+            
+            $this->db->bind(':projectID', $data['projectID']);
+            
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+
 
         //adds student projects
         public function addStudProj($data){

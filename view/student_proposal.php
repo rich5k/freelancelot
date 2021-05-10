@@ -150,6 +150,8 @@ _SIGNINITEM;
                             echo '<div class="col-lg-6">';
                                 echo '<form action="../controller/acceptProposal.php" method="POST">';
                                     echo '<button type="button" class="btn btn-link" name="submit"><i class="fa fa-check-circle" aria-hidden="true" style= "color: green;"></i> Accept </button>';
+                                    echo '<input type="hidden" name="studentID" value="'.$studentID.'"></input>';
+                                    echo '<input type="hidden" name="projectID" value="'.$projectID.'"></input>';
                                     echo '<input type="hidden" name="propDecision" value="accept"></input>';
                                         
                                 echo '</form>';
@@ -157,6 +159,8 @@ _SIGNINITEM;
                             echo '<div class="col-lg-6">';
                                 echo '<form action="../controller/declineProposal.php" method="POST">';
                                     echo '<button type="button" class="btn btn-link" name="submit"><i class="fa fa-ban" aria-hidden="true" style = "color: red;"></i> Decline </button>';
+                                    echo '<input type="hidden" name="studentID" value="'.$studentID.'"></input>';
+                                    echo '<input type="hidden" name="projectID" value="'.$projectID.'"></input>';
                                     echo '<input type="hidden" name="propDecision" value="decline"></input>';
                                 echo '</form>';
                             echo '</div>';

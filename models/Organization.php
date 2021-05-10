@@ -177,7 +177,7 @@
         //gets all projects
         public function getAllProjects(){
             //Prepare Query
-            $this->db->query('select * from projects where workStatus="pending" ORDER BY createTime ASC');
+            $this->db->query('select * from projects where workStatus="pending" ORDER BY createTime DESC');
 
             
 
