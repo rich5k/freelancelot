@@ -11,7 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Bio</title>
+    <title>Your Porfolio</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/project.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,84 +82,83 @@ _SIGNINITEM;
     </div>
     </nav>
         
-    <img src="../assets/workpic6.jpg" class="img-fluid" alt="Responsive image" style="
+    <img src="../assets/workpic5.jpg" class="img-fluid" alt="Responsive image" style="
     height: 350px;
     width: 100%;">
     <div class="container">
-        <div class="jumbotron">
-            <h3>My Profile</h3>
-            <br>
-            <br>
-            <div class="row">
-                <?php
-                    //Instantiate Student
-                    $student= new Student();
-                    //student Data
-                    $studentData =[
-                        'studentID'=> $_SESSION['sessionId']
-                    ];
-                    $studBio= $student->getStudentBio($studentData);
-                    if($studBio!= null){
-                        echo '<div class="col-lg-6">';
-                        echo '<img src="../studImages/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
-                        height: 350px;
-                        width: 100%;">';
+        <h3>Your Portfolio</h3>
+        <?php
+            if(isset($_POST['submit'])){
+                //Instantiate Organization
+                $organization= new Organization();
+
+                //Instantiate Student
+                $student= new Student();
+
+                $projID=$_POST['projectID'];
+
+                //project Data
+                $studentData =[
+                    'studentID'=> $_POST['sessionId']
+                    
+                ];
+                $studProjs= $student->getAllStudProj($studentData);
+                
+                
+                if($studProjs!=null){
+                    foreach($studProjs as $p){
+                        $projectData=[
+                            'projectID'=> $p->projectID
+                        ];
+                        
+                        $project = $organization->getProjects($projectData);
+                        
+                        
+                        echo '<div class="jumbotron">';
+                            echo '<div class="row">';
+                                
+                                echo '<div class="col-lg-12">';
+                                    echo '<span style= " color: #56C8F0;" >'.$project->ptitle.' '.$studName->lname.'</span>';
+                                    echo '<br>';
+                                    for ($i=0; $i <= $p->ratings; $i++) { 
+                          
+                                        echo "<i class='fa fa-star' aria-hidden='true'></i>";
+                        
+                                    }
+                                    if ($p->ratings< 5) {
+                                        //puts empty stars for ratings is available
+                                        for($i=0; $i < 5-$p->ratings; $i++){
+                                          echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
+                        
+                                        }
+                                    }
+                                    echo '<br>';
+                                    echo '<p class="descr">';
+                                    echo '"'.$p->reviews;
+                                    echo '</p>';
+                                    echo '<form action="./student_project.php" method="POST">';
+                                        echo '<input type="hidden" name="studentID" value="'.$_POST['sessionId'].'"></input>';
+                                        echo '<input type="hidden" name="projectID" value="'.$p->projectID.'"></input>';
+                                        echo '<button class="btn btn-success btn-sm" name= "submit">Check it Out</button>';
+                                    echo '</form>';
+                                    
+                                echo '</div>';
+                            echo '</div>';
                         echo '</div>';
-                        echo '<div class="col-lg-6">';
-                        echo '<h5>Bio</h5>';
-                        echo '<br>';
-                        echo '<p>';
-                        echo $studBio->bio;
-                        echo '</p>';
-                        echo '<br>';
-                        echo '<h5>Major</h5>';
-                        
-                        echo $studBio->major;
-                        echo '<br>';
-                        echo '<br>';
-                        echo '<h5>University</h5>';
-                        
-                        echo $studBio->university;
-                        echo '<br>';
-                        echo '<br>';
-                        echo '<button type="button" onclick="window.location.href=\'proposal.php\';" class="btn btn-success btn-sm">Send Proposal</button>';
 
+                        }
+                    }else{
+                        echo '<h5>Sorry, you don\'t have any completed projects in your portfolio.</h5>';
                     }
-                    else{
-                        echo '<div class="col-lg-12">';
-                        echo '<h5>Sorry you don\'t have a bio. Please create one</h5>';
-                        echo '<br>';
-                        echo '<button type="button" onclick="window.location.href=\'stud_bio.php\';" class="btn btn-success btn-sm">Create Bio</button>';
-                    }
-                    echo '</div>';
-                ?>
                     
-                    
-                    
-            </div>
-            
-            <h5>Ongoing Projects</h5>
+            }else{
+                echo '<h5>No portfolio to view. Pls go to your dashboard and click "check portfolio" to view portfolio.</h5>';
+            }
+        ?>
 
-            <div class="row">
-                <div style="background-color: #FDD100" class="col-lg-2">
-                    
-                </div>
-                <div class="col-lg-10">
-                    <strong>The Title</strong>
-                    <br>
-                    Org Name
-                    <br>
-                    <em>Pay Status</em>
-                    <br>
-                    Expert
-                </div>
-            </div>
-            <br>
-            <br>
+        
 
-            <button type="button" onclick="window.location.href='student_portfolio.php';" class="btn btn-success btn-sm">Check Portfolio</button>
-
-        </div>
+        
         
     </div>
 

@@ -364,6 +364,21 @@
             
         }
 
+        //gets all student projects
+        public function getAllStudProj($data){
+            //Prepare Query
+            $this->db->query('select * from stud_projects where studentID= :studentID ORDER BY stud_projID DESC');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            
+
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         
     }
 ?>
