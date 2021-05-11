@@ -186,7 +186,7 @@ _SIGNINITEM;
                         echo '<div class="row">';
                             echo '<div style="background-color: #FDD100" class="col-lg-2">';
                             echo '</div>';
-                            echo '<div class="col-lg-10">';
+                            echo '<div class="col-lg-5">';
                                 echo '<strong>'.$op->ptitle.'</strong>';
                                 echo '<br>';
 
@@ -219,6 +219,16 @@ _SIGNINITEM;
                                 echo $studBio->major;
                                 echo '<br>';
                                 echo $studBio->university;
+                            echo '</div>';
+                            echo '<div class="col-lg-5">';
+                            echo '<br>';
+                            echo '<br>';
+                            echo '<br>';
+                                echo '<form action="./endProject.php" method="POST">';
+                                echo '<input type="hidden" name="studentID" value="'.$studBio->projectID.'"></input>';
+                                    echo '<input type="hidden" name="projectID" value="'.$op->projectID.'"></input>';
+                                    echo '<button class="btn btn-success btn-sm" name= "submit">End Project</button>';
+                                echo '</form>';
                             echo '</div>';
                         echo '</div>';
                     }
