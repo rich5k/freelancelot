@@ -126,6 +126,7 @@ _SIGNINITEM;
                         if($project->payStatus =="Paid"){
                             echo '<label for="payStatus"><b>Payment:</b></label>';
                             echo '<input type="hidden" name="payStatus" value="paid"></input>';
+                            echo '<input type="hidden" name="amount" value="'.$project->amount.'"></input>';
                             echo '<br>';
                             echo '<div style="width: 30em" #stripecardelement id="card-element">';
                             echo '<!-- A Stripe Element will be inserted here. -->';
@@ -138,9 +139,10 @@ _SIGNINITEM;
                             echo '<span id="cardDetails"></span>';
                         }else{
                             echo '<input type="hidden" name="payStatus" value="voluntary"></input>';
+                            echo '<input type="hidden" name="amount" value="0"></input>';
                         }
                         echo '';
-                        echo '<button type="submit" class="btn btn-primary" name="submit">Submit</button>';
+                        echo '<button>Submit</button>';
                     echo '</form>';
                 }else{
                     echo '<h5>Sorry, there is no ongoing project to end.</h5>';
