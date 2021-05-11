@@ -14,7 +14,7 @@ use Recombee\RecommApi\Client;
 use Recombee\RecommApi\Requests as Reqs;
 
 $token  = "THPVz8AiAdXYQFakEgLDXROdUltS3b4ybH8fXxs9VXUboggM0EvFJQFM5jMwuVJh";
-$db_name = "freelancealot-db";
+$db_name = "freelancelot-db";
 
 
 $client = new Client($db_name, $token);
