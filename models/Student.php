@@ -359,7 +359,7 @@
             $this->db->bind(':projectID', $data['projectID']);
 
             //Fetch All records
-            $results=$this->db->resultset();
+            $results=$this->db->single();
             return $results;
             
         }

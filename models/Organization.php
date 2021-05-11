@@ -68,6 +68,25 @@
             
         }
 
+        //gets the Organization name
+        public function getOrgName($data){
+            //Prepare Query
+            $this->db->query('select cname from organizations where organID = :organID');
+
+            // Bind Values
+            $this->db->bind(':organID', $data['organID']);
+           
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch One record
+            $results=$this->db->single();
+            return $results;
+            
+        }
+
         //adds organization info
         public function addOrgInfo($data){
             //Prepare Query
@@ -258,11 +277,26 @@
         $this->db->bind(':projectID', $data['projectID']);
 
         //Fetch All records
+        $results=$this->db->single();
+        return $results;
+        
+    }
+
+    
+    //gets all organization projects
+    public function getAllOrgProj($data){
+        //Prepare Query
+        $this->db->query('select * from organ_projects where organID= :organID ORDER BY stud_projID DESC');
+
+        // Bind Values
+        $this->db->bind(':organID', $data['organID']);
+        
+
+        //Fetch All records
         $results=$this->db->resultset();
         return $results;
         
     }
 
-       
     }
 ?>

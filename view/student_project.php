@@ -162,19 +162,7 @@ _SIGNINITEM;
                                 echo '<br>';
                                 echo '<br>';
     
-                                echo '<h5>Proposal</h5>';
-                                $projectID= $_POST["projectID"];
-                                $propData=[
-                                    'studentID'=> $studentID,
-                                    'projectID' => $projectID
-                                ];
-                                $stud_prop= $student->getProjProp($propData);
-                                echo '<p>';
-                                    echo $stud_prop->proposal;
-                                echo '</p>';
-    
-                                echo '<br>';
-                                echo '<br>';
+                                
                                 echo '<button type="button" onclick="window.location.href=\'student_portfolio.php\';" class="btn btn-success btn-sm">Back to Portfolio</button>';
                                 
     

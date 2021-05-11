@@ -11,7 +11,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Porfolio</title>
+    <title>Your Projects</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/project.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -86,7 +86,7 @@ _SIGNINITEM;
     height: 350px;
     width: 100%;">
     <div class="container">
-        <h3>Your Portfolio</h3>
+        <h3>Your Projects</h3>
         <?php
                 //Instantiate Organization
                 $organization= new Organization();
@@ -96,16 +96,16 @@ _SIGNINITEM;
 
                 
 
-                //student Data
-                $studentData =[
-                    'studentID'=> $_SESSION['sessionId']
+                //organization Data
+                $orgData =[
+                    'organID'=> $_SESSION['sessionId']
                     
                 ];
-                $studProjs= $student->getAllStudProj($studentData);
+                $orgProjs= $organization->getAllOrgProj($orgData);
                 
                 
-                if($studProjs!=null){
-                    foreach($studProjs as $p){
+                if($orgProjs!=null){
+                    foreach($orgProjs as $p){
                         $projectData=[
                             'projectID'=> $p->projectID
                         ];
@@ -135,8 +135,8 @@ _SIGNINITEM;
                                     echo '<p class="descr">';
                                     echo '"'.$p->reviews;
                                     echo '</p>';
-                                    echo '<form action="./student_project.php" method="POST">';
-                                        echo '<input type="hidden" name="studentID" value="'.$_SESSION['sessionId'].'"></input>';
+                                    echo '<form action="./org_project.php" method="POST">';
+                                        echo '<input type="hidden" name="organID" value="'.$_SESSION['sessionId'].'"></input>';
                                         echo '<input type="hidden" name="projectID" value="'.$p->projectID.'"></input>';
                                         echo '<button class="btn btn-success btn-sm" name= "submit">Check it Out</button>';
                                     echo '</form>';

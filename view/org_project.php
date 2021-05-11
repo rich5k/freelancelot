@@ -11,7 +11,22 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Porfolio</title>
+    <?php
+        if(isset($_POST['submit'])){
+            //Instantiate Organization
+            $organization= new Organization();
+            $organID= $_POST["organID"];
+            $orgData=[
+                'organID'=>$organID
+            ];
+            $orgName= $organization->getOrgName($orgData);
+            echo '<title>'.$orgName->cname.'\'s Project</title>';
+        }
+        else{
+            echo '<title>Your Project</title>';
+        }
+    ?>
+    
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/project.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,79 +97,90 @@ _SIGNINITEM;
     </div>
     </nav>
         
-    <img src="../assets/workpic5.jpg" class="img-fluid" alt="Responsive image" style="
+    <img src="../assets/img1.jpg" class="img-fluid" alt="Responsive image" style="
     height: 350px;
     width: 100%;">
     <div class="container">
-        <h3>Your Portfolio</h3>
-        <?php
-                //Instantiate Organization
-                $organization= new Organization();
-
-                //Instantiate Student
-                $student= new Student();
-
-                
-
-                //student Data
-                $studentData =[
-                    'studentID'=> $_SESSION['sessionId']
-                    
-                ];
-                $studProjs= $student->getAllStudProj($studentData);
-                
-                
-                if($studProjs!=null){
-                    foreach($studProjs as $p){
-                        $projectData=[
-                            'projectID'=> $p->projectID
-                        ];
-                        
-                        $project = $organization->getProjects($projectData);
-                        
-                        
-                        echo '<div class="jumbotron">';
-                            echo '<div class="row">';
-                                
-                                echo '<div class="col-lg-12">';
-                                    echo '<span style= " color: #56C8F0;" >'.$project->ptitle.'</span>';
-                                    echo '<br>';
-                                    for ($i=0; $i <= $p->ratings; $i++) { 
-                          
-                                        echo "<i class='fa fa-star' aria-hidden='true'></i>";
-                        
-                                    }
-                                    if ($p->ratings< 5) {
-                                        //puts empty stars for ratings is available
-                                        for($i=0; $i < 5-$p->ratings; $i++){
-                                          echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
-                        
-                                        }
-                                    }
-                                    echo '<br>';
-                                    echo '<p class="descr">';
-                                    echo '"'.$p->reviews;
-                                    echo '</p>';
-                                    echo '<form action="./student_project.php" method="POST">';
-                                        echo '<input type="hidden" name="studentID" value="'.$_SESSION['sessionId'].'"></input>';
-                                        echo '<input type="hidden" name="projectID" value="'.$p->projectID.'"></input>';
-                                        echo '<button class="btn btn-success btn-sm" name= "submit">Check it Out</button>';
-                                    echo '</form>';
-                                    
-                                echo '</div>';
-                            echo '</div>';
-                        echo '</div>';
-
-                        }
-                    }else{
-                        echo '<h5>Sorry, you don\'t have any completed projects in your portfolio.</h5>';
-                    }
+        <div class="jumbotron">
             
-        ?>
+            <div class="row">
+                <?php
+                if(isset($_POST['submit'])){
+ 
+    
+                    //orgProj Data
+                    $orgProjData =[
+                        'organID'=> $_POST['organID'],
+                        'projectID'=> $_POST['projectID']
+                        
+                    ];
+                    $orgProj= $organization->getOrgProj($orgProjData);
+    
+                    
+                    $projectData=[
+                        'projectID'=> $_POST["projectID"]
+                    ];
+                    
+                    $project = $organization->getProjects($projectData);
+                    echo '<h3>'.$project->ptitle.'</h3>';
+                        echo '<br>';
+                        echo '<br>';
+                        
+                        if($project!= null){
+                            
+                            echo '<div class="col-lg-12">';
+                                echo '<h5>Description</h5>';
+                                echo '<br>';
+                                echo '<p>';
+                                    echo $project->pdescription;
+                                echo '</p>';
+                                echo '<br>';
+                                echo '<h5>Ratings</h5>';
+                                
+                                for ($i=0; $i <= $orgProj->ratings; $i++) { 
+                                
+                                    echo "<i class='fa fa-star' aria-hidden='true'></i>";
+                    
+                                }
+                                if ($orgProj->ratings< 5) {
+                                    //puts empty stars for ratings is available
+                                    for($i=0; $i < 5-$orgProj->ratings; $i++){
+                                    echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
+                    
+                                    }
+                                }
+                                echo '<br>';
+                                echo '<br>';
+                                echo '<h5>Reviews</h5>';
+                                
+                                echo $orgProj->reviews;
+                                echo '<br>';
+                                echo '<br>';
+    
+                                
+                                echo '<button type="button" onclick="window.location.href=\'org_projects.php\';" class="btn btn-success btn-sm">Back to Completed Projects</button>';
+                                
+    
+                        }
+                        else{
+                            echo '<h5>Sorry, project does not exist.</h5>';
+                        }
+                        echo '</div>';
+                }else{
+                    echo '<h5>Sorry, project does not exist.</h5>';
+                    echo '<button type="button" onclick="window.location.href=\'org_projects.php\';" class="btn btn-success btn-sm">Back to Completed Projects</button>';
+                }
 
-        
+                ?>
+                    
+                    
+                    
+            </div>
+            
+            
+            <button type="button" onclick="window.location.href='stud_portfolio.php';" class="btn btn-success btn-sm">Check Portfolio</button>
 
-        
+        </div>
         
     </div>
 
