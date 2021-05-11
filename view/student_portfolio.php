@@ -88,18 +88,17 @@ _SIGNINITEM;
     <div class="container">
         <h3>Your Portfolio</h3>
         <?php
-            if(isset($_POST['submit'])){
                 //Instantiate Organization
                 $organization= new Organization();
 
                 //Instantiate Student
                 $student= new Student();
 
-                $projID=$_POST['projectID'];
+                
 
-                //project Data
+                //student Data
                 $studentData =[
-                    'studentID'=> $_POST['sessionId']
+                    'studentID'=> $_SESSION['sessionId']
                     
                 ];
                 $studProjs= $student->getAllStudProj($studentData);
@@ -137,7 +136,7 @@ _SIGNINITEM;
                                     echo '"'.$p->reviews;
                                     echo '</p>';
                                     echo '<form action="./student_project.php" method="POST">';
-                                        echo '<input type="hidden" name="studentID" value="'.$_POST['sessionId'].'"></input>';
+                                        echo '<input type="hidden" name="studentID" value="'.$_SESSION['sessionId'].'"></input>';
                                         echo '<input type="hidden" name="projectID" value="'.$p->projectID.'"></input>';
                                         echo '<button class="btn btn-success btn-sm" name= "submit">Check it Out</button>';
                                     echo '</form>';
@@ -150,10 +149,7 @@ _SIGNINITEM;
                     }else{
                         echo '<h5>Sorry, you don\'t have any completed projects in your portfolio.</h5>';
                     }
-                    
-            }else{
-                echo '<h5>No portfolio to view. Pls go to your dashboard and click "check portfolio" to view portfolio.</h5>';
-            }
+            
         ?>
 
         
