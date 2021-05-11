@@ -26,6 +26,9 @@ $email = $_SESSION['sessionEmail'];
 
 //Instantiate Organization
 $organization= new Organization();
+$projectData=[
+    'projectID'=> $projectID
+];
 $project= $organization->getProjects($projectData);
 
 //Instantiate Student
