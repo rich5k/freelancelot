@@ -102,140 +102,196 @@ _SIGNINITEM;
 
                 $proj= $organization->getProjects($projectData);
                 
-                echo '<div class="jumbotron">';
-                    echo '<h5>'.$proj->ptitle.'</h5>';
-                echo '</div>';
-                echo '<div class="jumbotron">';
-                    echo '<small>';
-                    $currentDate = date("Y-m-d");
-                    $currentTime = date("H:i:s");
-
-                    $currentDate =  strtotime($currentDate . $currentTime);
-
-                    $dtToCompare = strtotime($proj->createTime);
-                    
-                    
-                    $diff = abs($currentDate- $dtToCompare);
-
-                    // To get the year divide the resultant date into
-                    // total seconds in a year (365*60*60*24)
-                    $years = floor($diff / (365*60*60*24));
-
-                    // To get the month, subtract it with years and
-                    // divide the resultant date into
-                    // total seconds in a month (30*60*60*24)
-                    $months = floor(($diff - $years * 365*60*60*24)
-                    / (30*60*60*24)); 
-
-
-                    // To get the day, subtract it with years and 
-                    // months and divide the resultant date into
-                    // total seconds in a days (60*60*24)
-                    $days = floor(($diff - $years * 365*60*60*24 - 
-                    $months*30*60*60*24)/ (60*60*24));
-
-
-                    // To get the hour, subtract it with years, 
-                    // months & seconds and divide the resultant
-                    // date into total seconds in a hours (60*60)
-                    $hours = floor(($diff - $years * 365*60*60*24 
-                    - $months*30*60*60*24 - $days*60*60*24)
-                        / (60*60)); 
-
-
-                    // To get the minutes, subtract it with years,
-                    // months, seconds and hours and divide the 
-                    // resultant date into total seconds i.e. 60
-                    $mins = floor(($diff - $years * 365*60*60*24 
-                    - $months*30*60*60*24 - $days*60*60*24 
-                    - $hours*60*60)/ 60); 
-
-                    
-                    if(($mins)<60 && $hours==0 && $days==0 && $months==0 && $years==0){
-                        echo 'Posted '.$mins.' minute(s) ago';
-                    }
-                    else{
-                        if($hours<24 && $days==0 && $months==0 && $years==0){
-                            echo 'Posted '.$hours.' hour(s) ago';
-                        }
-                        else{
-                            if($days<30 && $months==0 && $years==0){
-                                echo 'Posted '.$days.' day(s) ago';
+                echo '<div class="row">';
+                    echo '<div class="col-lg-8">';
+                
+                        echo '<div class="jumbotron">';
+                            echo '<h5>'.$proj->ptitle.'</h5>';
+                        echo '</div>';
+                        echo '<div class="jumbotron">';
+                            echo '<small>';
+                            $currentDate = date("Y-m-d");
+                            $currentTime = date("H:i:s");
+        
+                            $currentDate =  strtotime($currentDate . $currentTime);
+        
+                            $dtToCompare = strtotime($proj->createTime);
+                            
+                            
+                            $diff = abs($currentDate- $dtToCompare);
+        
+                            // To get the year divide the resultant date into
+                            // total seconds in a year (365*60*60*24)
+                            $years = floor($diff / (365*60*60*24));
+        
+                            // To get the month, subtract it with years and
+                            // divide the resultant date into
+                            // total seconds in a month (30*60*60*24)
+                            $months = floor(($diff - $years * 365*60*60*24)
+                            / (30*60*60*24)); 
+        
+        
+                            // To get the day, subtract it with years and 
+                            // months and divide the resultant date into
+                            // total seconds in a days (60*60*24)
+                            $days = floor(($diff - $years * 365*60*60*24 - 
+                            $months*30*60*60*24)/ (60*60*24));
+        
+        
+                            // To get the hour, subtract it with years, 
+                            // months & seconds and divide the resultant
+                            // date into total seconds in a hours (60*60)
+                            $hours = floor(($diff - $years * 365*60*60*24 
+                            - $months*30*60*60*24 - $days*60*60*24)
+                                / (60*60)); 
+        
+        
+                            // To get the minutes, subtract it with years,
+                            // months, seconds and hours and divide the 
+                            // resultant date into total seconds i.e. 60
+                            $mins = floor(($diff - $years * 365*60*60*24 
+                            - $months*30*60*60*24 - $days*60*60*24 
+                            - $hours*60*60)/ 60); 
+        
+                            
+                            if(($mins)<60 && $hours==0 && $days==0 && $months==0 && $years==0){
+                                echo 'Posted '.$mins.' minute(s) ago';
                             }
                             else{
-                                if($months<12 && $years==0){
-                                    echo 'Posted '.$months.' month(s) ago';
+                                if($hours<24 && $days==0 && $months==0 && $years==0){
+                                    echo 'Posted '.$hours.' hour(s) ago';
                                 }
                                 else{
-                                    echo 'Posted '.$years.' year(s) ago';
+                                    if($days<30 && $months==0 && $years==0){
+                                        echo 'Posted '.$days.' day(s) ago';
+                                    }
+                                    else{
+                                        if($months<12 && $years==0){
+                                            echo 'Posted '.$months.' month(s) ago';
+                                        }
+                                        else{
+                                            echo 'Posted '.$years.' year(s) ago';
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
-                    echo '</small>';
-                    echo '<br>';
-                    echo '<i class="fa fa-map-marker" aria-hidden="true"></i> ';
-                    echo 'Only students in Ghanaian colleges may apply.';
-                    echo '<br>';
-                echo '</div>';
-                echo '<div class="jumbotron">';
-                    echo '<p>';
-                        echo $proj->pdescription;
-                    echo '</p>';
-                echo '</div>';
-                echo '<div class="jumbotron">';
-                    echo '<div class="row">';
-                        echo '<div class="col-lg-4">';
-                        if($proj->payStatus=="Paid"){
-                            echo '<strong><i class="fa fa-tag" aria-hidden="true"></i> $'.$proj->amount.'</strong>';
+                            echo '</small>';
                             echo '<br>';
-                            echo '<small>Fixed Price</small>';
-
-                        }else{
-                            echo '<strong><i class="fa fa-tag" aria-hidden="true"></i> '.$proj->payStatus.'</strong>';
-                        }
-                        echo '</div> ';
-                        echo '<div class="col-lg-4">';
-                        if($proj->pdifficulty=="Entry Level"){
-                            echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
+                            echo '<i class="fa fa-map-marker" aria-hidden="true"></i> ';
+                            echo 'Only students in Ghanaian colleges may apply.';
                             echo '<br>';
-                            echo '<small>I am willing to pay for a student who does not have experience
-                            but can produce value</small>';
-                        }
-                        else if($proj->pdifficulty=="Intermediate"){
-                            echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
-                            echo '<br>';
-                            echo '<small>I am willing to pay for a student who has experience
-                            and can produce value</small>';
-
-                        }
-                        else{
-                            echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
-                            echo '<br>';
-                            echo '<small>I am willing to pay for a student who has a ton of experience
-                            and can produce great value</small>';
-                        }
                         echo '</div>';
-                        echo '<div class="col-lg-4">';
-                            echo '<strong><i class="fa fa-map-marker" aria-hidden="true"></i> Remote Job</strong>';
+                        echo '<div class="jumbotron">';
+                            echo '<p>';
+                                echo $proj->pdescription;
+                            echo '</p>';
+                        echo '</div>';
+                        echo '<div class="jumbotron">';
+                            echo '<div class="row">';
+                                echo '<div class="col-lg-4">';
+                                if($proj->payStatus=="Paid"){
+                                    echo '<strong><i class="fa fa-tag" aria-hidden="true"></i> $'.$proj->amount.'</strong>';
+                                    echo '<br>';
+                                    echo '<small>Fixed Price</small>';
+        
+                                }else{
+                                    echo '<strong><i class="fa fa-tag" aria-hidden="true"></i> '.$proj->payStatus.'</strong>';
+                                }
+                                echo '</div> ';
+                                echo '<div class="col-lg-4">';
+                                if($proj->pdifficulty=="Entry Level"){
+                                    echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
+                                    echo '<br>';
+                                    echo '<small>I am willing to pay for a student who does not have experience
+                                    but can produce value</small>';
+                                }
+                                else if($proj->pdifficulty=="Intermediate"){
+                                    echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
+                                    echo '<br>';
+                                    echo '<small>I am willing to pay for a student who has experience
+                                    and can produce value</small>';
+        
+                                }
+                                else{
+                                    echo '<strong><i class="fa fa-briefcase" aria-hidden="true"></i>  '.$proj->pdifficulty.'</strong> ';
+                                    echo '<br>';
+                                    echo '<small>I am willing to pay for a student who has a ton of experience
+                                    and can produce great value</small>';
+                                }
+                                echo '</div>';
+                                echo '<div class="col-lg-4">';
+                                    echo '<strong><i class="fa fa-map-marker" aria-hidden="true"></i> Remote Job</strong>';
+                                echo '</div>';
+                            echo '</div>';
+                            echo '<br>';
+                            echo '<br>';
+                            echo '<div class="row">';
+                                echo '<div class="col-lg-4">';
+                                echo '</div>';
+                                echo '<div class="col-lg-4">';
+                                        echo '<form action="./proposal.php" method="POST">';
+                                        echo '<input type="hidden" name="projID" value="'.$proj->projectID.'"></input>';
+                                        echo '<button class="btn btn-success btn-sm" name= "submit">Send Proposal</button>';
+                                        echo '</form>';
+                                
+                                echo '</div>';
+                                echo '<div class="col-lg-4">';
+                                echo '</div>';
+                            echo '</div>';
                         echo '</div>';
                     echo '</div>';
-                    echo '<br>';
-                    echo '<br>';
-                    echo '<div class="row">';
-                        echo '<div class="col-lg-4">';
-                        echo '</div>';
-                        echo '<div class="col-lg-4">';
-                                echo '<form action="./proposal.php" method="POST">';
-                                echo '<input type="hidden" name="projID" value="'.$proj->projectID.'"></input>';
-                                echo '<button class="btn btn-success btn-sm" name= "submit">Send Proposal</button>';
-                                echo '</form>';
-                        
-                        echo '</div>';
-                        echo '<div class="col-lg-4">';
+                    echo '<div class="col-lg-4">';
+                        $orgData=[
+                            'organID'=> $proj->organID
+                        ];
+                        $orgInfo= $organization->getOrgInfo($orgData);
+                        echo '<div class="jumbotron">';
+                            echo '<h5>About the employer</h5>';
+                            echo '<strong>Company Info:</strong>';
+                            echo '<br>';
+                            echo '<p>';
+                                echo $orgInfo->companyInfo;
+                            echo '</p>';
+                            echo '<strong>Location:</strong>';
+                            echo '<br>';
+                            echo $orgInfo->clocation;
+                            echo '<br>';
+                            echo '<strong>Company Website:</strong>';
+                            echo '<br>';
+                            echo $orgInfo->cwebsite;
+                            echo '<br>';
+                            echo '<br>';
+                            $orgProjs=$organization->getAllOrgProj($orgData);
+                                if($orgProjs!= null){
+                                    $totalRatings=0;
+                                    $avgRatings=0.0;
+                                    $count=0;
+                                    $successPercent=0;
+                                    foreach($orgProjs as $sp){
+                                        $totalRatings=$totalRatings+$sp->ratings;
+                                        $count++;
+                                    }
+                                        
+                                    echo '<strong> Avg. Ratings: </strong>';
+                                        for ($i=0; $i <= round($avgRatings); $i++) { 
+                                
+                                            echo "<i class='fa fa-star' aria-hidden='true'></i>";
+                            
+                                        }
+                                        if ($studProj->ratings< 5) {
+                                            //puts empty stars for ratings is available
+                                            for($i=0; $i < 5-round($avgRatings); $i++){
+                                            echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
+                            
+                                            }
+                                        }
+                                    }else{
+                                        echo '<strong>New on Platform</strong>';
+                                    }
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';
+
             }else{
                 echo '<h5>No project to view. Pls click on the Find Work button and select a project you are interested in.</h5>';
             }
