@@ -252,6 +252,21 @@
             
         }
 
+        //gets ongoing projects
+        public function getOngoingProj($data){
+            //Prepare Query
+            $this->db->query('select * from proj_proposals where studentID= :studentID and prop_status = "accepted"');
+
+            // Bind Values
+            $this->db->bind(':studentID', $data['studentID']);
+            
+
+            //Fetch All records
+            $results=$this->db->resultset();
+            return $results;
+            
+        }
+
         //gets all project proposals
         public function getAllProp($data){
             //Prepare Query

@@ -138,22 +138,51 @@ _SIGNINITEM;
                     
             </div>
             
-            <h5>Ongoing Projects</h5>
+            <?php
+                echo '<h5>Ongoing Projects</h5>';
 
-            <div class="row">
-                <div style="background-color: #FDD100" class="col-lg-2">
+                $ongoingProjs = $student->getOngoingProj($studentData);
+                if($ongoingProjs!= null){
+                    foreach($ongoingProjs as $op){
+
+                        //project Data
+                        $projectData =[
+                            'projectID'=> $op->projectID
+                        ];
+                        //Instantiate Organization
+                        $organization= new Organization();
+                        $project= $organization->getProjects($projectData);
+                        echo '<div class="row">';
+                            echo '<div style="background-color: #FDD100" class="col-lg-2">';
+                            echo '</div>';
+                            echo '<div class="col-lg-10">';
+                                echo '<strong>'.$project->ptitle.'</strong>';
+                                echo '<br>';
+                                $orgData=[
+                                    'organID'=>$project->organID
+                                ];
+                                $orgName= $organization->getOrgName($orgData);
+                                echo $orgName->cname;
+                                echo '<br>';
+                                if($project->payStatus=="Paid"){
+                                    echo '<em>'.$project->payStatus.'</em>';
+                                    echo '<br>';
+                                    echo '$'.$project->amount;
+                                }else{
+                                    echo '<em>'.$project->payStatus.'</em>';
+        
+                                }
+                                echo '<br>';
+                                echo $project->pdifficulty;
+                            echo '</div>';
+                        echo '</div>';
+                    }
                     
-                </div>
-                <div class="col-lg-10">
-                    <strong>The Title</strong>
-                    <br>
-                    Org Name
-                    <br>
-                    <em>Pay Status</em>
-                    <br>
-                    Expert
-                </div>
-            </div>
+                }else{
+                    echo '<h5>No ongoing projects</h5>';
+                }
+            ?>
+            
             <br>
             <br>
 

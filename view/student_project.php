@@ -130,7 +130,7 @@ _SIGNINITEM;
                     echo '<h3>'.$project->ptitle.'</h3>';
                         echo '<br>';
                         echo '<br>';
-                        $studBio= $student->getStudentBio($studentData);
+                        
                         if($project!= null){
                             
                             echo '<div class="col-lg-12">';
