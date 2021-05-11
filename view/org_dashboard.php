@@ -225,7 +225,7 @@ _SIGNINITEM;
                             echo '<br>';
                             echo '<br>';
                                 echo '<form action="./endProject.php" method="POST">';
-                                echo '<input type="hidden" name="studentID" value="'.$studBio->projectID.'"></input>';
+                                    echo '<input type="hidden" name="studentID" value="'.$studBio->studentID.'"></input>';
                                     echo '<input type="hidden" name="projectID" value="'.$op->projectID.'"></input>';
                                     echo '<button class="btn btn-success btn-sm" name= "submit">End Project</button>';
                                 echo '</form>';
