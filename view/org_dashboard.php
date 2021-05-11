@@ -224,11 +224,29 @@ _SIGNINITEM;
                             echo '<br>';
                             echo '<br>';
                             echo '<br>';
+
+                            $orgProjData=[
+                                'organID'=> $_SESSION['sessionId'],
+                                'projectID'=> $op->projectID
+                            ];
+
+                            $studProjData=[
+                                'studentID'=> $studBio->studentID,
+                                'projectID'=> $op->projectID
+                            ];
+
+                            if($student->getStudProj($studProjData)!=null && $organization->getOrgProj($orgProjData)==null){
+                                echo '<h5>Pls be patient. Project would be moved to completed projects once '.
+                                $studName->fname.' '.$studName->lname.' reviews you. Thank you :)</h5>';
+                            }else{
                                 echo '<form action="./endProject.php" method="POST">';
                                     echo '<input type="hidden" name="studentID" value="'.$studBio->studentID.'"></input>';
                                     echo '<input type="hidden" name="projectID" value="'.$op->projectID.'"></input>';
                                     echo '<button class="btn btn-success btn-sm" name= "submit">End Project</button>';
                                 echo '</form>';
+
+                            }
+
                             echo '</div>';
                         echo '</div>';
                     }
