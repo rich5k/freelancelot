@@ -109,7 +109,7 @@ _SIGNINITEM;
                     <br>
                     <label for="amount">Price</label>
                     <input type="text" class="form-control" id="amount" name="amount" required>
-                    <small id="sTimeHelp" class="form-text text-muted">Put 0 if voluntary</small>
+                    <small id="sTimeHelp" class="form-text text-muted">Put 0.0 if voluntary</small>
                     <br>
                     <label for="pdifficulty">Difficulty of Project:</label>
                     <select class="form-control" id="pdifficulty" name="pdifficulty">
