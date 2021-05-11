@@ -213,7 +213,7 @@
         //gets Pending projects
         public function getPendingProjects($data){
             //Prepare Query
-            $this->db->query('select * from projects where organID= :organID and workStatus="pending" ORDER BY createTime ASC');
+            $this->db->query('select * from projects where organID= :organID and workStatus="pending" ORDER BY createTime DESC');
 
             // Bind Values
             $this->db->bind(':organID', $data['organID']);
@@ -225,6 +225,43 @@
            //Fetch All records
            $results=$this->db->resultset();
            return $results;
+            
+        }
+
+        //gets Ongoing projects
+        public function getOngoingProjects($data){
+            //Prepare Query
+            $this->db->query('select * from projects where organID= :organID and workStatus="ongoing" ORDER BY createTime DESC');
+
+            // Bind Values
+            $this->db->bind(':organID', $data['organID']);
+
+            //Execute
+            $this->db->execute();
+            
+
+           //Fetch All records
+           $results=$this->db->resultset();
+           return $results;
+            
+        }
+
+        //gets accepted proposals
+        public function getAcceptedProp($data){
+            //Prepare Query
+            $this->db->query('select * from proj_proposals where projectID = :projectID');
+
+            // Bind Values
+            $this->db->bind(':projectID', $data['projectID']);
+           
+
+            //Execute
+            $this->db->execute();
+            
+
+            //Fetch All records
+            $results=$this->db->single();
+            return $results;
             
         }
 
@@ -286,7 +323,7 @@
     //gets all organization projects
     public function getAllOrgProj($data){
         //Prepare Query
-        $this->db->query('select * from organ_projects where organID= :organID ORDER BY stud_projID DESC');
+        $this->db->query('select * from organ_projects where organID= :organID ORDER BY org_projID DESC');
 
         // Bind Values
         $this->db->bind(':organID', $data['organID']);

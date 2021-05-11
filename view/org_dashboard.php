@@ -175,26 +175,60 @@ _SIGNINITEM;
             
             <br>
             <br>
-            <h5>Ongoing Projects</h5>
 
-            <div class="row">
-                <div style="background-color: #FDD100" class="col-lg-2">
+            <?php
+                echo '<h5>Ongoing Projects</h5>';
+
+                $ongoingProjs = $organization->getOngoingProjects($orgInfoData);
+                if($ongoingProjs!= null){
+                    foreach($ongoingProjs as $op){
+
+                        echo '<div class="row">';
+                            echo '<div style="background-color: #FDD100" class="col-lg-2">';
+                            echo '</div>';
+                            echo '<div class="col-lg-10">';
+                                echo '<strong>'.$op->ptitle.'</strong>';
+                                echo '<br>';
+
+                                $propData=[
+                                    'projectID'=>$op->projectID
+
+                                ];
+                                //Instantiate Student
+                                $student= new Student();
+
+                                $accptProp= $organization->getAcceptedProp($propData);
+                                $studentData=[
+                                    'studentID'=>$accptProp->studentID
+                                ];
+                                $studName= $student->getStudentName($studentData);
+                                echo $studName->fname.' '.$studName->lname;
+                                echo '<br>';
+                                if($op->payStatus=="Paid"){
+                                    echo '<em>'.$op->payStatus.'</em>';
+                                    echo '<br>';
+                                    echo '$'.$op->amount;
+                                }else{
+                                    echo '<em>'.$op->payStatus.'</em>';
+        
+                                }
+                                echo '<br>';
+                                echo $op->pdifficulty;
+                                $studBio= $student->getStudentBio($studentData);
+                                echo '<br>';
+                                echo $studBio->major;
+                                echo '<br>';
+                                echo $studBio->university;
+                            echo '</div>';
+                        echo '</div>';
+                    }
                     
-                </div>
-                <div class="col-lg-10">
-                    <strong>The Title</strong>
-                    <br>
-                    Student Name
-                    <br>
-                    <em>Pay Status</em>
-                    <br>
-                    Expert
-                    <br>
-                    Major
-                    <br>
-                    College
-                </div>
-            </div>
+                }else{
+                    echo '<h5>No ongoing projects</h5>';
+                }
+            ?>
+
+            
             <br>
             <br>
 
