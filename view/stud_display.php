@@ -160,7 +160,36 @@ _SIGNINITEM;
                                             echo '<small>'.$studBio->university.'</small>';
                                         echo '</div>';
                                     echo '</div>';
-                                    echo '100% Project Success';
+                                    $studProjs=$student->getAllStudProj($BioData);
+                                    if($studProjs!= null){
+                                        $totalRatings=0;
+                                        $avgRatings=0.0;
+                                        $count=0;
+                                        $successPercent=0;
+                                        foreach($studProjs as $sp){
+                                            $totalRatings=$totalRatings+$sp->ratings;
+                                            $count++;
+                                        }
+                                        $avgRatings= $totalRatings/$count;
+                                        $successPercent= round($avgRatings/5) * 100;
+                                        echo $successPercent.'% Project Success';
+                                        echo '<br>';
+                                        echo 'Avg. Ratings: ';
+                                        for ($i=0; $i <= round($avgRatings); $i++) { 
+                                
+                                            echo "<i class='fa fa-star' aria-hidden='true'></i>";
+                            
+                                        }
+                                        if ($studProj->ratings< 5) {
+                                            //puts empty stars for ratings is available
+                                            for($i=0; $i < 5-round($avgRatings); $i++){
+                                            echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
+                            
+                                            }
+                                        }
+                                    }else{
+                                        echo 'No Project Experience';
+                                    }
                                     echo '<p class="descr">';
                                     echo $studBio->bio;
                                     echo '</p>';
