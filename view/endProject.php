@@ -15,6 +15,7 @@ session_start();
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/project.css">
     <link rel="stylesheet" href="../css/rating.css">
+    <link rel="stylesheet" href="../css/payment.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -97,7 +98,7 @@ _SIGNINITEM;
                     ];
                     $studName= $student->getStudentName($studentData);
                     echo '<h3>Rate '.$studName->fname.' '.$studName->lname.'\'s Performance</h3>';
-                    echo '<form action="../controller/closeProject.php" method="post">  ';
+                    echo '<form action="../controller/closeProject.php" method="post" id="payment-form"> ';
                         echo '<div class="form-group">';
                             echo '<input type="hidden" name="studentID" value="'.$_POST['studentID'].'"></input>';
                             echo '<input type="hidden" name="projectID" value="'.$_POST['projectID'].'"></input>';
@@ -114,8 +115,31 @@ _SIGNINITEM;
                             echo '<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>'; 
                             echo '<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>';
                         echo '</div>';
+                        echo '<br>';
+                        echo '<br>';
+                        $projectData=[
+                            'projectID'=>$_POST['projectID']
+                        ];
+                        //Instantiate Organization
+                        $organization= new Organization();
+                        $project= $organization->getProjects($projectData);
+                        if($project->payStatus =="Paid"){
+                            echo '<label for="payStatus"><b>Payment:</b></label>';
+                            echo '<input type="hidden" name="payStatus" value="paid"></input>';
                             echo '<br>';
-                            echo '<br>';
+                            echo '<div style="width: 30em" #stripecardelement id="card-element">';
+                            echo '<!-- A Stripe Element will be inserted here. -->';
+                            // echo '</div>';
+
+                            echo '<!-- Used to display form errors. -->';
+                            echo '<div style="width: 30em; height: 2em; letter-spacing: 0em" id="card-errors" role="alert"></div>';
+                            echo '</div>';
+
+                            echo '<span id="cardDetails"></span>';
+                        }else{
+                            echo '<input type="hidden" name="payStatus" value="voluntary"></input>';
+                        }
+                        echo '';
                         echo '<button type="submit" class="btn btn-primary" name="submit">Submit</button>';
                     echo '</form>';
                 }else{
@@ -138,7 +162,10 @@ _SIGNINITEM;
             </div>
         </div>
     </footer>
-                        
+    
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="text/javascript" src="../js/charge.js"></script>
+    <script type="text/javascript" src="../js/ccardInfo.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </body>
