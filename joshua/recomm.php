@@ -5,14 +5,22 @@ and finally retrieve recommendations
  -->
 <!-- DB name and token currently not available -->
 
-<!-- Building catalog of students as students register
-	on the website
- --?
+
+
 <?php
+require_once '../vendor/autoload.php';
+
 use Recombee\RecommApi\Client;
 use Recombee\RecommApi\Requests as Reqs;
 
-$client = new Client("myDb", private_token);
+$token  = "THPVz8AiAdXYQFakEgLDXROdUltS3b4ybH8fXxs9VXUboggM0EvFJQFM5jMwuVJh";
+$db_name = "freelancealot-db";
+
+
+$client = new Client($db_name, $token);
+
+
+// Build catalog of students 
 
 $client -> send(new Reqs\AddItemProperty("name", "string"));
 $client -> send(new Reqs\AddItemProperty("major", "string"));
@@ -44,7 +52,7 @@ $client -> send(new Reqs\SetItemValues($stud_id,
     [
       "name" => "",
       "major" => "",
-	  "email" => "",
+	    "email" => "",
       "university" => "",
       "image" => "http://examplesite.com/products/xyz.jpg",
     ],
@@ -94,7 +102,7 @@ $result = $client->send(new RecommendItemsToUser($org_id, $count, [
 // 	  ],
 // 	 "numberNextRecommsCalls": 0
 //   }
-$result = json_decode($recommended);
+$result = json_decode($result);
 
 
 
@@ -184,8 +192,8 @@ $result = $client->send(new ListItemRatings($item_id));
 $result = $client->send(new SearchItems($user_id, $search_query, $count, [
     // optional parameters:
     'returnProperties' => true,
-    'filter' => <string>,
-    'booster' => <string>,
+    'filter' => "",
+    'booster' => "",
     'logic' => "recently-viewed" or "popular"
   ])
 );
@@ -223,7 +231,7 @@ $result = $client->send(new SearchItems($user_id, $search_query, $count, [
 Recording interactions using batches
 <?php
 
-$client = new Client('database', 'token');
+$client = new Client($db_name, $token);
 $org = new Organization();
 $requests = array();
 
