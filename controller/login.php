@@ -47,7 +47,7 @@ if(isset($_POST['submit'])){
                 
                 //verfiying password
                 $passCheck=password_verify($password, $stud->password);
-                echo $passCheck;
+                // echo $passCheck;
                 if($passCheck==false){
                     echo '<script>alert("Wrong Password")</script>';
                     echo '<script>window.location.href = "../view/signIn.php";</script>';
@@ -90,7 +90,7 @@ if(isset($_POST['submit'])){
                 
                 //verfiying password
                 $passCheck=password_verify($password, $org->password);
-                echo $passCheck;
+                // echo $passCheck;
                 if($passCheck==false){
                     echo '<script>alert("Wrong Password")</script>';
                     echo '<script>window.location.href = "../view/signIn.php";</script>';

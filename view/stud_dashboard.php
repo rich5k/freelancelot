@@ -155,7 +155,7 @@ _SIGNINITEM;
                         echo '<div class="row">';
                             echo '<div style="background-color: #FDD100" class="col-lg-2">';
                             echo '</div>';
-                            echo '<div class="col-lg-10">';
+                            echo '<div class="col-lg-5">';
                                 echo '<strong>'.$project->ptitle.'</strong>';
                                 echo '<br>';
                                 $orgData=[
@@ -175,6 +175,33 @@ _SIGNINITEM;
                                 echo '<br>';
                                 echo $project->pdifficulty;
                             echo '</div>';
+
+                            echo '<div class="col-lg-5">';
+                            echo '<br>';
+                            
+
+                            $orgProjData=[
+                                'organID'=> $project->organID,
+                                'projectID'=> $project->projectID
+                            ];
+
+                            $studProjData=[
+                                'studentID'=> $_SESSION['sessionId'],
+                                'projectID'=> $project->projectID
+                            ];
+
+                            if($student->getStudProj($studProjData)!=null && $organization->getOrgProj($orgProjData)==null){
+                                echo '<h5>The project has ended. Pls review '.$orgName->cname.' now. Thank you :)</h5>';
+                                echo '<form action="./reviewOrg.php" method="POST">';
+                                    echo '<input type="hidden" name="organID" value="'.$project->organID.'"></input>';
+                                    echo '<input type="hidden" name="projectID" value="'.$project->projectID.'"></input>';
+                                    echo '<button class="btn btn-success btn-sm" name= "submit">Review Organization</button>';
+                                echo '</form>';
+                            }
+                            
+                            echo '</div>';
+
+                        
                         echo '</div>';
                     }
                     
@@ -185,7 +212,8 @@ _SIGNINITEM;
             
             <br>
             <br>
-
+            <br>
+            <br>
             <button type="button" onclick="window.location.href='student_portfolio.php';" class="btn btn-success btn-sm">Check Portfolio</button>
 
         </div>
