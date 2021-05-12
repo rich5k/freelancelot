@@ -85,6 +85,13 @@ _SIGNOUTITEM;
     <div class="container">
             <div class="row">
                 <div class="col-lg-6">
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                     <h1>The nation's competency builder</h1>
                     <h5>Engage the largest network of trusted college students to unlock the 
                     full potential of your business</h5>
@@ -125,6 +132,15 @@ _SIGNOUTITEM;
                 <img src="./assets/homepic4.jpg"  class="rounded img-fluid">
             </div>
             <div class="col-lg-6">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <p>
                     "The student talent that I'm able to access created productivity in
                     a way that I don't think any of us thought possible"
@@ -136,6 +152,12 @@ _SIGNOUTITEM;
         </div>
         <div class="row">
             <div class="col-lg-6">
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <p>
                     "My relationship with Abena & Tullow GH has grown over the years. We've
                     continued to work together on larger and more technical projects."

@@ -12,7 +12,7 @@
             <img src="../assets/signpic1.jpg" alt="">
         </div>
         <div class="form-contents">
-            <img src="../assets/logo1.png" alt="">
+            <a href="../index.php"><img src="../assets/logo1.png" alt=""></a> 
             <h1>Sign In To Join The Amazing Community!!!</h1>
             <!-- form for logining in -->
             <form action="../controller/login.php" method="post">
