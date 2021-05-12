@@ -25,12 +25,12 @@ if(isset($_POST['submit'])){
 
     if($student->deleteProjProp($projPropData)){
         echo '<script>alert("Well Done. You declined a proposal successfully")</script>';
-        echo '<script>window.location.href = "../view/student_proposal.php";</script>';
+        echo '<script>window.location.href = "../view/project_proposals.php";</script>';
         exit();
         
     }else{
         echo '<script>alert("Unable to decline proposal")</script>';
-        echo '<script>window.location.href = "../view/student_proposal.php";</script>';
+        echo '<script>window.location.href = "../view/project_proposals.php";</script>';
         exit();
     }
 }
