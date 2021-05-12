@@ -102,7 +102,9 @@ _SIGNINITEM;
                     'projectID'=> $projID
                     
                 ];
+                //gets all project propposals
                 $proj_props= $student->getAllProp($projectData);
+                //gets project details
                 $proj= $organization->getProjects($projectData);
                 
                 echo '<div class="jumbotron">';
@@ -113,8 +115,9 @@ _SIGNINITEM;
                         $studentData=[
                             'studentID'=> $p->studentID
                         ];
-                        
+                        //gets student name
                         $studName = $student->getStudentName($studentData);
+                        //gets student bio
                         $studBio = $student->getStudentBio($studentData);
                         
                         echo '<div class="jumbotron">';

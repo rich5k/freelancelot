@@ -80,7 +80,7 @@ _SIGNINITEM;
         </div>
     </div>
     </nav>
-        
+        <!-- Form for company info -->
     <img src="../assets/workpic6.jpg" class="img-fluid" alt="Responsive image" style="
     height: 350px;
     width: 100%;">

@@ -91,7 +91,7 @@ _SIGNINITEM;
             <br>
             <br>
             
-            
+            <!-- form for proposal -->
                 <?php
                    if(isset($_POST['submit'])){
                        echo '<h5>Be compelling in your proposal to get picked for the project</h5>';

@@ -101,6 +101,7 @@ _SIGNINITEM;
                     'studentID'=> $_SESSION['sessionId']
                     
                 ];
+                //gets details of past projects
                 $studProjs= $student->getAllStudProj($studentData);
                 
                 

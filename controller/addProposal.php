@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
             
         ];
 
-        //Add Student Project
+        //Add Student Proposal
         if($student->addProjProp($proposalData)){
             echo '<script>alert("Well Done. You created a proposal successfully")</script>';
             echo '<script>window.location.href = "../view/projects.php";</script>';

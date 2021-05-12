@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
             echo '<script>window.location.href = "../view/signUp.php";</script>';
             exit();
         }else{
-            
+            //if student is registering
             if($selected_category=="student"){
     
                 //Student Email
@@ -86,6 +86,7 @@ if(isset($_POST['submit'])){
         }
 
     }
+    // if organization is registering
     else{
         $cname = $_POST['cname'];
         //if fields are empty

@@ -15,7 +15,7 @@
         <div class="form-contents">
         <a href="../index.php"><img src="../assets/logo1.png" alt=""></a> 
             <h1>Sign Up To Join The Amazing Community!!!</h1>
-            <!-- form for logining in -->
+            <!-- form for signing up -->
             <form action="../controller/register.php" method="post">
             <div class="form-group">
                     <label for="fname">First Name</label>

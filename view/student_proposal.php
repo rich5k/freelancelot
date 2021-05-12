@@ -105,9 +105,11 @@ _SIGNINITEM;
             
             <div class="row">
                 <?php
+                //displays student's names
                 echo '<h3>'.$studName->fname.' '.$studName->lname.'</h3>';
                     echo '<br>';
                     echo '<br>';
+                    //gets student bio
                     $studBio= $student->getStudentBio($studentData);
                     if($studBio!= null){
                         echo '<div class="col-lg-6">';
@@ -139,6 +141,7 @@ _SIGNINITEM;
                             'studentID'=> $studentID,
                             'projectID' => $projectID
                         ];
+                        //gets student's proposal
                         $stud_prop= $student->getProjProp($propData);
                         echo '<p>';
                             echo $stud_prop->proposal;

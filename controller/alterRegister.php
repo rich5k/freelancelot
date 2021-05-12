@@ -1,10 +1,12 @@
 <?php
+    //changes sign up form based on whether it is a company or
+    //student
     if(isset($_POST['category'])){
         
         $output ='';
         $category=$_POST["category"];
 
-        
+        //if user is an organization
         if($category=="org"){
             
             $output.='
@@ -52,6 +54,7 @@
             ';
             
         }
+        //if user is a student
         else{
             
             $output.='

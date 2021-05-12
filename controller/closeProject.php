@@ -7,6 +7,7 @@ require_once '../models/Organization.php';
 
 
 $payStatus= $_POST['payStatus'];
+//if project is paid
 if($payStatus=='paid'){
     require_once('../vendor/autoload.php');
     \Stripe\Stripe::setApiKey('sk_test_51HQvfzGnX6tvw2VTj0G9UyqrnWsGNRbAVwBE7Tshilq4ZEEdkS0labBfhJFhxRJSm0pINEcmX9KI9qB2ISbm8nVF00zoxxBl9M');
@@ -65,8 +66,9 @@ if($payStatus=='paid'){
         'acctDetails'=> $charge->id,
         'amount'=> $_POST['amount']
     ];
-    
+    //add project to students portfolio
     if($student->addStudProj($studProjData)){
+        //makes payments
         if($organization->addPayments($paymentData)){
             echo '<script>alert("Review, Rating and Payment Process Successful")</script>';
             echo '<script>window.location.href = "../view/org_dashboard.php";</script>';
@@ -81,6 +83,7 @@ if($payStatus=='paid'){
         echo '<script>window.location.href = "../view/endProject.php";</script>';
         exit();
     }
+    //if project is voluntary
 }else{
     //Instantiate Student
     $student= new Student();
@@ -96,7 +99,7 @@ if($payStatus=='paid'){
         'reviews'=> $reviews,
         'ratings'=> $rating
     ];
-
+    //adds project to student's portfolio
     if($student->addStudProj($studProjData)){
         echo '<script>alert("Review and Rating Process Successful")</script>';
         echo '<script>window.location.href = "../view/org_dashboard.php";</script>';

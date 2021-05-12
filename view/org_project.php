@@ -120,7 +120,7 @@ _SIGNINITEM;
                     $projectData=[
                         'projectID'=> $_POST["projectID"]
                     ];
-                    
+                    //gets project details
                     $project = $organization->getProjects($projectData);
                     echo '<h3>'.$project->ptitle.'</h3>';
                         echo '<br>';

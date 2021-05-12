@@ -38,9 +38,11 @@ if(isset($_POST['submit'])){
             'projectID'=> $projectID,
             'prop_status'=> 'completed'
         ];
-    
+        //adds projects to organizations completed projects
         if($organization->addOrgProj($orgProjData)){
+            //updates project status from ongoing to done
             if($organization->updateProjStatus($projectData)){
+                //updates student's proposal from accepted to completed
                 if($student->updateProjProp($projPropData)){
                     echo '<script>alert("Review and Rating Process Successful")</script>';
                     echo '<script>window.location.href = "../view/stud_dashboard.php";</script>';

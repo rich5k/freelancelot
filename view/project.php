@@ -99,7 +99,7 @@ _SIGNINITEM;
                     'projectID'=> $projID
                     
                 ];
-
+                //gets project details
                 $proj= $organization->getProjects($projectData);
                 
                 echo '<div class="row">';
@@ -244,6 +244,7 @@ _SIGNINITEM;
                         $orgData=[
                             'organID'=> $proj->organID
                         ];
+                        //gets organizations info
                         $orgInfo= $organization->getOrgInfo($orgData);
                         echo '<div class="jumbotron">';
                             echo '<h5>About the employer</h5>';

@@ -101,6 +101,7 @@ _SIGNINITEM;
                     'organID'=> $_SESSION['sessionId']
                     
                 ];
+                //gets all pending projects
                 $orgProjs= $organization->getAllOrgProj($orgData);
                 
                 
@@ -109,7 +110,7 @@ _SIGNINITEM;
                         $projectData=[
                             'projectID'=> $p->projectID
                         ];
-                        
+                        //gets details for each project
                         $project = $organization->getProjects($projectData);
                         
                         

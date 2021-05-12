@@ -1,3 +1,4 @@
+// displays message for stripe API
 window.onload = function () {
     if (typeof(Storage) !== "undefined") {
       if (typeof localStorage["card-element"] !== "undefined") {

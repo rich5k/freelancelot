@@ -81,7 +81,7 @@ _SIGNOUTITEM;
         </div>
     </div>
     </nav>
-        
+        <!-- form for student bio -->
     <img src="../assets/workpic6.jpg" class="img-fluid" alt="Responsive image" style="
     height: 350px;
     width: 100%;">

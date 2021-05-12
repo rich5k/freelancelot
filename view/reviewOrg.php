@@ -98,6 +98,7 @@ _SIGNINITEM;
                     $orgData=[
                         'organID'=>$_POST['organID']
                     ];
+                    //gets organization name
                     $orgName= $organization->getOrgName($orgData);
                     echo '<h3>Rate '.$orgName->cname.'\'s Performance</h3>';
                     echo '<form action="../controller/evalOrg.php" method="post" id="payment-form"> ';

@@ -27,13 +27,14 @@ if(isset($_POST['submit'])){
         exit();
     }
     else{
-
+        //if student is logining in
         if($selected_category=="student"){
 
             //Student Email
             $studentEmail=[
                 'email'=> $email
             ];
+            //checks if student email does not exist
             if(!($student->getStudentEmail($studentEmail))){
                 echo '<script>alert("No user")</script>';
                 echo '<script>window.location.href = "../view/signUp.php";</script>';
@@ -47,7 +48,7 @@ if(isset($_POST['submit'])){
                 
                 //verfiying password
                 $passCheck=password_verify($password, $stud->password);
-                // echo $passCheck;
+                
                 if($passCheck==false){
                     echo '<script>alert("Wrong Password")</script>';
                     echo '<script>window.location.href = "../view/signIn.php";</script>';
@@ -71,6 +72,7 @@ if(isset($_POST['submit'])){
             }
 
         }
+        //if organization is logining in
         else{
 
             //Organization Email
@@ -90,7 +92,7 @@ if(isset($_POST['submit'])){
                 
                 //verfiying password
                 $passCheck=password_verify($password, $org->password);
-                // echo $passCheck;
+                
                 if($passCheck==false){
                     echo '<script>alert("Wrong Password")</script>';
                     echo '<script>window.location.href = "../view/signIn.php";</script>';

@@ -118,6 +118,7 @@ _SIGNINITEM;
                         'projectID'=> $_POST['projectID']
                         
                     ];
+                    //gets details of past projects
                     $studProj= $student->getStudProj($studProjData);
     
                     //Instantiate Organization
@@ -125,7 +126,7 @@ _SIGNINITEM;
                     $projectData=[
                         'projectID'=> $_POST["projectID"]
                     ];
-                    
+                    //details of project
                     $project = $organization->getProjects($projectData);
                     echo '<h3>'.$project->ptitle.'</h3>';
                         echo '<br>';

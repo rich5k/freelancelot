@@ -31,9 +31,11 @@ if(isset($_POST['submit'])){
         'projectID'=> $projectID,
         'workStatus'=> 'ongoing'
     ];
-
+    //updates students project proposal from pending to accepted
     if($student->updateProjProp($projPropData)){
+        //clears all proposals that are not approved
         if($student->clearProjProp($projectData)){
+            //update project status from pending to ongoing
             if($organization->updateProjStatus($updateProjectData)){
                 echo '<script>alert("Well Done. You accepted a proposal successfully")</script>';
                 echo '<script>window.location.href = "../view/org_dashboard.php";</script>';

@@ -94,7 +94,7 @@ _SIGNINITEM;
         <?php
             //Instantiate Organization
             $organization= new Organization();
-
+            //gets details on all pending projects
             $projects= $organization->getAllProjects();
             if($projects!= null){
                 foreach($projects as $proj){

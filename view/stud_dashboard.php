@@ -98,6 +98,7 @@ _SIGNINITEM;
                     $studentData =[
                         'studentID'=> $_SESSION['sessionId']
                     ];
+                    //gets student bio
                     $studBio= $student->getStudentBio($studentData);
                     if($studBio!= null){
                         echo '<div class="col-lg-6">';
@@ -137,7 +138,7 @@ _SIGNINITEM;
                     
                     
             </div>
-            
+            <!-- Ongoing projects -->
             <?php
                 echo '<h5>Ongoing Projects</h5>';
 

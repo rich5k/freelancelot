@@ -102,7 +102,9 @@ _SIGNINITEM;
                 'major'=>$maj,
                 'search'=>$sch
             ];
+            //search for student based on search query
             $students=$student->getStudentsSearch($search);
+            //gets all majors
             $majors = $student->getMajors();
 
             $sortStuds=array();
@@ -112,6 +114,7 @@ _SIGNINITEM;
                     $BioData=[
                         'studentID'=>$stud->studentID
                     ];
+                    //gets details of students past projects
                     $studProjs=$student->getAllStudProj($BioData);
                     if($studProjs!= null){
                         $totalRatings=0;
@@ -122,6 +125,7 @@ _SIGNINITEM;
                             $totalRatings=$totalRatings+$sp->ratings;
                             $count++;
                         }
+                        //calculates average ratings
                         $avgRatings= $totalRatings/$count;
                         $sortStuds[$stud->studentID]= $avgRatings;
                     }else{
@@ -170,6 +174,7 @@ _SIGNINITEM;
                                     echo '</div>';
                                 echo '</form>';
                             echo '</div>';
+                            //displays students in descending order of their avg. ratings
                             foreach(array_keys($sortStuds) as $stud){
                                 $BioData=[
                                     'studentID'=>$stud
@@ -191,6 +196,7 @@ _SIGNINITEM;
                                             echo '<small>'.$studBio->university.'</small>';
                                         echo '</div>';
                                     echo '</div>';
+                                    //gets past projects details
                                     $studProjs=$student->getAllStudProj($BioData);
                                     if($studProjs!= null){
                                         $totalRatings=0;

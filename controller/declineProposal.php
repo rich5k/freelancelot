@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     ];
 
     
-
+    //deletes student proposal when declined
     if($student->deleteProjProp($projPropData)){
         echo '<script>alert("Well Done. You declined a proposal successfully")</script>';
         echo '<script>window.location.href = "../view/org_dashboard.php";</script>';

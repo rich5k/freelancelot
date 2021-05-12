@@ -96,6 +96,7 @@ _SIGNINITEM;
                     $studentData=[
                         'studentID'=>$_POST['studentID']
                     ];
+                    // get student name
                     $studName= $student->getStudentName($studentData);
                     echo '<h3>Rate '.$studName->fname.' '.$studName->lname.'\'s Performance</h3>';
                     $projectData=[
@@ -104,6 +105,7 @@ _SIGNINITEM;
                     //Instantiate Organization
                     $organization= new Organization();
                     $project= $organization->getProjects($projectData);
+                    // if the project is paid
                     if($project->payStatus =="Paid"){
                             echo '<form action="../controller/closeProject.php" method="post" id="payment-form"> ';
                                 echo '<div class="form-group">';
@@ -128,9 +130,10 @@ _SIGNINITEM;
                             echo '<input type="hidden" name="payStatus" value="paid"></input>';
                             echo '<input type="hidden" name="amount" value="'.$project->amount.'"></input>';
                             echo '<br>';
+                            //stripe API payment form
                             echo '<div style="width: 30em" #stripecardelement id="card-element">';
                             echo '<!-- A Stripe Element will be inserted here. -->';
-                            // echo '</div>';
+               
 
                             echo '<!-- Used to display form errors. -->';
                             echo '<div style="width: 30em; height: 2em; letter-spacing: 0em" id="card-errors" role="alert"></div>';
@@ -138,6 +141,7 @@ _SIGNINITEM;
 
                             echo '<span id="cardDetails"></span>';
                             echo '<button>Submit</button>';
+                            //if the project is voluntary
                         }else{
                             echo '<form action="../controller/closeProject.php" method="post" > ';
                                 echo '<div class="form-group">';

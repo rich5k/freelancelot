@@ -98,6 +98,7 @@ _SIGNINITEM;
                     $orgInfoData =[
                         'organID'=> $_SESSION['sessionId']
                     ];
+                    //gets organization info
                     $orgInfo= $organization->getOrgInfo($orgInfoData);
                     if($orgInfo!= null){
                         echo '<div class="col-lg-6">';
@@ -140,6 +141,7 @@ _SIGNINITEM;
             <h5>Pending Projects</h5>
             
             <?php
+                //projects that are not approved yet
                 $pendProjs= $organization->getPendingProjects($orgInfoData);
                 if($pendProjs!= null){
                     foreach($pendProjs as $pendP){
@@ -178,7 +180,7 @@ _SIGNINITEM;
 
             <?php
                 echo '<h5>Ongoing Projects</h5>';
-
+                //ongoing projects
                 $ongoingProjs = $organization->getOngoingProjects($orgInfoData);
                 if($ongoingProjs!= null){
                     foreach($ongoingProjs as $op){

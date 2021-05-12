@@ -115,11 +115,13 @@ _SIGNINITEM;
                         $studentData =[
                             'studentID'=> $_POST['studentID']
                         ];
+                        //gets student name
                         $studName= $student->getStudentName($studentData);
                         echo '<h3>'.$studName->fname.' '.$studName->lname.'\'s Profile</h3>';
                         echo '<br>';
                         echo '<br>';
                         echo '<div class="row">';
+                        //gets student bio
                         $studBio= $student->getStudentBio($studentData);
                         if($studBio!= null){
                             echo '<div class="col-lg-6">';
@@ -144,7 +146,7 @@ _SIGNINITEM;
                             echo $studBio->university;
                             echo '<br>';
                             echo '<br>';
-                           
+                           //gets student past projects
                             $studProjs=$student->getAllStudProj($studentData);
                                     if($studProjs!= null){
                                         $totalRatings=0;
@@ -155,6 +157,7 @@ _SIGNINITEM;
                                             $totalRatings=$totalRatings+$sp->ratings;
                                             $count++;
                                         }
+                                        //calculates avg. ratings
                                         $avgRatings= $totalRatings/$count;
                                         
                                         $successPercent= round(($avgRatings/5) * 100);
