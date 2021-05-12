@@ -144,8 +144,41 @@ _SIGNINITEM;
                             echo $studBio->university;
                             echo '<br>';
                             echo '<br>';
-                            //echo '<button type="button" onclick="window.location.href=\'proposal.php\';" class="btn btn-success btn-sm">Send Proposal</button>';
+                           
+                            $studProjs=$student->getAllStudProj($studentData);
+                                    if($studProjs!= null){
+                                        $totalRatings=0;
+                                        $avgRatings=0.0;
+                                        $count=0;
+                                        $successPercent=0;
+                                        foreach($studProjs as $sp){
+                                            $totalRatings=$totalRatings+$sp->ratings;
+                                            $count++;
+                                        }
+                                        $avgRatings= $totalRatings/$count;
+                                        
+                                        $successPercent= round(($avgRatings/5) * 100);
+                                        echo '<strong>'.$successPercent.'% Project Success</strong>';
+                                        echo '<br>';
+                                        echo '<br>';
+                                        echo '<strong>Avg. Ratings: </strong>';
+                                        for ($i=0; $i < round($avgRatings); $i++) { 
+                                
+                                            echo "<i class='fa fa-star stars' aria-hidden='true'></i>";
+                            
+                                        }
+                                        if ($avgRatings< 5) {
+                                            //puts empty stars for ratings is available
+                                            for($i=0; $i < 5-round($avgRatings); $i++){
+                                            echo "<i class='fa fa-star-o stars' aria-hidden='true'></i>";
+                            
+                                            }
+                                        }
+                                    }else{
+                                        echo 'No Project Experience';
+                                    }
                             echo '</div>';
+
                         }
                         else{
                             echo '<div class="row">';

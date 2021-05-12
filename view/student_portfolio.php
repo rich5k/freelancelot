@@ -13,8 +13,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Porfolio</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/project.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/project.css">
 </head>
 <body>
     <!-- navbar container -->
@@ -119,15 +119,15 @@ _SIGNINITEM;
                                 echo '<div class="col-lg-12">';
                                     echo '<span style= " color: #56C8F0;" >'.$project->ptitle.'</span>';
                                     echo '<br>';
-                                    for ($i=0; $i <= $p->ratings; $i++) { 
+                                    for ($i=0; $i < $p->ratings; $i++) { 
                           
-                                        echo "<i class='fa fa-star' aria-hidden='true'></i>";
+                                        echo "<i class='fa fa-star stars' aria-hidden='true'></i>";
                         
                                     }
                                     if ($p->ratings< 5) {
                                         //puts empty stars for ratings is available
                                         for($i=0; $i < 5-$p->ratings; $i++){
-                                          echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
+                                          echo "<i class='fa fa-star-o stars' aria-hidden='true'></i>";
                         
                                         }
                                     }

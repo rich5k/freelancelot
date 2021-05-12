@@ -20,6 +20,11 @@ footer{
     animation:  color-change 10s ease-in-out infinite;
 }
 
+.stars{
+    font-family:FontAwesome;
+    color: rgb(243, 215, 54);
+}
+
 @keyframes color-change{
     0%{
         background: #000;

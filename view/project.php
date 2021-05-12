@@ -271,17 +271,17 @@ _SIGNINITEM;
                                         $totalRatings=$totalRatings+$sp->ratings;
                                         $count++;
                                     }
-                                        
+                                    $avgRatings= $totalRatings/$count;
                                     echo '<strong> Avg. Ratings: </strong>';
-                                        for ($i=0; $i <= round($avgRatings); $i++) { 
+                                        for ($i=0; $i < round($avgRatings); $i++) { 
                                 
-                                            echo "<i class='fa fa-star' aria-hidden='true'></i>";
+                                            echo "<i class='fa fa-star stars' aria-hidden='true'></i>";
                             
                                         }
-                                        if ($studProj->ratings< 5) {
+                                        if ($avgRatings< 5) {
                                             //puts empty stars for ratings is available
                                             for($i=0; $i < 5-round($avgRatings); $i++){
-                                            echo "<i class='fa fa-star-o' aria-hidden='true'></i>";
+                                            echo "<i class='fa fa-star-o stars' aria-hidden='true'></i>";
                             
                                             }
                                         }
