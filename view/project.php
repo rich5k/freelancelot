@@ -262,6 +262,7 @@ _SIGNINITEM;
                             echo $orgInfo->cwebsite;
                             echo '<br>';
                             echo '<br>';
+                            //gets details of past projects
                             $orgProjs=$organization->getAllOrgProj($orgData);
                                 if($orgProjs!= null){
                                     $totalRatings=0;

@@ -181,61 +181,68 @@ _SIGNINITEM;
                                 ];
                                 $studBio=$student->getStudentBio($BioData);
                                 $studName=$student->getStudentName($BioData);
-                                echo '<div class="jumbotron">';
-                                    echo '<div class="row">';
-                                        echo '<div class="col-lg-2">';
-                                            echo '<img src="../studImages/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
-                                            height: 100%;
-                                            width: 100%;">';
+                                if($studBio!=null){
+
+                                    echo '<div class="jumbotron">';
+                                        echo '<div class="row">';
+                                            echo '<div class="col-lg-2">';
+                                                echo '<img src="../studImages/'.$studBio->picture.'" class="img-fluid profile-img" alt="Responsive image" style="
+                                                height: 100%;
+                                                width: 100%;">';
+                                            echo '</div>';
+                                            echo '<div class="col-lg-10">';
+                                                echo '<span style= " color: #56C8F0;" >'.$studName->fname.' '.$studName->lname.'</span>';
+                                                echo '<br>';
+                                                echo '<strong>'.$studBio->major.'</strong>';
+                                                echo '<br>';
+                                                echo '<small>'.$studBio->university.'</small>';
+                                            echo '</div>';
                                         echo '</div>';
-                                        echo '<div class="col-lg-10">';
-                                            echo '<span style= " color: #56C8F0;" >'.$studName->fname.' '.$studName->lname.'</span>';
-                                            echo '<br>';
-                                            echo '<strong>'.$studBio->major.'</strong>';
-                                            echo '<br>';
-                                            echo '<small>'.$studBio->university.'</small>';
-                                        echo '</div>';
-                                    echo '</div>';
-                                    //gets past projects details
-                                    $studProjs=$student->getAllStudProj($BioData);
-                                    if($studProjs!= null){
-                                        $totalRatings=0;
-                                        $avgRatings=0.0;
-                                        $count=0;
-                                        $successPercent=0;
-                                        foreach($studProjs as $sp){
-                                            $totalRatings=$totalRatings+$sp->ratings;
-                                            $count++;
-                                        }
-                                        $avgRatings= $totalRatings/$count;
-                                        
-                                        $successPercent= round(($avgRatings/5) * 100);
-                                        echo $successPercent.'% Project Success';
-                                        echo '<br>';
-                                        echo 'Avg. Ratings: ';
-                                        for ($i=0; $i < round($avgRatings); $i++) { 
-                                
-                                            echo "<i class='fa fa-star stars' aria-hidden='true'></i>";
-                            
-                                        }
-                                        if ($avgRatings< 5) {
-                                            //puts empty stars for ratings is available
-                                            for($i=0; $i < 5-round($avgRatings); $i++){
-                                            echo "<i class='fa fa-star-o stars' aria-hidden='true'></i>";
-                            
+                                        //gets past projects details
+                                        $studProjs=$student->getAllStudProj($BioData);
+                                        if($studProjs!= null){
+                                            $totalRatings=0;
+                                            $avgRatings=0.0;
+                                            $count=0;
+                                            $successPercent=0;
+                                            foreach($studProjs as $sp){
+                                                $totalRatings=$totalRatings+$sp->ratings;
+                                                $count++;
                                             }
+                                            $avgRatings= $totalRatings/$count;
+                                            
+                                            $successPercent= round(($avgRatings/5) * 100);
+                                            echo $successPercent.'% Project Success';
+                                            echo '<br>';
+                                            echo 'Avg. Ratings: ';
+                                            for ($i=0; $i < round($avgRatings); $i++) { 
+                                    
+                                                echo "<i class='fa fa-star stars' aria-hidden='true'></i>";
+                                
+                                            }
+                                            if ($avgRatings< 5) {
+                                                //puts empty stars for ratings is available
+                                                for($i=0; $i < 5-round($avgRatings); $i++){
+                                                echo "<i class='fa fa-star-o stars' aria-hidden='true'></i>";
+                                
+                                                }
+                                            }
+                                        }else{
+                                            echo 'No Project Experience';
                                         }
-                                    }else{
-                                        echo 'No Project Experience';
-                                    }
-                                    echo '<p class="descr">';
-                                    echo $studBio->bio;
-                                    echo '</p>';
-                                    echo '<form action="./student_view.php" method="POST">';
-                                    echo '<input type="hidden" name="studentID" value="'.$stud.'"></input>';
-                                    echo '<button class="btn btn-success btn-sm" name= "submit">Check Student Out</button>';
-                                    echo '</form>';
-                                echo '</div>';
+                                        echo '<p class="descr">';
+                                        echo $studBio->bio;
+                                        echo '</p>';
+                                        echo '<form action="./student_view.php" method="POST">';
+                                        echo '<input type="hidden" name="studentID" value="'.$stud.'"></input>';
+                                        echo '<button class="btn btn-success btn-sm" name= "submit">Check Student Out</button>';
+                                        echo '</form>';
+                                    echo '</div>';
+                                }else{
+                                    echo '<div class="jumbotron">';
+                                    echo $studName->fname.' '.$studName->lname.' has no bio.';
+                                    echo '</div>';
+                                }
 
                             }
                         echo '</div>';
