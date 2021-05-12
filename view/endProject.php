@@ -98,32 +98,32 @@ _SIGNINITEM;
                     ];
                     $studName= $student->getStudentName($studentData);
                     echo '<h3>Rate '.$studName->fname.' '.$studName->lname.'\'s Performance</h3>';
-                    echo '<form action="../controller/closeProject.php" method="post" id="payment-form"> ';
-                        echo '<div class="form-group">';
-                            echo '<input type="hidden" name="studentID" value="'.$_POST['studentID'].'"></input>';
-                            echo '<input type="hidden" name="projectID" value="'.$_POST['projectID'].'"></input>';
-                            echo '<label for="reviews"><b>Reviews:</b></label>';
-                            echo '<textarea type="text" class="form-control" id="reviews" name="reviews" cols="30" rows="8"></textarea>';
-                            
-                        echo '</div>';
-                        echo '<label for="ratings"><b>Ratings:</b></label>';
-                        echo '<div class="rating">';
-                            echo '<br>';
-                            echo '<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>';
-                            echo '<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>';
-                            echo '<input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>';
-                            echo '<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>'; 
-                            echo '<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>';
-                        echo '</div>';
-                        echo '<br>';
-                        echo '<br>';
-                        $projectData=[
-                            'projectID'=>$_POST['projectID']
-                        ];
-                        //Instantiate Organization
-                        $organization= new Organization();
-                        $project= $organization->getProjects($projectData);
-                        if($project->payStatus =="Paid"){
+                    $projectData=[
+                        'projectID'=>$_POST['projectID']
+                    ];
+                    //Instantiate Organization
+                    $organization= new Organization();
+                    $project= $organization->getProjects($projectData);
+                    if($project->payStatus =="Paid"){
+                            echo '<form action="../controller/closeProject.php" method="post" id="payment-form"> ';
+                                echo '<div class="form-group">';
+                                    echo '<input type="hidden" name="studentID" value="'.$_POST['studentID'].'"></input>';
+                                    echo '<input type="hidden" name="projectID" value="'.$_POST['projectID'].'"></input>';
+                                    echo '<label for="reviews"><b>Reviews:</b></label>';
+                                    echo '<textarea type="text" class="form-control" id="reviews" name="reviews" cols="30" rows="8"></textarea>';
+                                    
+                                echo '</div>';
+                                echo '<label for="ratings"><b>Ratings:</b></label>';
+                                echo '<div class="rating">';
+                                    echo '<br>';
+                                    echo '<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>';
+                                    echo '<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>';
+                                    echo '<input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>';
+                                    echo '<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>'; 
+                                    echo '<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>';
+                                echo '</div>';
+                                echo '<br>';
+                                echo '<br>';
                             echo '<label for="payStatus"><b>Payment:</b></label>';
                             echo '<input type="hidden" name="payStatus" value="paid"></input>';
                             echo '<input type="hidden" name="amount" value="'.$project->amount.'"></input>';
@@ -137,12 +137,32 @@ _SIGNINITEM;
                             echo '</div>';
 
                             echo '<span id="cardDetails"></span>';
+                            echo '<button>Submit</button>';
                         }else{
+                            echo '<form action="../controller/closeProject.php" method="post" > ';
+                                echo '<div class="form-group">';
+                                    echo '<input type="hidden" name="studentID" value="'.$_POST['studentID'].'"></input>';
+                                    echo '<input type="hidden" name="projectID" value="'.$_POST['projectID'].'"></input>';
+                                    echo '<label for="reviews"><b>Reviews:</b></label>';
+                                    echo '<textarea type="text" class="form-control" id="reviews" name="reviews" cols="30" rows="8"></textarea>';
+                                    
+                                echo '</div>';
+                                echo '<label for="ratings"><b>Ratings:</b></label>';
+                                echo '<div class="rating">';
+                                    echo '<br>';
+                                    echo '<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>';
+                                    echo '<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>';
+                                    echo '<input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>';
+                                    echo '<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>'; 
+                                    echo '<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>';
+                                echo '</div>';
+                                echo '<br>';
+                                echo '<br>';
                             echo '<input type="hidden" name="payStatus" value="voluntary"></input>';
                             echo '<input type="hidden" name="amount" value="0"></input>';
+                            echo '<button type="submit" class="btn btn-primary" name="submit">Submit</button>';
                         }
-                        echo '';
-                        echo '<button>Submit</button>';
+                       
                     echo '</form>';
                 }else{
                     echo '<h5>Sorry, there is no ongoing project to end.</h5>';

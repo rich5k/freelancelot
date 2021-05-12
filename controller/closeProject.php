@@ -2,39 +2,39 @@
 session_start();
 require_once '../controller/database.php';
 require_once '../models/Database.php';
-require_once('../vendor/autoload.php');
 require_once '../models/Student.php';
 require_once '../models/Organization.php';
 
-\Stripe\Stripe::setApiKey('sk_test_51HQvfzGnX6tvw2VTj0G9UyqrnWsGNRbAVwBE7Tshilq4ZEEdkS0labBfhJFhxRJSm0pINEcmX9KI9qB2ISbm8nVF00zoxxBl9M');
 
-//Sanitize POST Array
-$POST= filter_var_array($_POST, FILTER_SANITIZE_STRING);
-
-$organID=$_SESSION['sessionId'];
-$studentID=$_POST['studentID'];
-$projectID=$_POST['projectID'];
-$reviews=$_POST['reviews'];
-$token= $POST['stripeToken'];
-$totalstr=$_POST['amount'];
-$totalAmt= $totalstr*100;
 $payStatus= $_POST['payStatus'];
-$rating = $_POST['rating'];
-$email = $_SESSION['sessionEmail'];
-
-// echo $rating;
-
-//Instantiate Organization
-$organization= new Organization();
-$projectData=[
-    'projectID'=> $projectID
-];
-$project= $organization->getProjects($projectData);
-
-//Instantiate Student
-$student= new Student();
-
 if($payStatus=='paid'){
+    require_once('../vendor/autoload.php');
+    \Stripe\Stripe::setApiKey('sk_test_51HQvfzGnX6tvw2VTj0G9UyqrnWsGNRbAVwBE7Tshilq4ZEEdkS0labBfhJFhxRJSm0pINEcmX9KI9qB2ISbm8nVF00zoxxBl9M');
+    
+    //Sanitize POST Array
+    $POST= filter_var_array($_POST, FILTER_SANITIZE_STRING);
+    
+    $organID=$_SESSION['sessionId'];
+    $studentID=$_POST['studentID'];
+    $projectID=$_POST['projectID'];
+    $reviews=$_POST['reviews'];
+    $token= $POST['stripeToken'];
+    $totalstr=$_POST['amount'];
+    $totalAmt= $totalstr*100;
+    $rating = $_POST['rating'];
+    $email = $_SESSION['sessionEmail'];
+    
+    // echo $rating;
+    
+    //Instantiate Organization
+    $organization= new Organization();
+    $projectData=[
+        'projectID'=> $projectID
+    ];
+    $project= $organization->getProjects($projectData);
+    
+    //Instantiate Student
+    $student= new Student();
 
     //Create Customer IN Stripe
     $cust =\Stripe\Customer::create(array(
@@ -82,6 +82,14 @@ if($payStatus=='paid'){
         exit();
     }
 }else{
+    //Instantiate Student
+    $student= new Student();
+
+    $organID=$_SESSION['sessionId'];
+    $studentID=$_POST['studentID'];
+    $projectID=$_POST['projectID'];
+    $reviews=$_POST['reviews'];
+    $rating = $_POST['rating'];
     $studProjData=[
         'studentID'=> $studentID,
         'projectID'=> $projectID,

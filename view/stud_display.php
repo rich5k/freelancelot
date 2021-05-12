@@ -105,7 +105,37 @@ _SIGNINITEM;
             $students=$student->getStudentsSearch($search);
             $majors = $student->getMajors();
 
+            $sortStuds=array();
             if($students!=null){
+
+                foreach($students as $stud){
+                    $BioData=[
+                        'studentID'=>$stud->studentID
+                    ];
+                    $studProjs=$student->getAllStudProj($BioData);
+                    if($studProjs!= null){
+                        $totalRatings=0;
+                        $avgRatings=0.0;
+                        $count=0;
+                        $successPercent=0;
+                        foreach($studProjs as $sp){
+                            $totalRatings=$totalRatings+$sp->ratings;
+                            $count++;
+                        }
+                        $avgRatings= $totalRatings/$count;
+                        $sortStuds[$stud->studentID]= $avgRatings;
+                    }else{
+                        $sortStuds[$stud->studentID]= 0;
+                    }
+                }
+
+                // Sorting the array by value
+                arsort($sortStuds);
+                // print_r($sortStuds);
+
+            }
+
+            if($sortStuds!=null){
                 if($majors!=null){
                     echo '<div class="row">';
                         echo '<div class="col-lg-3">';
@@ -140,11 +170,12 @@ _SIGNINITEM;
                                     echo '</div>';
                                 echo '</form>';
                             echo '</div>';
-                            foreach($students as $stud){
+                            foreach(array_keys($sortStuds) as $stud){
                                 $BioData=[
-                                    'studentID'=>$stud->studentID
+                                    'studentID'=>$stud
                                 ];
                                 $studBio=$student->getStudentBio($BioData);
+                                $studName=$student->getStudentName($BioData);
                                 echo '<div class="jumbotron">';
                                     echo '<div class="row">';
                                         echo '<div class="col-lg-2">';
@@ -153,7 +184,7 @@ _SIGNINITEM;
                                             width: 100%;">';
                                         echo '</div>';
                                         echo '<div class="col-lg-10">';
-                                            echo '<span style= " color: #56C8F0;" >'.$stud->fname.' '.$stud->lname.'</span>';
+                                            echo '<span style= " color: #56C8F0;" >'.$studName->fname.' '.$studName->lname.'</span>';
                                             echo '<br>';
                                             echo '<strong>'.$studBio->major.'</strong>';
                                             echo '<br>';
@@ -195,7 +226,7 @@ _SIGNINITEM;
                                     echo $studBio->bio;
                                     echo '</p>';
                                     echo '<form action="./student_view.php" method="POST">';
-                                    echo '<input type="hidden" name="studentID" value="'.$stud->studentID.'"></input>';
+                                    echo '<input type="hidden" name="studentID" value="'.$stud.'"></input>';
                                     echo '<button class="btn btn-success btn-sm" name= "submit">Check Student Out</button>';
                                     echo '</form>';
                                 echo '</div>';
