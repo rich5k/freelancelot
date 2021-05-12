@@ -70,6 +70,7 @@ if($payStatus=='paid'){
         if($organization->addPayments($paymentData)){
             echo '<script>alert("Review, Rating and Payment Process Successful")</script>';
             echo '<script>window.location.href = "../view/org_dashboard.php";</script>';
+            exit();
         }else{
             echo '<script>alert("Payment Process Failed")</script>';
             echo '<script>window.location.href = "../view/endProject.php";</script>';

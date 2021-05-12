@@ -93,10 +93,8 @@ _SIGNINITEM;
                 if(isset($_POST['submit'])){
                     //Instantiate Organization
                     $organization= new Organization();
-                    // $project= $organization->getProjects($projectData);
-
-                    //Instantiate Student
-                    $student= new Student();
+                    
+                    
                     $orgData=[
                         'organID'=>$_POST['organID']
                     ];
@@ -121,16 +119,12 @@ _SIGNINITEM;
                         echo '</div>';
                         echo '<br>';
                         echo '<br>';
-                        $projectData=[
-                            'projectID'=>$_POST['projectID']
-                        ];
-                        
                         
                         
                         echo '<button type="submit" class="btn btn-primary" name="submit">Submit</button>';
                     echo '</form>';
                 }else{
-                    echo '<h5>Sorry, there is no ongoing project to end.</h5>';
+                    echo '<h5>Sorry, there is no company to review.</h5>';
                 }
             ?>
             
