@@ -15,7 +15,7 @@
 footer{
     color: white;
     background: #000;
-    width: 1350px;
+    width: 100%;
     text-align: center;
     animation:  color-change 10s ease-in-out infinite;
 }
